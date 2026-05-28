@@ -1,11 +1,24 @@
 'use client'
 import { useEffect, useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import styles from './Hero.module.css'
 
 export default function Hero() {
   const blob1Ref = useRef(null)
   const blob2Ref = useRef(null)
   const blob3Ref = useRef(null)
+  const sectionRef = useRef(null)
+
+  // As the next section scrolls up over the sticky hero, fade + scale + blur it
+  // away so it feels like the page "swallows" the hero.
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
+  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
+  const filter = useTransform(scrollYProgress, [0, 1], ['blur(0px)', 'blur(10px)'])
+  const y = useTransform(scrollYProgress, [0, 1], [0, 60])
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) return
@@ -37,7 +50,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className={styles.hero}>
+    <section ref={sectionRef} className={styles.hero}>
       <div className={styles.bgBlobs}>
         <div ref={blob1Ref} className={`${styles.blob} ${styles.blob1}`} />
         <div ref={blob2Ref} className={`${styles.blob} ${styles.blob2}`} />
@@ -45,7 +58,7 @@ export default function Hero() {
         <div className={styles.grain} />
       </div>
 
-      <div className={styles.content}>
+      <motion.div className={styles.content} style={{ scale, opacity, filter, y }}>
 
         <div className={styles.topInfoBar}>
           <div className={styles.infoBadge}>
@@ -72,7 +85,7 @@ export default function Hero() {
             Смотреть работы <span className={styles.arrow}>↓</span>
           </a>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

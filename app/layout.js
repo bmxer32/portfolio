@@ -1,5 +1,7 @@
 import './globals.css'
 import { Inter } from 'next/font/google'
+import SmoothScroll from '../components/SmoothScroll'
+import CustomCursor from '../components/CustomCursor'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -35,7 +37,10 @@ export default function RootLayout({ children }) {
         {/* Force empty favicon to override cached localhost VPN icons */}
         <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
       </head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <CustomCursor />
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   )
 }

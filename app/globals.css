@@ -8,26 +8,32 @@
 }
 
 :root {
-  /* Sutera / Luxury Minimalist Theme: Pure Monochrome */
-  --bg-primary: #050505;
-  --bg-secondary: #0a0a0a;
-  --bg-card: rgba(255, 255, 255, 0.02);
-  --bg-card-hover: rgba(255, 255, 255, 0.05);
-  
-  --border-color: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.3);
+  /* Scroll-driven morph: these two are animated by SmoothScroll on every frame.
+     The whole palette below is derived from them, so the entire site fades
+     from black to white as you scroll. */
+  --bg-rgb: 7, 7, 8;
+  --fg-rgb: 250, 250, 250;
 
-  --accent-primary: #ffffff;
-  --accent-secondary: #cccccc;
-  --accent-cyan: #ffffff; /* Neutralized */
-  
-  --gradient-main: linear-gradient(135deg, #ffffff 0%, #aaaaaa 100%);
-  --gradient-text: linear-gradient(135deg, #ffffff, #888888);
-  --gradient-glow: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.0));
+  /* Sutera / Luxury Minimalist Theme: Pure Monochrome (morph-aware) */
+  --bg-primary: rgb(var(--bg-rgb));
+  --bg-secondary: rgb(var(--bg-rgb));
+  --bg-card: rgba(var(--fg-rgb), 0.03);
+  --bg-card-hover: rgba(var(--fg-rgb), 0.07);
 
-  --text-primary: #ffffff;
-  --text-secondary: #888888;
-  --text-muted: #555555;
+  --border-color: rgba(var(--fg-rgb), 0.1);
+  --border-hover: rgba(var(--fg-rgb), 0.35);
+
+  --accent-primary: rgb(var(--fg-rgb));
+  --accent-secondary: rgba(var(--fg-rgb), 0.8);
+  --accent-cyan: rgb(var(--fg-rgb)); /* Neutralized */
+
+  --gradient-main: linear-gradient(135deg, rgb(var(--fg-rgb)) 0%, rgba(var(--fg-rgb), 0.6) 100%);
+  --gradient-text: linear-gradient(135deg, rgb(var(--fg-rgb)), rgba(var(--fg-rgb), 0.55));
+  --gradient-glow: linear-gradient(135deg, rgba(var(--fg-rgb), 0.05), rgba(var(--fg-rgb), 0.0));
+
+  --text-primary: rgb(var(--fg-rgb));
+  --text-secondary: rgba(var(--fg-rgb), 0.62);
+  --text-muted: rgba(var(--fg-rgb), 0.4);
 
   --radius-sm: 4px;
   --radius-md: 8px;
@@ -43,11 +49,12 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Lenis drives smooth scrolling; native smooth-scroll would fight it. */
+  background-color: rgb(var(--bg-rgb));
 }
 
 body {
-  background-color: var(--bg-primary);
+  background-color: rgb(var(--bg-rgb));
   color: var(--text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
@@ -104,8 +111,8 @@ img {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.05em;
-  background: #ffffff;
-  color: #000000;
+  background: rgb(var(--fg-rgb));
+  color: rgb(var(--bg-rgb));
   transition: var(--transition);
   position: relative;
   overflow: hidden;
@@ -113,7 +120,7 @@ img {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  background: #dddddd;
+  background: rgba(var(--fg-rgb), 0.82);
 }
 
 .btn-secondary {
@@ -192,10 +199,10 @@ img {
   width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #333333;
+  background: rgba(var(--fg-rgb), 0.25);
 }
 
 /* ===== RESPONSIVE ===== */

@@ -1,6 +1,8 @@
 "use client"
 import { useState } from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
+import Reveal from './Reveal'
 import styles from './Portfolio.module.css'
 
 const projects = [
@@ -62,15 +64,23 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className={`section ${styles.portfolio}`}>
       <div className="container">
-        <div className="section-label">// Работы</div>
-        <h2 className="section-title">Примеры моих работ</h2>
-        <p className="section-subtitle">
+        <Reveal as="div" className="section-label">// Работы</Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>Примеры моих работ</Reveal>
+        <Reveal as="p" className="section-subtitle" delay={0.1}>
           От современных веб-сервисов и сложных ботов до мобильных игр и десктопных приложений. Здесь собраны проекты из совершенно разных сфер разработки.
-        </p>
+        </Reveal>
 
         <div className={styles.grid}>
           {projects.map((project, index) => (
-            <div key={index} className={`${styles.card} ${!showAll && index >= 3 ? styles.hideOnMobile : ''}`}>
+            <motion.div
+              key={index}
+              className={!showAll && index >= 3 ? styles.hideOnMobile : undefined}
+              initial={{ opacity: 0, y: 44 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+              transition={{ duration: 0.7, delay: (index % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
+            <div className={styles.card}>
               {project.demoLink && (
                 <a href={project.demoLink} target="_blank" rel="noreferrer" className={styles.cardLink} aria-label={project.title} />
               )}
@@ -112,6 +122,7 @@ export default function Portfolio() {
                 )}
               </div>
             </div>
+            </motion.div>
           ))}
         </div>
 

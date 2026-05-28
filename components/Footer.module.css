@@ -1,7 +1,7 @@
 .footer {
   position: relative;
   background: var(--bg-primary);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.08);
 }
 
 .inner {
@@ -31,7 +31,7 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: rgb(var(--fg-rgb));
   margin-bottom: 16px;
   margin-top: 20px;
 }
@@ -54,9 +54,9 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255, 255, 255, 0.12) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  color: #ffffff !important;
+  background: rgba(var(--fg-rgb), 0.12) !important;
+  border: 1px solid rgba(var(--fg-rgb), 0.2);
+  color: rgb(var(--fg-rgb)) !important;
   padding: 12px 24px;
   border-radius: 50px;
   font-size: 15px;
@@ -68,9 +68,9 @@
 }
 
 .btnTg:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-  border-color: rgba(255, 255, 255, 0.35);
-  color: #ffffff !important;
+  background: rgba(var(--fg-rgb), 0.2) !important;
+  border-color: rgba(var(--fg-rgb), 0.35);
+  color: rgb(var(--fg-rgb)) !important;
   transform: translateY(-2px);
 }
 
@@ -79,7 +79,7 @@
   align-items: center;
   gap: 8px;
   background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(var(--fg-rgb), 0.1);
   color: #888888;
   padding: 12px 24px;
   border-radius: 50px;
@@ -92,8 +92,8 @@
 }
 
 .btnEmail:hover {
-  background: rgba(255, 255, 255, 0.06);
-  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(var(--fg-rgb), 0.06);
+  border-color: rgba(var(--fg-rgb), 0.2);
   color: #cccccc;
   transform: translateY(-2px);
 }
@@ -107,13 +107,13 @@
 
 .easterEggHint {
   font-size: 12px;
-  color: #333333;
+  color: rgba(var(--fg-rgb), 0.25);
 }
 
 .runawayBtn {
   background: transparent;
-  border: 1px dashed rgba(255, 255, 255, 0.1);
-  color: #333333;
+  border: 1px dashed rgba(var(--fg-rgb), 0.1);
+  color: rgba(var(--fg-rgb), 0.25);
   padding: 8px 16px;
   border-radius: 50px;
   font-size: 12px;
@@ -153,7 +153,7 @@
 
 .discountCard {
   background: rgba(20, 20, 20, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(var(--fg-rgb), 0.1);
   padding: 40px;
   border-radius: 24px;
   max-width: 440px;
@@ -183,7 +183,7 @@
 }
 
 .closeDiscount:hover {
-  color: #ffffff;
+  color: rgb(var(--fg-rgb));
 }
 
 .discountIcon {
@@ -194,7 +194,7 @@
 .discountCard h3 {
   font-size: 24px;
   font-weight: 800;
-  color: #ffffff;
+  color: rgb(var(--fg-rgb));
   margin-bottom: 12px;
   letter-spacing: -0.02em;
 }
@@ -285,23 +285,23 @@
   color: #555555;
   text-decoration: none;
   padding: 4px 12px;
-  border: 1px solid rgba(255,255,255,0.07);
+  border: 1px solid rgba(var(--fg-rgb),0.07);
   border-radius: 50px;
   transition: color 0.2s, border-color 0.2s, background 0.2s;
 }
 
 .quickLink:hover {
-  color: #ffffff;
-  border-color: rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.04);
+  color: rgb(var(--fg-rgb));
+  border-color: rgba(var(--fg-rgb),0.2);
+  background: rgba(var(--fg-rgb),0.04);
 }
 
 /* Terminal */
 .terminal {
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(var(--fg-rgb), 0.08);
   border-radius: 14px;
   overflow: hidden;
-  background: #0a0a0a;
+  background: rgb(var(--bg-rgb));
   font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
 }
 
@@ -310,8 +310,8 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px;
-  background: rgba(255, 255, 255, 0.04);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(var(--fg-rgb), 0.04);
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.06);
   position: relative;
 }
 
@@ -361,7 +361,7 @@
 
 /* ===== BOTTOM ===== */
 .bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.07);
   padding-top: 32px;
   display: flex;
   justify-content: space-between;
@@ -371,11 +371,11 @@
 .logo {
   font-size: 18px;
   font-weight: 800;
-  color: #ffffff;
+  color: rgb(var(--fg-rgb));
 }
 
 .copy {
-  color: #333333;
+  color: rgba(var(--fg-rgb), 0.25);
   font-size: 13px;
 }
 
@@ -403,7 +403,7 @@
   }
 
   .infoBlock:nth-last-child(-n+2) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-bottom: 1px solid rgba(var(--fg-rgb), 0.07);
   }
 
   .infoBlock:last-child {
@@ -429,7 +429,7 @@
   font-weight: 800;
   line-height: 1.1;
   letter-spacing: -0.03em;
-  color: #ffffff;
+  color: rgb(var(--fg-rgb));
   margin-bottom: 16px;
   margin-top: 20px;
 }
@@ -472,9 +472,9 @@
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  background: rgba(var(--fg-rgb), 0.06);
+  border: 1px solid rgba(var(--fg-rgb), 0.12);
+  color: rgb(var(--fg-rgb));
   padding: 14px 28px;
   border-radius: 50px;
   font-size: 16px;
@@ -484,8 +484,8 @@
 }
 
 .btnEmail:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(var(--fg-rgb), 0.1);
+  border-color: rgba(var(--fg-rgb), 0.3);
   transform: translateY(-2px);
 }
 
@@ -504,7 +504,7 @@
 
 .runawayBtn {
   background: transparent;
-  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border: 1px dashed rgba(var(--fg-rgb), 0.15);
   color: #444444;
   padding: 10px 20px;
   border-radius: 50px;
@@ -522,7 +522,7 @@
 }
 
 .bottom {
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.08);
   padding-top: 32px;
   display: flex;
   justify-content: space-between;
@@ -532,7 +532,7 @@
 .logo {
   font-size: 18px;
   font-weight: 800;
-  color: #ffffff;
+  color: rgb(var(--fg-rgb));
 }
 
 .copy {
@@ -560,7 +560,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.15) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--fg-rgb),0.15) 30%, rgba(var(--fg-rgb),0.3) 50%, rgba(var(--fg-rgb),0.15) 70%, transparent 100%);
   z-index: 10;
 }
 
@@ -611,7 +611,7 @@
 .btnPrimary {
   display: inline-flex;
   background: var(--gradient-main);
-  color: #fff;
+  color: rgb(var(--fg-rgb));
   padding: 14px 32px;
   border-radius: 50px;
   font-size: 16px;
@@ -629,8 +629,8 @@
 
 .btnSecondary {
   display: inline-flex;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(var(--fg-rgb), 0.05);
+  border: 1px solid rgba(var(--fg-rgb), 0.1);
   color: var(--text-primary);
   padding: 14px 32px;
   border-radius: 50px;

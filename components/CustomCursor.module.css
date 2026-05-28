@@ -2,22 +2,22 @@
   position: fixed;
   width: 24px;
   height: 24px;
-  border: 2px solid rgba(255, 255, 255, 0.4);
+  border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   pointer-events: none; /* Let clicks pass through */
   transform: translate(-50%, -50%);
   z-index: 9999;
   transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-  backdrop-filter: invert(100%);
-  -webkit-backdrop-filter: invert(100%);
+  /* difference blend against pure white = always inverts whatever is behind,
+     so the cursor stays visible through the entire black→white morph. */
   mix-blend-mode: difference;
 }
 
 .hovered {
   width: 60px;
   height: 60px;
-  background-color: var(--text-primary);
-  border-color: var(--text-primary);
+  background-color: #ffffff;
+  border-color: #ffffff;
   mix-blend-mode: difference;
 }
 
