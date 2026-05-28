@@ -1,5 +1,21 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
+/*
+ * Registered custom properties — required so the browser can interpolate
+ * color values and CSS transitions actually fire on them.
+ * Without @property, custom property changes are never animated.
+ */
+@property --fg-color {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(250, 250, 250);
+}
+@property --fg-color-muted {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgba(250, 250, 250, 0.58);
+}
+
 /* ===== RESET & BASE ===== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -31,8 +47,9 @@
   --gradient-text: linear-gradient(135deg, rgb(var(--fg-rgb)), rgba(var(--fg-rgb), 0.55));
   --gradient-glow: linear-gradient(135deg, rgba(var(--fg-rgb), 0.05), rgba(var(--fg-rgb), 0.0));
 
-  --text-primary: rgb(var(--fg-rgb));
-  --text-secondary: rgba(var(--fg-rgb), 0.62);
+  /* Text colors use the @property vars so they animate via CSS transition. */
+  --text-primary: var(--fg-color);
+  --text-secondary: var(--fg-color-muted);
   --text-muted: rgba(var(--fg-rgb), 0.4);
 
   --radius-sm: 4px;
@@ -51,6 +68,8 @@
 html {
   /* Lenis drives smooth scrolling; native smooth-scroll would fight it. */
   background-color: rgb(var(--bg-rgb));
+  /* @property vars are animatable — this is what makes text color smooth. */
+  transition: --fg-color 0.5s ease, --fg-color-muted 0.5s ease;
 }
 
 body {
@@ -62,17 +81,6 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* Text color transitions smoothly after --fg-rgb snaps (0.22s bridges the snap). */
-body, body * {
-  transition: color 0.22s ease, border-color 0.22s ease, background-color 0.22s ease;
-}
-/* But never slow down intentional hover/active transitions. */
-a, button, [class*="btn"], [class*="card"], [class*="tag"], [class*="link"] {
-  transition: color 0.22s ease, border-color 0.22s ease, background-color 0.22s ease,
-              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
 
 a, button {
   cursor: pointer;
