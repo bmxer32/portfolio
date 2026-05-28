@@ -4,15 +4,13 @@ import Lenis from 'lenis'
 
 /*
  * Lenis-driven smooth scroll + global black→white morph.
- * On every frame we map scroll progress (0→1) to two CSS variables on <html>:
- *   --bg-rgb : page background, dark → light
- *   --fg-rgb : foreground/text, light → dark
- * The whole palette in globals.css is built on top of these, so the entire
- * site fades from black to white as you scroll.
+ * The morph STARTS at the top of #skills ("Чем я могу помочь?")
+ * and finishes at the bottom of the page (footer).
+ * Before #skills the page stays fully black; after the footer it's fully white.
  */
 
-const BG_START = [7, 7, 8]      // near-black
-const BG_END = [247, 247, 245]  // near-white
+const BG_START = [7, 7, 8]
+const BG_END = [247, 247, 245]
 const FG_START = [250, 250, 250]
 const FG_END = [10, 10, 12]
 
@@ -20,24 +18,29 @@ const lerp = (a, b, t) => a + (b - a) * t
 const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t)
 const smooth = (t) => t * t * (3 - 2 * t) // smoothstep
 
-/*
- * The background morphs smoothly dark→light. The foreground CANNOT do the same
- * continuously: somewhere in the middle bg and fg would both be mid-grey and
- * text would vanish (contrast 0). So the foreground SNAPS between light and dark
- * right at the point where the background crosses mid-grey (smooth(p)=0.5 → p≈0.5).
- * A tiny ramp width avoids a 1-frame hard cut while never resting at grey.
- */
+// Foreground snaps at mid-grey crossing so text never disappears against bg.
 const FG_FLIP = 0.5
 const fgCurve = (p) => (p < FG_FLIP ? 0 : 1)
+
+// Returns scroll offset (px from top) of the morph start point (#skills).
+// Falls back to 60% of page height if the element isn't found yet.
+const getMorphStart = () => {
+  const el = document.getElementById('skills')
+  if (!el) return document.documentElement.scrollHeight * 0.6
+  return el.getBoundingClientRect().top + window.scrollY
+}
 
 export default function SmoothScroll({ children }) {
   useEffect(() => {
     const root = document.documentElement
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    const apply = (p) => {
+    const apply = (scroll, limit) => {
+      const morphStart = getMorphStart()
+      const range = limit - morphStart
+      const p = range > 0 ? (scroll - morphStart) / range : 0
       const bt = smooth(clamp01(p))
-      const ft = fgCurve(p)
+      const ft = fgCurve(clamp01(p))
       root.style.setProperty(
         '--bg-rgb',
         `${lerp(BG_START[0], BG_END[0], bt) | 0},${lerp(BG_START[1], BG_END[1], bt) | 0},${lerp(BG_START[2], BG_END[2], bt) | 0}`
@@ -49,13 +52,12 @@ export default function SmoothScroll({ children }) {
       root.style.setProperty('--scroll-progress', clamp01(p).toFixed(4))
     }
 
-    apply(0)
+    apply(0, document.documentElement.scrollHeight - window.innerHeight)
 
     if (reduce) {
-      // No smooth scroll, but still morph on native scroll.
       const onScroll = () => {
         const limit = document.documentElement.scrollHeight - window.innerHeight
-        apply(limit > 0 ? window.scrollY / limit : 0)
+        apply(window.scrollY, limit)
       }
       window.addEventListener('scroll', onScroll, { passive: true })
       onScroll()
@@ -70,7 +72,7 @@ export default function SmoothScroll({ children }) {
     })
 
     lenis.on('scroll', ({ scroll, limit }) => {
-      apply(limit > 0 ? scroll / limit : 0)
+      apply(scroll, limit)
     })
 
     // Make in-page anchor links (#portfolio, #contact…) use Lenis.
