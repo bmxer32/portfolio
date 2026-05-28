@@ -22,12 +22,15 @@ const smooth = (t) => t * t * (3 - 2 * t) // smoothstep
 const FG_FLIP = 0.5
 const fgCurve = (p) => (p < FG_FLIP ? 0 : 1)
 
-// Returns scroll offset (px from top) of the morph start point (#skills).
-// Falls back to 60% of page height if the element isn't found yet.
-const getMorphStart = () => {
-  const el = document.getElementById('skills')
-  if (!el) return document.documentElement.scrollHeight * 0.6
-  return el.getBoundingClientRect().top + window.scrollY
+// Morph starts at #skills top, ends at #workflow top.
+const getMorphRange = () => {
+  const start = document.getElementById('skills')
+  const end = document.getElementById('workflow')
+  const pageH = document.documentElement.scrollHeight
+  return {
+    from: start ? start.getBoundingClientRect().top + window.scrollY : pageH * 0.5,
+    to:   end   ? end.getBoundingClientRect().top   + window.scrollY : pageH * 0.85,
+  }
 }
 
 export default function SmoothScroll({ children }) {
@@ -36,9 +39,9 @@ export default function SmoothScroll({ children }) {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
     const apply = (scroll, limit) => {
-      const morphStart = getMorphStart()
-      const range = limit - morphStart
-      const p = range > 0 ? (scroll - morphStart) / range : 0
+      const { from, to } = getMorphRange()
+      const range = to - from
+      const p = range > 0 ? (scroll - from) / range : 0
       const bt = smooth(clamp01(p))
       const ft = fgCurve(clamp01(p))
       root.style.setProperty(
@@ -52,13 +55,11 @@ export default function SmoothScroll({ children }) {
       root.style.setProperty('--scroll-progress', clamp01(p).toFixed(4))
     }
 
-    apply(0, document.documentElement.scrollHeight - window.innerHeight)
+    apply(0, 0)
 
     if (reduce) {
-      const onScroll = () => {
-        const limit = document.documentElement.scrollHeight - window.innerHeight
-        apply(window.scrollY, limit)
-      }
+      const onScroll = () => apply(window.scrollY, 0)
+
       window.addEventListener('scroll', onScroll, { passive: true })
       onScroll()
       return () => window.removeEventListener('scroll', onScroll)
@@ -71,8 +72,8 @@ export default function SmoothScroll({ children }) {
       smoothWheel: true,
     })
 
-    lenis.on('scroll', ({ scroll, limit }) => {
-      apply(scroll, limit)
+    lenis.on('scroll', ({ scroll }) => {
+      apply(scroll, 0)
     })
 
     // Make in-page anchor links (#portfolio, #contact…) use Lenis.
