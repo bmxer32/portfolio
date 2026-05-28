@@ -18,8 +18,10 @@ const lerp = (a, b, t) => a + (b - a) * t
 const clamp01 = (t) => (t < 0 ? 0 : t > 1 ? 1 : t)
 const smooth = (t) => t * t * (3 - 2 * t) // smoothstep
 
-// Foreground snaps at mid-grey crossing so text never disappears against bg.
-const FG_FLIP = 0.5
+// Flip text when background is already light enough that dark text reads well
+// (bg ≈ 193 at p=0.68, contrast dark/bg ≈ 12:1 vs white/bg ≈ 1.7:1).
+// The CSS transition: color 0.22s bridges the snap so it feels like a quick fade.
+const FG_FLIP = 0.68
 const fgCurve = (p) => (p < FG_FLIP ? 0 : 1)
 
 // Morph starts at #skills top, ends at #workflow top.
