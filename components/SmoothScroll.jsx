@@ -40,27 +40,46 @@ export default function SmoothScroll({ children }) {
     const root = document.documentElement
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-    const apply = (scroll, limit) => {
+    // Tracks which side of the flip we're on so we only call setProperty on
+    // threshold crossings — not every frame. The CSS transition on the
+    // @property --fg-color / --fg-color-muted then handles the smooth animation.
+    let prevFgDark = null
+
+    const setFgColor = (isDark) => {
+      if (isDark === prevFgDark) return
+      prevFgDark = isDark
+      root.style.setProperty('--fg-color',       isDark ? 'rgb(10,10,12)'          : 'rgb(250,250,250)')
+      root.style.setProperty('--fg-color-muted',  isDark ? 'rgba(10,10,12,0.58)'   : 'rgba(250,250,250,0.58)')
+    }
+
+    const apply = (scroll) => {
       const { from, to } = getMorphRange()
       const range = to - from
-      const p = range > 0 ? (scroll - from) / range : 0
-      const bt = smooth(clamp01(p))
-      const ft = fgCurve(clamp01(p))
+      const p = clamp01(range > 0 ? (scroll - from) / range : 0)
+      const bt = smooth(p)
+      const ft = fgCurve(p)
+
+      // Background: updated every frame by JS (smooth via Lenis).
       root.style.setProperty(
         '--bg-rgb',
         `${lerp(BG_START[0], BG_END[0], bt) | 0},${lerp(BG_START[1], BG_END[1], bt) | 0},${lerp(BG_START[2], BG_END[2], bt) | 0}`
       )
+      // --fg-rgb: used for borders, bg-card, secondary tints — can snap.
       root.style.setProperty(
         '--fg-rgb',
         `${lerp(FG_START[0], FG_END[0], ft) | 0},${lerp(FG_START[1], FG_END[1], ft) | 0},${lerp(FG_START[2], FG_END[2], ft) | 0}`
       )
-      root.style.setProperty('--scroll-progress', clamp01(p).toFixed(4))
+      root.style.setProperty('--scroll-progress', p.toFixed(4))
+
+      // --fg-color / --fg-color-muted: text colors — set only at threshold crossing
+      // so the CSS @property transition (0.5s ease) smoothly animates the change.
+      setFgColor(p >= FG_FLIP)
     }
 
-    apply(0, 0)
+    apply(0)
 
     if (reduce) {
-      const onScroll = () => apply(window.scrollY, 0)
+      const onScroll = () => apply(window.scrollY)
 
       window.addEventListener('scroll', onScroll, { passive: true })
       onScroll()
@@ -75,7 +94,7 @@ export default function SmoothScroll({ children }) {
     })
 
     lenis.on('scroll', ({ scroll }) => {
-      apply(scroll, 0)
+      apply(scroll)
     })
 
     // Make in-page anchor links (#portfolio, #contact…) use Lenis.
