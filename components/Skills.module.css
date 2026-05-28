@@ -2,7 +2,7 @@
   position: relative;
   z-index: 2;
   background: var(--bg-primary);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(var(--fg-rgb), 0.12);
 }
 
 .skills::before {
@@ -12,7 +12,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0.15) 70%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(var(--fg-rgb),0.15) 30%, rgba(var(--fg-rgb),0.5) 50%, rgba(var(--fg-rgb),0.15) 70%, transparent 100%);
   z-index: 10;
 }
 
@@ -43,9 +43,9 @@
   width: 56px;
   height: 56px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(var(--fg-rgb), 0.05);
   color: var(--text-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(var(--fg-rgb), 0.1);
   flex-shrink: 0;
 }
 
@@ -79,7 +79,7 @@
 
 .skillTag {
   padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(var(--fg-rgb), 0.05);
   border: 1px solid var(--border-color);
   border-radius: 50px;
   font-size: 14px;

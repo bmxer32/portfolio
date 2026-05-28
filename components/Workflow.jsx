@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
+import Reveal from './Reveal'
 import styles from './Workflow.module.css'
 
 const steps = [
@@ -60,11 +61,11 @@ export default function Workflow() {
   return (
     <section id="workflow" className={`section ${styles.workflow}`}>
       <div className="container">
-        <div className="section-label">// Процесс</div>
-        <h2 className="section-title">Как мы будем работать</h2>
-        <p className="section-subtitle">
+        <Reveal as="div" className="section-label">// Процесс</Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>Как мы будем работать</Reveal>
+        <Reveal as="p" className="section-subtitle" delay={0.1}>
           Прозрачное сотрудничество: вы всегда понимаете, за что платите и на каком этапе находится ваш проект. Минимум технических терминов, максимум результата.
-        </p>
+        </Reveal>
 
         <div className={styles.timeline}>
           {steps.map((step, index) => (

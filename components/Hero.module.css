@@ -29,7 +29,7 @@
 .blob1 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255,255,255,0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--fg-rgb),0.07) 0%, transparent 70%);
   animation: blobDrift1 14s ease-in-out infinite;
 }
 
@@ -43,7 +43,7 @@
 .blob3 {
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(var(--fg-rgb),0.04) 0%, transparent 70%);
   animation: blobDrift3 10s ease-in-out infinite;
 }
 
@@ -120,7 +120,7 @@
   text-transform: uppercase;
   color: var(--text-primary);
   padding: 6px 16px;
-  border: 1px solid rgba(255,255,255,0.15);
+  border: 1px solid rgba(var(--fg-rgb),0.15);
   border-radius: 50px;
 }
 
@@ -151,7 +151,7 @@
   font-weight: 800;
   line-height: 0.95;
   letter-spacing: -0.02em;
-  color: #fff;
+  color: rgb(var(--fg-rgb));
   margin: 0;
   text-transform: uppercase;
   white-space: nowrap;
@@ -160,12 +160,12 @@
 
 .outlineText {
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255,255,255,0.4);
+  -webkit-text-stroke: 1px rgba(var(--fg-rgb),0.4);
 }
 
 .rightAlign {
   text-align: right;
-  color: #fff;
+  color: rgb(var(--fg-rgb));
   opacity: 0.95;
   z-index: 11;
 }
@@ -204,7 +204,7 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: rgba(255,255,255,0.3);
+  background: rgba(var(--fg-rgb),0.3);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.4s ease;

@@ -1,3 +1,6 @@
+'use client'
+import { motion } from 'framer-motion'
+import Reveal from './Reveal'
 import styles from './Skills.module.css'
 
 const skillCategories = [
@@ -55,16 +58,23 @@ export default function Skills() {
   return (
     <section id="skills" className={`section ${styles.skills}`}>
       <div className="container">
-        <div className="section-label">// Что я умею</div>
-        <h2 className="section-title">Чем я могу помочь?</h2>
-        <p className="section-subtitle">
-          Закрываю большинство технических потребностей бизнеса: от верстки визиток 
+        <Reveal as="div" className="section-label">// Что я умею</Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>Чем я могу помочь?</Reveal>
+        <Reveal as="p" className="section-subtitle" delay={0.1}>
+          Закрываю большинство технических потребностей бизнеса: от верстки визиток
           до программирования сложной логики, мобильных и десктоп программ. Никаких процентов — только реальные навыки.
-        </p>
+        </Reveal>
 
         <div className={styles.grid}>
           {skillCategories.map((category, index) => (
-            <div key={index} className={`glass-card ${styles.card}`}>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+              transition={{ duration: 0.7, delay: (index % 2) * 0.12, ease: [0.16, 1, 0.3, 1] }}
+            >
+            <div className={`glass-card ${styles.card}`}>
               <div className={styles.cardHeader}>
                 <div className={styles.cardIcon}>
                   {category.icon}
@@ -83,6 +93,7 @@ export default function Skills() {
                 ))}
               </div>
             </div>
+            </motion.div>
           ))}
         </div>
       </div>
