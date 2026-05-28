@@ -1,0 +1,88 @@
+"use client"
+import { useEffect, useRef, useState } from 'react'
+import styles from './Workflow.module.css'
+
+const steps = [
+  {
+    num: '01',
+    title: 'Знакомство и оценка',
+    desc: 'Мы обсуждаем вашу идею и бизнес-цели. Я вникаю в задачу, предлагаю лучшие варианты решения и бесплатно рассчитываю точные сроки и бюджет.',
+  },
+  {
+    num: '02',
+    title: 'Продумывание логики',
+    desc: 'Прежде чем писать код, мы детально планируем, как всё будет работать. Делаем так, чтобы продукт был максимально удобен для ваших клиентов и решал свои задачи.',
+  },
+  {
+    num: '03',
+    title: 'Создание продукта',
+    desc: 'Я воплощаю проект в реальность. Никаких «черных ящиков» — я регулярно выхожу на связь и показываю промежуточные результаты, чтобы вы видели прогресс.',
+  },
+  {
+    num: '04',
+    title: 'Запуск и гарантия',
+    desc: 'Размещаю готовый проект в интернете, настраиваю всё необходимое и передаю вам доступы. После сдачи проекта я всегда остаюсь на связи для поддержки.',
+  },
+]
+
+export default function Workflow() {
+  const [activeIndices, setActiveIndices] = useState([]);
+  const stepRefs = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        setActiveIndices((prev) => {
+          let updated = [...prev];
+          entries.forEach((entry) => {
+            const idx = Number(entry.target.dataset.index);
+            if (entry.isIntersecting) {
+              if (!updated.includes(idx)) updated.push(idx);
+            } else {
+              updated = updated.filter((i) => i !== idx);
+            }
+          });
+          return updated;
+        });
+      },
+      {
+        rootMargin: '-40% 0px -40% 0px',
+      }
+    );
+
+    stepRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="workflow" className={`section ${styles.workflow}`}>
+      <div className="container">
+        <div className="section-label">// Процесс</div>
+        <h2 className="section-title">Как мы будем работать</h2>
+        <p className="section-subtitle">
+          Прозрачное сотрудничество: вы всегда понимаете, за что платите и на каком этапе находится ваш проект. Минимум технических терминов, максимум результата.
+        </p>
+
+        <div className={styles.timeline}>
+          {steps.map((step, index) => (
+            <div 
+              key={index} 
+              ref={(el) => (stepRefs.current[index] = el)}
+              data-index={index}
+              className={`${styles.step} ${activeIndices.length > 0 && Math.min(...activeIndices) === index ? styles.active : ''}`}
+            >
+              <div className={styles.stepNumber}>{step.num}</div>
+              <div className={styles.stepContent}>
+                <h3 className={styles.stepTitle}>{step.title}</h3>
+                <p className={styles.stepDesc}>{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}

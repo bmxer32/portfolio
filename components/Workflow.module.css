@@ -1,0 +1,117 @@
+.workflow {
+  position: relative;
+  z-index: 2;
+  background: var(--bg-secondary);
+}
+
+.workflow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 30%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.15) 70%, transparent 100%);
+  z-index: 10;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 60px;
+  position: relative;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 40px;
+  width: 2px;
+  background: var(--border-color);
+  z-index: 0;
+}
+
+.step {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.stepNumber {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  background: var(--bg-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent-cyan);
+  box-shadow: 0 0 20px rgba(10, 10, 15, 0.8);
+  transition: var(--transition);
+}
+
+.step.active .stepNumber {
+  border-color: var(--accent-primary);
+  color: #000;
+  background: var(--gradient-main);
+  box-shadow: var(--shadow-glow);
+}
+
+.stepContent {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 32px;
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(20px);
+  flex-grow: 1;
+  transition: var(--transition);
+}
+
+.step.active .stepContent {
+  border-color: var(--border-hover);
+  transform: translateX(8px);
+}
+
+.stepTitle {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.stepDesc {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+  }
+  
+  .step {
+    gap: 24px;
+  }
+  
+  .stepNumber {
+    width: 60px;
+    height: 60px;
+    font-size: 18px;
+  }
+  
+  .stepContent {
+    padding: 24px;
+  }
+  
+  .step.active .stepContent {
+    transform: none;
+  }
+}
