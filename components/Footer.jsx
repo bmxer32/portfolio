@@ -1,6 +1,16 @@
 "use client"
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 import styles from './Footer.module.css'
+
+const GlobeIcon = () => (
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="2" y1="12" x2="22" y2="12"></line>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+  </svg>
+)
 
 const TERMINAL_LINES = [
   '> whoami',
@@ -57,6 +67,16 @@ export default function Footer() {
   const [runawayPos, setRunawayPos] = useState({ x: 0, y: 0 })
   const [attempts, setAttempts] = useState(0)
   const [showDiscount, setShowDiscount] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  const [time, setTime] = useState(new Date())
+
+  useEffect(() => {
+    setMounted(true)
+    const timer = setInterval(() => setTime(new Date()), 1000)
+    return () => clearInterval(timer)
+  }, [])
+
+  const timeString = time.toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit' })
 
   const handleRunaway = () => {
     setAttempts(prev => {
@@ -78,10 +98,18 @@ export default function Footer() {
           <div className={styles.discountOverlay} onClick={() => setShowDiscount(false)}>
             <div className={styles.discountCard} onClick={e => e.stopPropagation()}>
               <button className={styles.closeDiscount} onClick={() => setShowDiscount(false)}>×</button>
-              <div className={styles.discountIcon}>🎁</div>
+              <div className={styles.discountIcon}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                  <rect x="2" y="7" width="20" height="5"></rect>
+                  <line x1="12" y1="22" x2="12" y2="7"></line>
+                  <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                  <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                </svg>
+              </div>
               <h3>Ладно, скидочку 10% сделаем!</h3>
               <p>Вы очень настойчивы. Напишите нам в Telegram и скажите кодовое слово <b>"PASHALKA"</b>.</p>
-              <a href="https://t.me/Webe9" target="_blank" rel="noreferrer" className={styles.btnTg}>
+              <a href="https://t.me/Webe9" target="_blank" rel="noreferrer" className={styles.btnDiscount}>
                 Забрать скидку
               </a>
             </div>
@@ -94,6 +122,24 @@ export default function Footer() {
           <div className={styles.left}>
             <div className="section-label">// Контакт</div>
             <h2 className={styles.title}>Готовы обсудить<br />проект?</h2>
+
+            <div className={styles.infoRow}>
+              <div className={styles.infoItem}>
+                <span className={styles.infoLabel}>ЛОКАЦИЯ</span>
+                <span className={styles.infoValue}>
+                  <GlobeIcon /> Работаем по всему миру
+                </span>
+              </div>
+              <div className={styles.infoItem}>
+                <span className={styles.infoLabel}>МОСКОВСКОЕ ВРЕМЯ</span>
+                <span className={styles.infoValue}>
+                  {mounted ? timeString : "00:00"}
+                  <span className={styles.statusDotInner}></span>
+                  В сети
+                </span>
+              </div>
+            </div>
+
             <p className={styles.subtitle}>
               Напишите нам — обсудим идею, сроки и бюджет.<br />
               Отвечаем в течение пары часов.
@@ -174,14 +220,42 @@ export default function Footer() {
           </div>
         </div>
 
+        <div className={styles.marqueeWrapper}>
+          <div className={styles.marquee}>
+            <div className={styles.marqueeGroup}>
+              <span>Next.js</span><span className={styles.dot}>•</span>
+              <span>React</span><span className={styles.dot}>•</span>
+              <span>Node.js</span><span className={styles.dot}>•</span>
+              <span>Figma</span><span className={styles.dot}>•</span>
+              <span>TypeScript</span><span className={styles.dot}>•</span>
+              <span>Tailwind CSS</span><span className={styles.dot}>•</span>
+              <span>PostgreSQL</span><span className={styles.dot}>•</span>
+              <span>GSAP</span><span className={styles.dot}>•</span>
+            </div>
+            <div className={styles.marqueeGroup} aria-hidden="true">
+              <span>Next.js</span><span className={styles.dot}>•</span>
+              <span>React</span><span className={styles.dot}>•</span>
+              <span>Node.js</span><span className={styles.dot}>•</span>
+              <span>Figma</span><span className={styles.dot}>•</span>
+              <span>TypeScript</span><span className={styles.dot}>•</span>
+              <span>Tailwind CSS</span><span className={styles.dot}>•</span>
+              <span>PostgreSQL</span><span className={styles.dot}>•</span>
+              <span>GSAP</span><span className={styles.dot}>•</span>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.bottom}>
           <div className={styles.bottomLeft}>
-            <span className={styles.logo}>Narodniy Team</span>
+            <div className={styles.logoWrapper}>
+              <Image src="/logop.png" alt="Narodniy Team" width={24} height={24} className={styles.logoIcon} />
+              <span className={styles.logo}>Narodniy Team</span>
+            </div>
             <p className={styles.copy}>© {new Date().getFullYear()} Все права защищены.</p>
           </div>
           <div className={styles.legalInfo}>
             <p className={styles.copy}>ИП Скворцов М.А. ИНН 581304172576</p>
-            <a href="/privacy" className={styles.copy} style={{ textDecoration: 'underline' }}>Политика конфиденциальности</a>
+            <Link href="/privacy" className={styles.copy} style={{ textDecoration: 'underline' }}>Политика конфиденциальности</Link>
           </div>
         </div>
 

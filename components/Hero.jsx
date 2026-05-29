@@ -134,20 +134,23 @@ export default function Hero() {
           <div className={styles.infoText}>UX/UI Интеграция</div>
         </div>
 
-        <h1 className={`${styles.hugeTitle} ${styles.titleFloat1}`}>
+        {/* Hidden SEO H1 tag */}
+        <h1 className="visually-hidden">Разработка сайтов под ключ, создание веб-приложений и лендингов — Full-stack разработчик Narodniy Team</h1>
+
+        <div className={`${styles.hugeTitle} ${styles.titleFloat1}`} aria-hidden="true">
           <ScrambleText delay={200} duration={900} repeatEvery={7000}>FULL</ScrambleText>
           <span className={styles.outlineText}>
             <ScrambleText delay={280} duration={900} repeatEvery={7000}> STACK</ScrambleText>
           </span>
-        </h1>
+        </div>
 
-        <h1 className={`${styles.hugeTitle} ${styles.rightAlign} ${styles.titleFloat2}`}>
+        <div className={`${styles.hugeTitle} ${styles.rightAlign} ${styles.titleFloat2}`} aria-hidden="true">
           <ScrambleText delay={500} duration={1100} repeatEvery={7000}>РАЗРАБОТКА</ScrambleText>
-        </h1>
+        </div>
 
         <div className={styles.bottomInfo}>
           <p className={styles.snippet}>
-            Создаем современные, быстрые и понятные сайты для бизнеса.<br />
+            Создаем современные, быстрые и понятные сайты для бизнеса. Профессиональная разработка веб-приложений и лендингов под ключ.<br />
             Упаковываем сложную логику в красивую функциональную обертку, чтобы вашим клиентам было удобно.
           </p>
           <a href="#portfolio" className={`cursor-hover ${styles.scrollDown}`}>

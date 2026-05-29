@@ -1,4 +1,5 @@
 'use client'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './SectionNav.module.css'
 
@@ -21,6 +22,7 @@ const Chevron = ({ dir }) => (
 )
 
 export default function SectionNav() {
+  const pathname = usePathname()
   const [active, setActive] = useState('hero')
 
   useEffect(() => {
@@ -37,6 +39,8 @@ export default function SectionNav() {
     check()
     return () => window.removeEventListener('scroll', check)
   }, [])
+
+  if (pathname !== '/') return null;
 
   const scrollTo = (id) => {
     const lenis = window.__lenis
