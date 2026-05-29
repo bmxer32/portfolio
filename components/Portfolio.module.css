@@ -78,19 +78,30 @@
 
 @media (max-width: 768px) {
   .portfolio {
-    clip-path: none;
-    border-radius: 20px 20px 0 0;
-    padding-top: 0;
+    /* y-values = desktop values × 0.4 (48/120) */
+    clip-path: polygon(
+      0%   48px,
+      8%   24px,
+      16%   7px,
+      24%  34px,
+      32%   3px,
+      42%  21px,
+      48%   0px,
+      54%  38px,
+      64%   8px,
+      72%  27px,
+      82%   6px,
+      90%  29px,
+      96%  11px,
+      100% 48px,
+      100% 100%,
+      0%   100%
+    );
+    border-radius: 0;
+    padding-top: 48px;
   }
-  .portfolio::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent 0%, rgba(var(--fg-rgb),0.2) 30%, rgba(var(--fg-rgb),0.4) 50%, rgba(var(--fg-rgb),0.2) 70%, transparent 100%);
-    z-index: 10;
-  }
-  .triangleDivider { display: none; }
+  .triangleDivider { height: 48px; }
+  .triangleSvg     { height: 48px; }
 }
 
 .grid {
