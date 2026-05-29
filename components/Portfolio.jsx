@@ -203,7 +203,8 @@ export default function Portfolio() {
             {showAll ? 'Скрыть' : 'Показать больше работ'}
           </button>
         </div>
-      </section>
-    </motion.div>
+      </div>
+    </section>
+  </motion.div>
   )
 }

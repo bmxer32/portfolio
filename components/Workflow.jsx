@@ -95,7 +95,8 @@ export default function Workflow() {
             </div>
           ))}
         </div>
-      </section>
-    </motion.div>
+      </div>
+    </section>
+  </motion.div>
   )
 }
