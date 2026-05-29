@@ -48,11 +48,12 @@ const projects = [
     demoLink: 'https://v-experto.ru',
   },
   {
-    title: 'Limpus auto',
-    description: 'Telegram-бот для автоматизации ведения каналов. Собирает материалы из RSS-лент, обрабатывает через AI, переводит и публикует по расписанию. Система лицензий, очередь постов, дедупликация, статистика.',
-    tags: ['Python', 'Aiogram 3', 'SQLAlchemy', 'APScheduler', 'SQLite'],
-    image: null,
-    logo: '/projects/megabot-logo.png',
+    title: 'Более 120 проектов',
+    description: 'За время работы мы успешно реализовали множество проектов в самых разных сферах — от лендингов и корпоративных порталов до сложных веб-приложений и интернет-магазинов. Мы всегда готовы обсудить вашу задачу.',
+    tags: ['E-commerce', 'SaaS', 'Corporate', 'Landing', 'Mobile Apps'],
+    image: '/projects/relict.png',
+    imagePosition: 'center center',
+    isBlurred: true,
     demoLink: null,
   },
 ]
@@ -115,7 +116,7 @@ export default function Portfolio() {
         <Reveal as="div" className="section-label">// Работы</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Примеры работ</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
-          От современных веб-сервисов и сложных ботов до мобильных игр и десктопных приложений. Здесь собраны проекты из совершенно разных сфер разработки.
+          Мы создаем функциональные и красивые решения. Ниже представлены некоторые из наших недавних проектов.
         </Reveal>
 
         <div className={styles.grid}>
@@ -134,7 +135,7 @@ export default function Portfolio() {
               )}
               <div className={styles.cardImage}>
                 {project.image
-                  ? <Image src={project.image} alt={project.title} fill style={{ objectFit: 'cover', objectPosition: project.imagePosition || 'center' }} />
+                  ? <Image src={project.image} alt={project.title} fill style={{ objectFit: 'cover', objectPosition: project.imagePosition || 'center', filter: project.isBlurred ? 'blur(15px)' : 'none', transform: project.isBlurred ? 'scale(1.1)' : 'none' }} />
                   : project.logo
                     ? (
                       <div className={styles.logoPlaceholder}>
