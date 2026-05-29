@@ -51,7 +51,7 @@ const projects = [
     title: 'Более 120 проектов',
     description: 'За время работы мы успешно реализовали множество проектов в самых разных сферах — от лендингов и корпоративных порталов до сложных веб-приложений и интернет-магазинов. Мы всегда готовы обсудить вашу задачу.',
     tags: ['E-commerce', 'SaaS', 'Corporate', 'Landing', 'Mobile Apps'],
-    image: '/projects/relict.png',
+    image: '/projects/blur.jpg',
     imagePosition: 'center center',
     isBlurred: true,
     demoLink: null,
