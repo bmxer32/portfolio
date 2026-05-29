@@ -13,10 +13,18 @@ export default function Home() {
         <Hero />
       </div>
       <div style={{position: 'relative', zIndex: 2}}>
-        <Portfolio />
-        <Skills />
-        <Workflow />
-        <Footer />
+        <div style={{position: 'sticky', bottom: 0, zIndex: 1}}>
+          <Portfolio />
+        </div>
+        <div style={{position: 'sticky', bottom: 0, zIndex: 2}}>
+          <Skills />
+        </div>
+        <div style={{position: 'sticky', bottom: 0, zIndex: 3}}>
+          <Workflow />
+        </div>
+        <div style={{position: 'relative', zIndex: 4, background: 'var(--bg-primary)'}}>
+          <Footer />
+        </div>
       </div>
     </main>
   )

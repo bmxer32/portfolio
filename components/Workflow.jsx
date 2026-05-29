@@ -34,12 +34,12 @@ export default function Workflow() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'end start'],
+    offset: ['end end', 'end start'],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
-  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
-  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const filter = useTransform(scrollYProgress, [0, 1], ['blur(0px)', 'blur(10px)']);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -70,8 +70,9 @@ export default function Workflow() {
   }, []);
 
   return (
-    <section id="workflow" className={`section ${styles.workflow}`} ref={sectionRef}>
-      <motion.div className="container" style={{ opacity, filter, scale, transformOrigin: 'top center' }}>
+    <motion.div style={{ opacity, filter, scale, transformOrigin: 'top center' }} ref={sectionRef}>
+      <section id="workflow" className={`section ${styles.workflow}`}>
+        <div className="container">
         <Reveal as="div" className="section-label">// Процесс</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Как мы будем работать</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
@@ -94,7 +95,7 @@ export default function Workflow() {
             </div>
           ))}
         </div>
-      </motion.div>
-    </section>
+      </section>
+    </motion.div>
   )
 }
