@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import SmoothScroll from '../components/SmoothScroll'
 import CustomCursor from '../components/CustomCursor'
+import SectionNav from '../components/SectionNav'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
       </head>
       <body className={inter.className}>
         <CustomCursor />
+        <SectionNav />
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

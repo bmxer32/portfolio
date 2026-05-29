@@ -1,0 +1,90 @@
+.nav {
+  position: fixed;
+  right: 28px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 22px;
+  pointer-events: auto;
+}
+
+/* Vertical connecting line */
+.track {
+  position: absolute;
+  right: 4px;
+  top: 9px;
+  bottom: 9px;
+  width: 1px;
+  background: rgba(var(--fg-rgb), 0.12);
+  pointer-events: none;
+}
+
+/* Each section item */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Section label */
+.label {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(var(--fg-rgb), 0.0);
+  transform: translateX(6px);
+  transition: color 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.item:hover .label {
+  color: rgba(var(--fg-rgb), 0.5);
+  transform: translateX(0);
+}
+
+.item.active .label {
+  color: rgba(var(--fg-rgb), 0.85);
+  transform: translateX(0);
+}
+
+/* Dot */
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--fg-rgb), 0.3);
+  background: transparent;
+  flex-shrink: 0;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.item:hover .dot {
+  border-color: rgba(var(--fg-rgb), 0.6);
+  transform: scale(1.2);
+}
+
+.item.active .dot {
+  background: rgb(var(--fg-rgb));
+  border-color: rgb(var(--fg-rgb));
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 8px rgba(var(--fg-rgb), 0.4);
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .nav { display: none; }
+}

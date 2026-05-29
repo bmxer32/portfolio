@@ -50,7 +50,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} className={styles.hero}>
+    <section id="hero" ref={sectionRef} className={styles.hero}>
       <div className={styles.bgBlobs}>
         <div ref={blob1Ref} className={`${styles.blob} ${styles.blob1}`} />
         <div ref={blob2Ref} className={`${styles.blob} ${styles.blob2}`} />
