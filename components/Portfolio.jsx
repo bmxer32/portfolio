@@ -54,7 +54,7 @@ const projects = [
     image: '/projects/blur.jpg',
     imagePosition: 'center center',
     isBlurred: true,
-    demoLink: null,
+    tgLink: 'https://t.me/Webe9',
   },
 ]
 
@@ -104,11 +104,7 @@ export default function Portfolio() {
           <circle cx="384"  cy="8"  r="2.5" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
           <circle cx="576"  cy="2"  r="3.5" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
           <circle cx="768"  cy="20" r="2"   fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
-          <circle cx="984"  cy="16" r="2.3" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.7s'}}/>
-          <circle cx="1152" cy="28" r="1.6" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'2.1s'}}/>
-          <circle cx="288"  cy="84" r="1.2" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'2.5s'}}/>
-          <circle cx="648"  cy="95" r="1.2" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'1.3s'}}/>
-          <circle cx="864"  cy="68" r="1"   fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'0.9s'}}/>
+          <circle cx="984"  cy="16" r="2.5" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.8s'}}/>
         </svg>
       </div>
 
@@ -130,8 +126,8 @@ export default function Portfolio() {
               transition={{ duration: 0.7, delay: (index % 3) * 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
             <div className={styles.card}>
-              {project.demoLink && (
-                <a href={project.demoLink} target="_blank" rel="noreferrer" className={styles.cardLink} aria-label={project.title} />
+              {(project.demoLink || project.tgLink) && (
+                <a href={project.demoLink || project.tgLink} target="_blank" rel="noreferrer" className={styles.cardLink} aria-label={project.title} />
               )}
               <div className={styles.cardImage}>
                 {project.image
@@ -159,13 +155,25 @@ export default function Portfolio() {
 
                 {project.demoLink && (
                   <div className={styles.links}>
-                    <a href={project.demoLink} target="_blank" rel="noreferrer" className={styles.linkBtn}>
+                    <a href={project.demoLink} target="_blank" rel="noreferrer" className={styles.linkBtn} style={{position: 'relative', zIndex: 2}}>
                       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
                         <polyline points="15 3 21 3 21 9"></polyline>
                         <line x1="10" y1="14" x2="21" y2="3"></line>
                       </svg>
                       Открыть сайт
+                    </a>
+                  </div>
+                )}
+
+                {project.tgLink && (
+                  <div className={styles.links}>
+                    <a href={project.tgLink} target="_blank" rel="noreferrer" className={styles.linkBtn} style={{position: 'relative', zIndex: 2}}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                        <path d="M22 2L11 13"></path>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                      </svg>
+                      Написать в Telegram
                     </a>
                   </div>
                 )}
