@@ -43,16 +43,12 @@ export default function Hero() {
   const blob3Ref = useRef(null)
   const sectionRef = useRef(null)
 
-  // As the next section scrolls up over the sticky hero, fade + scale + blur it
-  // away so it feels like the page "swallows" the hero.
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  })
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92])
-  const opacity = useTransform(scrollYProgress, [0, 0.85], [1, 0])
-  const filter = useTransform(scrollYProgress, [0, 1], ['blur(0px)', 'blur(10px)'])
-  const y = useTransform(scrollYProgress, [0, 1], [0, 60])
+  // Use global scrollY to avoid jitter with position: sticky
+  const { scrollY } = useScroll()
+  const scale = useTransform(scrollY, [0, 800], [1, 0.92])
+  const opacity = useTransform(scrollY, [0, 600], [1, 0])
+  const filter = useTransform(scrollY, [0, 800], ['blur(0px)', 'blur(10px)'])
+  const y = useTransform(scrollY, [0, 800], [0, 60])
 
   useEffect(() => {
     if (window.matchMedia('(pointer: coarse)').matches) return
