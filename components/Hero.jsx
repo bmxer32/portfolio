@@ -34,7 +34,7 @@ const FLOAT_ICONS = [
   { svg: BRACES,   top: '72%', left: '80%', size: '34px', dur: '19s', delay: '-2s',  opacity: 0.15 },
   { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13, link: TG_LINK },
   { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16 },
-  { svg: PHONE,    top: '67%', left: '34%', size: '32px', dur: '18s', delay: '-4s',  opacity: 0.17, link: TEL_LINK, label: 'Телефон' },
+  { svg: PHONE,    top: '52%', left: '90%', size: '32px', dur: '18s', delay: '-4s',  opacity: 0.22, link: TEL_LINK, label: 'Телефон' },
 ]
 
 export default function Hero() {
@@ -92,37 +92,40 @@ export default function Hero() {
         <div className={styles.grain} />
       </div>
 
-      {/* Floating decorative icons */}
+      {/* Decorative floating icons — behind the content */}
       <div className={styles.floatLayer} aria-hidden="true">
-        {FLOAT_ICONS.map((ic, i) => {
-          const style = {
-            top: ic.top,
-            left: ic.left,
-            width: ic.size,
-            height: ic.size,
-            animationDuration: ic.dur,
-            animationDelay: ic.delay,
-            opacity: ic.opacity,
-          }
-          const cls = `${styles.floatIcon} ${styles['float' + (i % 3)]}`
-          return ic.link ? (
-            <a
-              key={i}
-              href={ic.link}
-              target={ic.link.startsWith('tel:') ? undefined : '_blank'}
-              rel="noreferrer"
-              aria-label={ic.label || 'Telegram'}
-              className={`${cls} ${styles.floatLink}`}
-              style={style}
-            >
-              {ic.svg}
-            </a>
-          ) : (
-            <span key={i} className={cls} style={style}>
-              {ic.svg}
-            </span>
-          )
-        })}
+        {FLOAT_ICONS.filter(ic => !ic.link).map((ic, i) => (
+          <span
+            key={i}
+            className={`${styles.floatIcon} ${styles['float' + (i % 3)]}`}
+            style={{
+              top: ic.top, left: ic.left, width: ic.size, height: ic.size,
+              animationDuration: ic.dur, animationDelay: ic.delay, opacity: ic.opacity,
+            }}
+          >
+            {ic.svg}
+          </span>
+        ))}
+      </div>
+
+      {/* Clickable floating icons — above the content so they're always tappable */}
+      <div className={styles.floatLinkLayer}>
+        {FLOAT_ICONS.filter(ic => ic.link).map((ic, i) => (
+          <a
+            key={i}
+            href={ic.link}
+            target={ic.link.startsWith('tel:') ? undefined : '_blank'}
+            rel="noreferrer"
+            aria-label={ic.label || 'Telegram'}
+            className={`${styles.floatIcon} ${styles.floatLink} ${styles['float' + (i % 3)]}`}
+            style={{
+              top: ic.top, left: ic.left, width: ic.size, height: ic.size,
+              animationDuration: ic.dur, animationDelay: ic.delay, opacity: ic.opacity,
+            }}
+          >
+            {ic.svg}
+          </a>
+        ))}
       </div>
 
       <motion.div className={styles.content} style={{ scale, opacity, filter, y }}>

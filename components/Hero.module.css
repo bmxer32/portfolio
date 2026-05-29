@@ -84,7 +84,16 @@
   display: block;
 }
 
-/* Clickable Telegram icons — re-enable pointer events + hover feedback */
+/* Layer for clickable icons — sits above content so they're always tappable */
+.floatLinkLayer {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  pointer-events: none; /* empty space stays click-through */
+  overflow: hidden;
+}
+
+/* Clickable icons — re-enable pointer events + hover feedback */
 .floatLink {
   pointer-events: auto;
   cursor: pointer;
