@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import ScrambleText from './ScrambleText'
 import styles from './Hero.module.css'
 
 export default function Hero() {
@@ -69,11 +70,14 @@ export default function Hero() {
         </div>
 
         <h1 className={`${styles.hugeTitle} ${styles.titleFloat1}`}>
-          FULL<span className={styles.outlineText}> STACK</span>
+          <ScrambleText delay={200} duration={900}>FULL</ScrambleText>
+          <span className={styles.outlineText}>
+            <ScrambleText delay={280} duration={900}> STACK</ScrambleText>
+          </span>
         </h1>
 
         <h1 className={`${styles.hugeTitle} ${styles.rightAlign} ${styles.titleFloat2}`}>
-          РАЗРАБОТЧИК
+          <ScrambleText delay={500} duration={1100}>РАЗРАБОТЧИК</ScrambleText>
         </h1>
 
         <div className={styles.bottomInfo}>
