@@ -47,10 +47,6 @@
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 
-/* Desktop ridge shown by default; mobile ridge hidden */
-.ridgeMobile { display: none; }
-.ridgeDesktop { display: block; }
-
 /* ── Spark / vertex dots ── */
 .sparkDot {
   animation: sparkPulse 3.2s ease-in-out infinite;
@@ -81,28 +77,31 @@
 }
 
 @media (max-width: 768px) {
-  /* Switch to the simpler 3-peak ridge */
-  .ridgeDesktop { display: none; }
-  .ridgeMobile  { display: block; }
-
   .portfolio {
-    /* Matches the mobile 3-peak path (y_svg × 0.4 → px at 48px height) */
+    /* Same 13-point ridge, scaled to 84px height (desktop y × 0.7) */
     clip-path: polygon(
-      0%   48px,
-      20%  14px,
-      35%   0px,
-      50%  32px,
-      65%   2px,
-      80%  18px,
-      100% 48px,
+      0%   84px,
+      8%   42px,
+      16%  13px,
+      24%  59px,
+      32%   6px,
+      42%  36px,
+      48%   0px,
+      54%  67px,
+      64%  14px,
+      72%  48px,
+      82%  11px,
+      90%  50px,
+      96%  20px,
+      100% 84px,
       100% 100%,
       0%   100%
     );
     border-radius: 0;
-    padding-top: 48px;
+    padding-top: 84px;
   }
-  .triangleDivider { height: 48px; }
-  .triangleSvg     { height: 48px; }
+  .triangleDivider { height: 84px; }
+  .triangleSvg     { height: 84px; }
 }
 
 .grid {
