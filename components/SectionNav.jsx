@@ -39,9 +39,16 @@ export default function SectionNav() {
   }, [])
 
   const scrollTo = (id) => {
-    if (id === 'hero') { window.scrollTo({ top: 0, behavior: 'smooth' }); return }
+    const lenis = window.__lenis
+    if (id === 'hero') {
+      lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (!el) return
+    lenis
+      ? lenis.scrollTo(el, { offset: -60 })
+      : el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
   const activeIdx = SECTIONS.findIndex(s => s.id === active)
