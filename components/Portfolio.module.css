@@ -47,6 +47,30 @@
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.4)) drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
 }
 
+/* ── Spark / vertex dots ── */
+.sparkDot {
+  animation: sparkPulse 3.2s ease-in-out infinite;
+}
+
+.sparkDotMain {
+  animation: sparkPulseMain 2.6s ease-in-out infinite;
+}
+
+.sparkValley {
+  opacity: 0.35;
+  animation: sparkPulse 4.5s ease-in-out infinite;
+}
+
+@keyframes sparkPulse {
+  0%, 100% { opacity: 0.4; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes sparkPulseMain {
+  0%, 100% { opacity: 0.55; }
+  50%       { opacity: 1;    }
+}
+
 @keyframes triPulse {
   0%, 100% { opacity: 0.65; }
   50%       { opacity: 1;    }

@@ -66,7 +66,7 @@ export default function Portfolio() {
 
       {/* Asymmetric triangle divider — 3 peaks of different heights */}
       <div className={styles.triangleDivider} aria-hidden="true">
-        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={styles.triangleSvg}>
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" overflow="visible" className={styles.triangleSvg}>
           <defs>
             <linearGradient id="triHalo" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%"   stopColor="rgba(255,255,255,0)" />
@@ -84,10 +84,33 @@ export default function Portfolio() {
               <stop offset="88%"  stopColor="rgba(255,255,255,0.3)" />
               <stop offset="100%" stopColor="rgba(255,255,255,0)" />
             </linearGradient>
+            {/* Glow filter for spark dots */}
+            <filter id="sparkGlow" x="-200%" y="-200%" width="500%" height="500%">
+              <feGaussianBlur stdDeviation="3.5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="sparkGlowBright" x="-300%" y="-300%" width="700%" height="700%">
+              <feGaussianBlur stdDeviation="6" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
           </defs>
-          {/* Crystal ridge — path split at valley positions to create slit gaps */}
+
+          {/* Ridge lines */}
           <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
           <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
+
+          {/* ── Spark dots at peaks (tallest = brightest) ── */}
+          <circle cx="192"  cy="18" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0s'}}/>
+          <circle cx="384"  cy="8"  r="2.5" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
+          <circle cx="576"  cy="2"  r="3.5" fill="white" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
+          <circle cx="768"  cy="20" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
+          <circle cx="984"  cy="16" r="2.3" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.7s'}}/>
+          <circle cx="1152" cy="28" r="1.6" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'2.1s'}}/>
+
+          {/* ── Subtle dots at valleys (dimmer) ── */}
+          <circle cx="288"  cy="84" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'2.5s'}}/>
+          <circle cx="648"  cy="95" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'1.3s'}}/>
+          <circle cx="864"  cy="68" r="1"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'0.9s'}}/>
         </svg>
       </div>
 
