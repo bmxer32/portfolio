@@ -61,8 +61,11 @@
 .step.active .stepNumber {
   border-color: var(--accent-primary);
   color: rgb(var(--bg-rgb));
-  /* Use fully opaque gradient stops so the timeline line can't bleed through. */
-  background: linear-gradient(135deg, rgb(var(--fg-rgb)) 0%, rgba(var(--fg-rgb), 1) 100%);
+  /* background-color acts as an opaque blocker so the timeline line can't
+     bleed through the semi-transparent gradient end. The gradient blends
+     with --bg-rgb instead of with whatever is behind the element. */
+  background-color: rgb(var(--bg-rgb));
+  background-image: linear-gradient(135deg, rgb(var(--fg-rgb)) 0%, rgba(var(--fg-rgb), 0.6) 100%);
   box-shadow: var(--shadow-glow);
   position: relative;
   z-index: 2;
