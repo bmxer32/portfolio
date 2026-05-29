@@ -21,12 +21,14 @@ const CURSOR = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>
 )
 
+const TG_LINK = 'https://t.me/Webe9'
+
 const FLOAT_ICONS = [
-  { svg: TG,       top: '18%', left: '12%', size: '40px', dur: '13s', delay: '0s',   opacity: 0.20 },
+  { svg: TG,       top: '18%', left: '12%', size: '40px', dur: '13s', delay: '0s',   opacity: 0.20, link: TG_LINK },
   { svg: CODE,     top: '64%', left: '8%',  size: '32px', dur: '17s', delay: '-3s',  opacity: 0.16 },
   { svg: TERMINAL, top: '30%', left: '84%', size: '36px', dur: '15s', delay: '-6s',  opacity: 0.17 },
   { svg: BRACES,   top: '72%', left: '80%', size: '34px', dur: '19s', delay: '-2s',  opacity: 0.15 },
-  { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13 },
+  { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13, link: TG_LINK },
   { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16 },
 ]
 
@@ -87,23 +89,35 @@ export default function Hero() {
 
       {/* Floating decorative icons */}
       <div className={styles.floatLayer} aria-hidden="true">
-        {FLOAT_ICONS.map((ic, i) => (
-          <span
-            key={i}
-            className={`${styles.floatIcon} ${styles['float' + (i % 3)]}`}
-            style={{
-              top: ic.top,
-              left: ic.left,
-              width: ic.size,
-              height: ic.size,
-              animationDuration: ic.dur,
-              animationDelay: ic.delay,
-              opacity: ic.opacity,
-            }}
-          >
-            {ic.svg}
-          </span>
-        ))}
+        {FLOAT_ICONS.map((ic, i) => {
+          const style = {
+            top: ic.top,
+            left: ic.left,
+            width: ic.size,
+            height: ic.size,
+            animationDuration: ic.dur,
+            animationDelay: ic.delay,
+            opacity: ic.opacity,
+          }
+          const cls = `${styles.floatIcon} ${styles['float' + (i % 3)]}`
+          return ic.link ? (
+            <a
+              key={i}
+              href={ic.link}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Telegram"
+              className={`${cls} ${styles.floatLink}`}
+              style={style}
+            >
+              {ic.svg}
+            </a>
+          ) : (
+            <span key={i} className={cls} style={style}>
+              {ic.svg}
+            </span>
+          )
+        })}
       </div>
 
       <motion.div className={styles.content} style={{ scale, opacity, filter, y }}>
