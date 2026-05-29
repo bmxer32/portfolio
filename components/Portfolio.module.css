@@ -78,19 +78,19 @@
 
 @media (max-width: 768px) {
   .portfolio {
-    clip-path: polygon(
-      0% 64px,
-      28% 0px,
-      50% 64px,
-      72% 0px,
-      100% 64px,
-      100% 100%,
-      0% 100%
-    );
-    padding-top: 64px;
+    clip-path: none;
+    border-radius: 20px 20px 0 0;
+    padding-top: 0;
   }
-  .triangleDivider { height: 64px; }
-  .triangleSvg     { height: 64px; }
+  .portfolio::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(var(--fg-rgb),0.2) 30%, rgba(var(--fg-rgb),0.4) 50%, rgba(var(--fg-rgb),0.2) 70%, transparent 100%);
+    z-index: 10;
+  }
+  .triangleDivider { display: none; }
 }
 
 .grid {
