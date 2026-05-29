@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import styles from './Navbar.module.css'
 
 const links = [
@@ -12,6 +13,7 @@ export default function Navbar() {
     <header className={styles.header}>
       <div className={styles.container}>
         <a href="#" className={styles.logo}>
+          <Image src="/logop.png" alt="Narodniy Team" width={32} height={32} className={styles.logoIcon} />
           <span className="gradient-text">Narodniy Team</span>
         </a>
         <nav className={styles.nav}>
