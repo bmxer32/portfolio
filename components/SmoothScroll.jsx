@@ -93,6 +93,9 @@ export default function SmoothScroll({ children }) {
       smoothWheel: true,
     })
 
+    // Expose for SectionNav (and any other component that needs direct Lenis access).
+    window.__lenis = lenis
+
     lenis.on('scroll', ({ scroll }) => {
       apply(scroll)
     })
@@ -118,6 +121,7 @@ export default function SmoothScroll({ children }) {
     raf = requestAnimationFrame(loop)
 
     return () => {
+      delete window.__lenis
       cancelAnimationFrame(raf)
       document.removeEventListener('click', onAnchorClick)
       lenis.destroy()
