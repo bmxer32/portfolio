@@ -20,8 +20,12 @@ const BRACES = (
 const CURSOR = (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>
 )
+const PHONE = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+)
 
 const TG_LINK = 'https://t.me/Webe9'
+const TEL_LINK = 'tel:+79309502454'
 
 const FLOAT_ICONS = [
   { svg: TG,       top: '18%', left: '12%', size: '40px', dur: '13s', delay: '0s',   opacity: 0.20, link: TG_LINK },
@@ -30,6 +34,7 @@ const FLOAT_ICONS = [
   { svg: BRACES,   top: '72%', left: '80%', size: '34px', dur: '19s', delay: '-2s',  opacity: 0.15 },
   { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13, link: TG_LINK },
   { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16 },
+  { svg: PHONE,    top: '40%', left: '22%', size: '32px', dur: '18s', delay: '-4s',  opacity: 0.17, link: TEL_LINK, label: 'Телефон' },
 ]
 
 export default function Hero() {
@@ -104,9 +109,9 @@ export default function Hero() {
             <a
               key={i}
               href={ic.link}
-              target="_blank"
+              target={ic.link.startsWith('tel:') ? undefined : '_blank'}
               rel="noreferrer"
-              aria-label="Telegram"
+              aria-label={ic.label || 'Telegram'}
               className={`${cls} ${styles.floatLink}`}
               style={style}
             >
