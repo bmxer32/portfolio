@@ -78,30 +78,30 @@
 
 @media (max-width: 768px) {
   .portfolio {
-    /* Same 13-point ridge, scaled to 84px height (desktop y × 0.7) */
+    /* Same 13-point ridge, scaled to 42px height (desktop y × 0.35) */
     clip-path: polygon(
-      0%   84px,
-      8%   42px,
-      16%  13px,
-      24%  59px,
-      32%   6px,
-      42%  36px,
+      0%   42px,
+      8%   21px,
+      16%  6px,
+      24%  29px,
+      32%   3px,
+      42%  18px,
       48%   0px,
-      54%  67px,
-      64%  14px,
-      72%  48px,
-      82%  11px,
-      90%  50px,
-      96%  20px,
-      100% 84px,
+      54%  33px,
+      64%  7px,
+      72%  24px,
+      82%  6px,
+      90%  25px,
+      96%  10px,
+      100% 42px,
       100% 100%,
       0%   100%
     );
     border-radius: 0;
-    padding-top: 84px;
+    padding-top: 42px;
   }
-  .triangleDivider { height: 84px; }
-  .triangleSvg     { height: 84px; }
+  .triangleDivider { height: 42px; }
+  .triangleSvg     { height: 42px; }
 }
 
 .grid {
@@ -287,5 +287,23 @@
   .showMoreContainer {
     display: flex;
     justify-content: center;
+  }
+
+  .card {
+    height: auto;
+  }
+
+  .cardImage {
+    flex: none;
+    height: 200px;
+  }
+
+  .cardContent {
+    flex: none;
+    padding: 20px;
+  }
+
+  .cardDesc {
+    margin-bottom: 20px;
   }
 }

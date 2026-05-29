@@ -7,20 +7,21 @@ import styles from './Portfolio.module.css'
 
 const projects = [
   {
-    title: 'ВАШ Эксперт',
-    description: 'Корпоративный сайт для независимой оценочной компании — под ключ от дизайна до деплоя. Форма захвата лидов с защитой от ботов, уведомления в Telegram, SEO под Яндекс, страница услуг с ценами.',
-    tags: ['Next.js 15', 'React 19', 'Tailwind CSS', 'Telegram API', 'Python'],
-    image: '/projects/v-experto.png',
-    imagePosition: 'center 82%',
-    demoLink: 'https://v-experto.ru',
+    title: 'RELICT',
+    description: 'Премиальный корпоративный сайт для ресторана и бара современной русской кухни. Разработан стильный дизайн в темных тонах, интегрирована система бронирования столов, интерактивное меню и раздел событий.',
+    tags: ['Next.js', 'React', 'Tailwind CSS', 'Framer Motion'],
+    image: '/projects/relict.png',
+    imagePosition: 'center center',
+    demoLink: 'https://relict.moscow/',
   },
   {
-    title: 'Народный VPN',
-    description: 'Лендинг для VPN-сервиса с упором на простоту и доверие. Понятная подача для широкой аудитории: тарифы, инструкции по подключению, кнопки быстрого старта и интеграция с оплатой.',
-    tags: ['Next.js', 'React', 'Tailwind CSS', 'TypeScript', 'Node.js'],
-    image: '/projects/narodniyvpn.png',
-    imagePosition: 'center 74%',
-    demoLink: 'https://narodniyvpn.online',
+    title: 'No One',
+    description: 'Разработка интернет-магазина и мобильных приложений (iOS/Android) для премиальной сети бутиков одежды и обуви. Реализован сложный каталог с умной фильтрацией, личный кабинет покупателя и интеграция с внутренними системами учета.',
+    tags: ['React Native', 'Next.js', 'E-commerce', 'Mobile Dev'],
+    image: '/projects/Noone.png',
+    imagePosition: 'center center',
+    logo: null,
+    demoLink: 'https://www.noone.ru/',
   },
   {
     title: 'ScandyStyle',
@@ -31,22 +32,20 @@ const projects = [
     demoLink: 'https://scandistyle.ru',
   },
   {
-    title: 'Retro Games Hub',
-    description: 'Мультиплатформенное приложение со сборником классических мини-игр для iOS и Android. Включает популярные аркады с современным дизайном (Glassmorphism), а также локальный и сетевой мультиплеер.',
-    tags: ['Flutter', 'Dart', 'Firebase', 'Game Dev'],
-    image: '/projects/retrogames.png',
-    imagePosition: 'center 50%',
-    logo: null,
-    demoLink: null,
+    title: '4hands',
+    description: 'Платформа для сети салонов красоты 4hands. Разработан каталог услуг с подробным описанием и ценами, интегрирована удобная онлайн-запись и стильный светлый дизайн для женской аудитории.',
+    tags: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+    image: '/projects/4hend.png',
+    imagePosition: 'top center',
+    demoLink: 'https://4hands.ru/uslugi/manikyur/',
   },
   {
-    title: 'FlowMonitor',
-    description: 'Мощное десктопное приложение для ПК. Позволяет мониторить нагрузку на систему, управлять процессами и оптимизировать работу. Кастомный UI с приятными анимациями и поддержкой темной темы.',
-    tags: ['Electron', 'React', 'TypeScript', 'Node.js'],
-    image: '/projects/flowmonitor.png',
-    imagePosition: 'center 57%',
-    logo: null,
-    demoLink: null,
+    title: 'Ваш Эксперт',
+    description: 'Корпоративный сайт для независимой оценочной компании — под ключ от дизайна до деплоя. Форма захвата лидов с защитой от ботов, уведомления в Telegram, SEO под Яндекс, страница услуг с ценами.',
+    tags: ['Next.js 15', 'React 19', 'Tailwind CSS', 'Telegram API', 'Python'],
+    image: '/projects/v-experto.png',
+    imagePosition: 'center 82%',
+    demoLink: 'https://v-experto.ru',
   },
   {
     title: 'Limpus auto',
@@ -69,20 +68,20 @@ export default function Portfolio() {
         <svg viewBox="0 0 1200 120" preserveAspectRatio="none" overflow="visible" className={styles.triangleSvg}>
           <defs>
             <linearGradient id="triHalo" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%"   stopColor="rgba(255,255,255,0)" />
-              <stop offset="18%"  stopColor="rgba(255,255,255,0.1)" />
-              <stop offset="42%"  stopColor="rgba(255,255,255,0.28)" />
-              <stop offset="66%"  stopColor="rgba(255,255,255,0.22)" />
-              <stop offset="88%"  stopColor="rgba(255,255,255,0.08)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="0%"   stopColor="rgba(var(--fg-rgb),0)" />
+              <stop offset="18%"  stopColor="rgba(var(--fg-rgb),0.1)" />
+              <stop offset="42%"  stopColor="rgba(var(--fg-rgb),0.28)" />
+              <stop offset="66%"  stopColor="rgba(var(--fg-rgb),0.22)" />
+              <stop offset="88%"  stopColor="rgba(var(--fg-rgb),0.08)" />
+              <stop offset="100%" stopColor="rgba(var(--fg-rgb),0)" />
             </linearGradient>
             <linearGradient id="triLine" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%"   stopColor="rgba(255,255,255,0)" />
-              <stop offset="15%"  stopColor="rgba(255,255,255,0.4)" />
-              <stop offset="42%"  stopColor="rgba(255,255,255,0.9)" />
-              <stop offset="65%"  stopColor="rgba(255,255,255,0.7)" />
-              <stop offset="88%"  stopColor="rgba(255,255,255,0.3)" />
-              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+              <stop offset="0%"   stopColor="rgba(var(--fg-rgb),0)" />
+              <stop offset="15%"  stopColor="rgba(var(--fg-rgb),0.4)" />
+              <stop offset="42%"  stopColor="rgba(var(--fg-rgb),0.9)" />
+              <stop offset="65%"  stopColor="rgba(var(--fg-rgb),0.7)" />
+              <stop offset="88%"  stopColor="rgba(var(--fg-rgb),0.3)" />
+              <stop offset="100%" stopColor="rgba(var(--fg-rgb),0)" />
             </linearGradient>
             {/* Glow filter for spark dots */}
             <filter id="sparkGlow" x="-200%" y="-200%" width="500%" height="500%">
@@ -99,21 +98,21 @@ export default function Portfolio() {
           <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
           <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
 
-          <circle cx="192"  cy="18" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0s'}}/>
-          <circle cx="384"  cy="8"  r="2.5" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
-          <circle cx="576"  cy="2"  r="3.5" fill="white" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
-          <circle cx="768"  cy="20" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
-          <circle cx="984"  cy="16" r="2.3" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.7s'}}/>
-          <circle cx="1152" cy="28" r="1.6" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'2.1s'}}/>
-          <circle cx="288"  cy="84" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'2.5s'}}/>
-          <circle cx="648"  cy="95" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'1.3s'}}/>
-          <circle cx="864"  cy="68" r="1"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'0.9s'}}/>
+          <circle cx="192"  cy="18" r="2"   fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0s'}}/>
+          <circle cx="384"  cy="8"  r="2.5" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
+          <circle cx="576"  cy="2"  r="3.5" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
+          <circle cx="768"  cy="20" r="2"   fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
+          <circle cx="984"  cy="16" r="2.3" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.7s'}}/>
+          <circle cx="1152" cy="28" r="1.6" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'2.1s'}}/>
+          <circle cx="288"  cy="84" r="1.2" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'2.5s'}}/>
+          <circle cx="648"  cy="95" r="1.2" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'1.3s'}}/>
+          <circle cx="864"  cy="68" r="1"   fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'0.9s'}}/>
         </svg>
       </div>
 
       <div className="container">
         <Reveal as="div" className="section-label">// Работы</Reveal>
-        <Reveal as="h2" className="section-title" delay={0.05}>Примеры моих работ</Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>Примеры работ</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
           От современных веб-сервисов и сложных ботов до мобильных игр и десктопных приложений. Здесь собраны проекты из совершенно разных сфер разработки.
         </Reveal>
