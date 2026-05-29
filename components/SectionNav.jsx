@@ -46,8 +46,8 @@ export default function SectionNav() {
     }
     const el = document.getElementById(id)
     if (!el) return
-    // Portfolio has a 120px clip-path zone at the top, so needs extra offset.
-    const offset = id === 'portfolio' ? -140 : -60
+    // Portfolio: clip-path is 120px tall, scroll past it so heading is near top.
+    const offset = id === 'portfolio' ? 60 : -60
     lenis
       ? lenis.scrollTo(el, { offset })
       : el.scrollIntoView({ behavior: 'smooth', block: 'start' })
