@@ -34,7 +34,7 @@ const FLOAT_ICONS = [
   { svg: BRACES,   top: '72%', left: '80%', size: '34px', dur: '19s', delay: '-2s',  opacity: 0.15 },
   { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13, link: TG_LINK },
   { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16 },
-  { svg: PHONE,    top: '40%', left: '22%', size: '32px', dur: '18s', delay: '-4s',  opacity: 0.17, link: TEL_LINK, label: 'Телефон' },
+  { svg: PHONE,    top: '67%', left: '34%', size: '32px', dur: '18s', delay: '-4s',  opacity: 0.17, link: TEL_LINK, label: 'Телефон' },
 ]
 
 export default function Hero() {
