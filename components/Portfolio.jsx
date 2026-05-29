@@ -63,15 +63,16 @@ export default function Portfolio() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['start start', 'end start'],
+    offset: ['end end', 'end start'],
   });
 
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
-  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
-  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const filter = useTransform(scrollYProgress, [0, 1], ['blur(0px)', 'blur(10px)']);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
 
   return (
-    <section id="portfolio" className={`section ${styles.portfolio}`} ref={sectionRef}>
+    <motion.div style={{ opacity, filter, scale, transformOrigin: 'top center' }} ref={sectionRef}>
+      <section id="portfolio" className={`section ${styles.portfolio}`}>
 
       {/* Asymmetric triangle divider — 3 peaks of different heights */}
       <div className={styles.triangleDivider} aria-hidden="true">
@@ -120,7 +121,7 @@ export default function Portfolio() {
         </svg>
       </div>
 
-      <motion.div className="container" style={{ opacity, filter, scale, transformOrigin: 'top center' }}>
+      <div className="container">
         <Reveal as="div" className="section-label">// Работы</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Примеры работ</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
@@ -202,7 +203,7 @@ export default function Portfolio() {
             {showAll ? 'Скрыть' : 'Показать больше работ'}
           </button>
         </div>
-      </motion.div>
-    </section>
+      </section>
+    </motion.div>
   )
 }
