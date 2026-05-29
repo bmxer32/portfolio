@@ -25,7 +25,8 @@ export default function ScrambleText({ children, delay = 0, duration = 900, repe
     const chars = text.split('')
     const nonSpace = chars.filter(c => c !== ' ').length
     const stagger = (duration * 0.55) / Math.max(nonSpace, 1)
-    const settle = 180
+    const settle = 300              // how long each char scrambles before locking
+    const SWAP_INTERVAL = 90        // how often a scrambling char picks a new symbol
 
     let nsIdx = 0
     const startTimes = chars.map(c => c === ' ' ? null : (nsIdx++) * stagger)
@@ -35,6 +36,10 @@ export default function ScrambleText({ children, delay = 0, duration = 900, repe
     const runAnimation = (extraDelay = 0) => {
       cancelAnimationFrame(raf.current)
       const origin = performance.now() + extraDelay
+      // Per-char held symbol + the time it was last swapped, so each symbol
+      // stays visible for SWAP_INTERVAL instead of flickering every frame.
+      const held = chars.map(() => '')
+      const lastSwap = chars.map(() => -Infinity)
 
       const tick = (now) => {
         if (now < origin) { raf.current = requestAnimationFrame(tick); return }
@@ -45,7 +50,11 @@ export default function ScrambleText({ children, delay = 0, duration = 900, repe
           const t = startTimes[i]
           if (elapsed >= t + settle) return ch
           allDone = false
-          return rndFor(ch)
+          if (now - lastSwap[i] >= SWAP_INTERVAL) {
+            held[i] = rndFor(ch)
+            lastSwap[i] = now
+          }
+          return held[i] || rndFor(ch)
         })
         setOut(result.join(''))
         if (!allDone) {
