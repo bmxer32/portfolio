@@ -58,32 +58,6 @@ const projects = [
   },
 ]
 
-// Crystal ridge vertices (viewBox 1200×120)
-const RIDGE_PTS = [
-  [0,120],[96,60],[192,18],[288,84],[384,8],[504,52],[576,0],
-  [648,95],[768,20],[864,68],[984,16],[1080,72],[1152,28],[1200,120],
-]
-
-// Build an SVG path that rounds every interior vertex with a quadratic arc,
-// so peaks/valleys are blunted instead of razor-sharp.
-function roundedPath(pts, r) {
-  let d = `M${pts[0][0]},${pts[0][1]}`
-  for (let i = 1; i < pts.length - 1; i++) {
-    const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], [x2, y2] = pts[i + 1]
-    const v1x = x0 - x1, v1y = y0 - y1, v2x = x2 - x1, v2y = y2 - y1
-    const l1 = Math.hypot(v1x, v1y), l2 = Math.hypot(v2x, v2y)
-    const rr = Math.min(r, l1 / 2, l2 / 2)
-    const ax = (x1 + (v1x / l1) * rr).toFixed(1), ay = (y1 + (v1y / l1) * rr).toFixed(1)
-    const bx = (x1 + (v2x / l2) * rr).toFixed(1), by = (y1 + (v2y / l2) * rr).toFixed(1)
-    d += ` L${ax},${ay} Q${x1},${y1} ${bx},${by}`
-  }
-  const last = pts[pts.length - 1]
-  d += ` L${last[0]},${last[1]}`
-  return d
-}
-
-const RIDGE_D = roundedPath(RIDGE_PTS, 22)
-
 export default function Portfolio() {
   const [showAll, setShowAll] = useState(false);
 
@@ -122,8 +96,8 @@ export default function Portfolio() {
           </defs>
 
           {/* ── 13-point crystal ridge (mobile just renders it shorter) ── */}
-          <path d={RIDGE_D} fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="round" strokeLinecap="round"/>
-          <path d={RIDGE_D} fill="none" stroke="url(#triLine)" strokeWidth="1.8" strokeLinejoin="round" strokeLinecap="round" className={styles.trianglePath}/>
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
 
           <circle cx="192"  cy="18" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0s'}}/>
           <circle cx="384"  cy="8"  r="2.5" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
