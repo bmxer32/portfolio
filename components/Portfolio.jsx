@@ -135,7 +135,7 @@ export default function Portfolio() {
               )}
               <div className={styles.cardImage}>
                 {project.image
-                  ? <Image src={project.image} alt={project.title} fill style={{ objectFit: 'cover', objectPosition: project.imagePosition || 'center', filter: project.isBlurred ? 'blur(15px)' : 'none', transform: project.isBlurred ? 'scale(1.1)' : 'none' }} />
+                  ? <Image src={project.image} alt={project.title} fill style={{ objectFit: 'cover', objectPosition: project.imagePosition || 'center', filter: project.isBlurred ? 'blur(8px)' : 'none', transform: project.isBlurred ? 'scale(1.05)' : 'none' }} />
                   : project.logo
                     ? (
                       <div className={styles.logoPlaceholder}>
