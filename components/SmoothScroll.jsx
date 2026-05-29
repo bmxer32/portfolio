@@ -106,6 +106,13 @@ export default function SmoothScroll({ children }) {
       if (!a) return
       const id = a.getAttribute('href')
       if (id.length < 2) return
+      
+      if (id === '#hero') {
+        e.preventDefault()
+        lenis.scrollTo(0)
+        return
+      }
+
       const el = document.querySelector(id)
       if (!el) return
       e.preventDefault()

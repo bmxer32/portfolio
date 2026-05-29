@@ -4,7 +4,7 @@ import styles from './Footer.module.css'
 
 const TERMINAL_LINES = [
   '> whoami',
-  'Maxim Burenkov — Full Stack Dev',
+  'Narodniy Team — Full Stack Dev',
   '> cat contacts.json',
   '{',
   '  "tg": "@Webe9",',
@@ -80,7 +80,7 @@ export default function Footer() {
               <button className={styles.closeDiscount} onClick={() => setShowDiscount(false)}>×</button>
               <div className={styles.discountIcon}>🎁</div>
               <h3>Ладно, скидочку 10% сделаем!</h3>
-              <p>Вы очень настойчивы. Напишите мне в Telegram и скажите кодовое слово <b>"PASHALKA"</b>.</p>
+              <p>Вы очень настойчивы. Напишите нам в Telegram и скажите кодовое слово <b>"PASHALKA"</b>.</p>
               <a href="https://t.me/Webe9" target="_blank" rel="noreferrer" className={styles.btnTg}>
                 Забрать скидку
               </a>
@@ -95,8 +95,8 @@ export default function Footer() {
             <div className="section-label">// Контакт</div>
             <h2 className={styles.title}>Готовы обсудить<br />проект?</h2>
             <p className={styles.subtitle}>
-              Напишите мне — обсудим идею, сроки и бюджет.<br />
-              Отвечаю в течение пары часов.
+              Напишите нам — обсудим идею, сроки и бюджет.<br />
+              Отвечаем в течение пары часов.
             </p>
 
             <div className={styles.contactLinks}>
@@ -113,7 +113,7 @@ export default function Footer() {
                 </svg>
                 Email
               </a>
-              <a href="tel:+79309502454" className={styles.btnEmail}>
+              <a href="tel:+79309502454" className={`${styles.btnEmail} ${styles.phoneBtn}`}>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                 </svg>
@@ -142,8 +142,8 @@ export default function Footer() {
             <div className={styles.statusBlock}>
               <span className={styles.statusDot}></span>
               <div>
-                <p className={styles.statusTitle}>Открыт для новых проектов</p>
-                <p className={styles.statusSub}>Готов приступить в ближайшее время</p>
+                <p className={styles.statusTitle}>Открыты для новых проектов</p>
+                <p className={styles.statusSub}>Готовы приступить в ближайшее время</p>
               </div>
             </div>
 
@@ -158,6 +158,16 @@ export default function Footer() {
                 <a href="#portfolio" className={styles.quickLink}>Проекты</a>
                 <a href="#workflow" className={styles.quickLink}>Процесс</a>
                 <a href="#contact" className={styles.quickLink}>Контакт</a>
+                <button 
+                  type="button"
+                  className={styles.quickLink}
+                  onClick={() => {
+                    window.__lenis ? window.__lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }}
+                  style={{ cursor: 'pointer', background: 'transparent' }}
+                >
+                  В начало
+                </button>
               </div>
             </nav>
 
@@ -165,8 +175,14 @@ export default function Footer() {
         </div>
 
         <div className={styles.bottom}>
-          <span className={styles.logo}>Maxim Burenkov</span>
-          <p className={styles.copy}>© {new Date().getFullYear()} Все права защищены.</p>
+          <div className={styles.bottomLeft}>
+            <span className={styles.logo}>Narodniy Team</span>
+            <p className={styles.copy}>© {new Date().getFullYear()} Все права защищены.</p>
+          </div>
+          <div className={styles.legalInfo}>
+            <p className={styles.copy}>ИП Скворцов М.А. ИНН 581304172576</p>
+            <a href="/privacy" className={styles.copy} style={{ textDecoration: 'underline' }}>Политика конфиденциальности</a>
+          </div>
         </div>
 
       </div>

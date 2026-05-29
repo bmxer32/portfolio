@@ -12,7 +12,7 @@ export default function Navbar() {
     <header className={styles.header}>
       <div className={styles.container}>
         <a href="#" className={styles.logo}>
-          <span className="gradient-text">Burenkov</span>
+          <span className="gradient-text">Narodniy Team</span>
         </a>
         <nav className={styles.nav}>
           {links.map((link) => (

@@ -7,24 +7,24 @@ const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
 export const metadata = {
   metadataBase: new URL('https://max-portfolio-site-ruby.vercel.app'),
-  title: 'Максим Буренков | Разработка сайтов и веб-приложений',
+  title: 'Narodniy Team | Разработка сайтов и веб-приложений',
   description: 'Профессиональное создание премиальных веб-сайтов и приложений.',
   openGraph: {
-    title: 'Максим Буренков | Разработка сайтов и веб-приложений',
+    title: 'Narodniy Team | Разработка сайтов и веб-приложений',
     description: 'Профессиональное создание премиальных веб-сайтов и приложений.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Максим Буренков | Full Stack Разработчик',
+        alt: 'Narodniy Team | Full Stack Разработка',
       },
     ],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Максим Буренков | Разработка сайтов и веб-приложений',
+    title: 'Narodniy Team | Разработка сайтов и веб-приложений',
     description: 'Профессиональное создание премиальных веб-сайтов и приложений.',
     images: ['/og-image.png'],
   },

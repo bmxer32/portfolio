@@ -58,10 +58,10 @@ export default function Skills() {
   return (
     <section id="skills" className={`section ${styles.skills}`}>
       <div className="container">
-        <Reveal as="div" className="section-label">// Что я умею</Reveal>
-        <Reveal as="h2" className="section-title" delay={0.05}>Чем я могу помочь?</Reveal>
+        <Reveal as="div" className="section-label">// Что мы умеем</Reveal>
+        <Reveal as="h2" className="section-title" delay={0.05}>Чем мы можем помочь?</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
-          Закрываю большинство технических потребностей бизнеса: от верстки визиток
+          Закрываем большинство технических потребностей бизнеса: от верстки визиток
           до программирования сложной логики, мобильных и десктоп программ. Никаких процентов — только реальные навыки.
         </Reveal>
 

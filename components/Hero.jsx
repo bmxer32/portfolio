@@ -29,11 +29,11 @@ const TEL_LINK = 'tel:+79309502454'
 
 const FLOAT_ICONS = [
   { svg: TG,       top: '18%', left: '12%', size: '40px', dur: '13s', delay: '0s',   opacity: 0.20, link: TG_LINK },
-  { svg: CODE,     top: '64%', left: '8%',  size: '32px', dur: '17s', delay: '-3s',  opacity: 0.16 },
+  { svg: CODE,     top: '64%', left: '8%',  size: '32px', dur: '17s', delay: '-3s',  opacity: 0.16, hideOnMobile: true },
   { svg: TERMINAL, top: '30%', left: '84%', size: '36px', dur: '15s', delay: '-6s',  opacity: 0.17 },
   { svg: BRACES,   top: '72%', left: '80%', size: '34px', dur: '19s', delay: '-2s',  opacity: 0.15 },
-  { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13, link: TG_LINK },
-  { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16 },
+  { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13, link: TG_LINK, hideOnMobile: true },
+  { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16, hideOnMobile: true },
   { svg: PHONE,    top: '52%', left: '90%', size: '32px', dur: '18s', delay: '-4s',  opacity: 0.22, link: TEL_LINK, label: 'Телефон' },
 ]
 
@@ -97,7 +97,7 @@ export default function Hero() {
         {FLOAT_ICONS.filter(ic => !ic.link).map((ic, i) => (
           <span
             key={i}
-            className={`${styles.floatIcon} ${styles['float' + (i % 3)]}`}
+            className={`${styles.floatIcon} ${styles['float' + (i % 3)]} ${ic.hideOnMobile ? styles.hideOnMobile : ''}`}
             style={{
               top: ic.top, left: ic.left, width: ic.size, height: ic.size,
               animationDuration: ic.dur, animationDelay: ic.delay, opacity: ic.opacity,
@@ -117,7 +117,7 @@ export default function Hero() {
             target={ic.link.startsWith('tel:') ? undefined : '_blank'}
             rel="noreferrer"
             aria-label={ic.label || 'Telegram'}
-            className={`${styles.floatIcon} ${styles.floatLink} ${styles['float' + (i % 3)]}`}
+            className={`${styles.floatIcon} ${styles.floatLink} ${styles['float' + (i % 3)]} ${ic.hideOnMobile ? styles.hideOnMobile : ''}`}
             style={{
               top: ic.top, left: ic.left, width: ic.size, height: ic.size,
               animationDuration: ic.dur, animationDelay: ic.delay, opacity: ic.opacity,
@@ -146,13 +146,13 @@ export default function Hero() {
         </h1>
 
         <h1 className={`${styles.hugeTitle} ${styles.rightAlign} ${styles.titleFloat2}`}>
-          <ScrambleText delay={500} duration={1100} repeatEvery={7000}>РАЗРАБОТЧИК</ScrambleText>
+          <ScrambleText delay={500} duration={1100} repeatEvery={7000}>РАЗРАБОТКА</ScrambleText>
         </h1>
 
         <div className={styles.bottomInfo}>
           <p className={styles.snippet}>
-            Создаю современные, быстрые и понятные сайты для бизнеса.<br />
-            Упаковываю сложную логику в красивую функциональную обертку, чтобы вашим клиентам было удобно.
+            Создаем современные, быстрые и понятные сайты для бизнеса.<br />
+            Упаковываем сложную логику в красивую функциональную обертку, чтобы вашим клиентам было удобно.
           </p>
           <a href="#portfolio" className={`cursor-hover ${styles.scrollDown}`}>
             Смотреть работы <span className={styles.arrow}>↓</span>
