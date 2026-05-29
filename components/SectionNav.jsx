@@ -10,6 +10,16 @@ const SECTIONS = [
   { id: 'contact',   label: 'Контакт' },
 ]
 
+const Chevron = ({ dir }) => (
+  <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
+    <path
+      d={dir === 'up' ? 'M1 5L5 1L9 5' : 'M1 1L5 5L9 1'}
+      stroke="currentColor" strokeWidth="1.5"
+      strokeLinecap="round" strokeLinejoin="round"
+    />
+  </svg>
+)
+
 export default function SectionNav() {
   const [active, setActive] = useState('hero')
 
@@ -23,7 +33,6 @@ export default function SectionNav() {
       })
       setActive(current)
     }
-
     window.addEventListener('scroll', check, { passive: true })
     check()
     return () => window.removeEventListener('scroll', check)
@@ -35,20 +44,49 @@ export default function SectionNav() {
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  const activeIdx = SECTIONS.findIndex(s => s.id === active)
+  const prev = activeIdx > 0 ? SECTIONS[activeIdx - 1] : null
+  const next = activeIdx < SECTIONS.length - 1 ? SECTIONS[activeIdx + 1] : null
+
   return (
     <nav className={styles.nav} aria-label="Навигация по разделам">
-      <div className={styles.track} />
-      {SECTIONS.map(({ id, label }) => (
-        <button
-          key={id}
-          className={`${styles.item} ${active === id ? styles.active : ''}`}
-          onClick={() => scrollTo(id)}
-          aria-label={label}
-        >
-          <span className={styles.label}>{label}</span>
-          <span className={styles.dot} />
-        </button>
-      ))}
+
+      {/* Up arrow */}
+      <button
+        className={`${styles.arrow} ${!prev ? styles.arrowHidden : ''}`}
+        onClick={() => prev && scrollTo(prev.id)}
+        aria-label="Предыдущая секция"
+        tabIndex={prev ? 0 : -1}
+      >
+        <Chevron dir="up" />
+      </button>
+
+      {/* Dots */}
+      <div className={styles.dots}>
+        <div className={styles.track} />
+        {SECTIONS.map(({ id, label }) => (
+          <button
+            key={id}
+            className={`${styles.item} ${active === id ? styles.active : ''}`}
+            onClick={() => scrollTo(id)}
+            aria-label={label}
+          >
+            <span className={styles.label}>{label}</span>
+            <span className={styles.dot} />
+          </button>
+        ))}
+      </div>
+
+      {/* Down arrow */}
+      <button
+        className={`${styles.arrow} ${!next ? styles.arrowHidden : ''}`}
+        onClick={() => next && scrollTo(next.id)}
+        aria-label="Следующая секция"
+        tabIndex={next ? 0 : -1}
+      >
+        <Chevron dir="down" />
+      </button>
+
     </nav>
   )
 }
