@@ -1,5 +1,6 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Reveal from './Reveal'
 import styles from './Workflow.module.css'
 
@@ -29,6 +30,16 @@ const steps = [
 export default function Workflow() {
   const [activeIndices, setActiveIndices] = useState([]);
   const stepRefs = useRef([]);
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
+  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -59,8 +70,8 @@ export default function Workflow() {
   }, []);
 
   return (
-    <section id="workflow" className={`section ${styles.workflow}`}>
-      <div className="container">
+    <section id="workflow" className={`section ${styles.workflow}`} ref={sectionRef}>
+      <motion.div className="container" style={{ opacity, filter, scale, transformOrigin: 'top center' }}>
         <Reveal as="div" className="section-label">// Процесс</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Как мы будем работать</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
@@ -83,7 +94,7 @@ export default function Workflow() {
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

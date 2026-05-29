@@ -1,7 +1,7 @@
 "use client"
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Reveal from './Reveal'
 import styles from './Portfolio.module.css'
 
@@ -59,9 +59,19 @@ const projects = [
 
 export default function Portfolio() {
   const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
+  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
 
   return (
-    <section id="portfolio" className={`section ${styles.portfolio}`}>
+    <section id="portfolio" className={`section ${styles.portfolio}`} ref={sectionRef}>
 
       {/* Asymmetric triangle divider — 3 peaks of different heights */}
       <div className={styles.triangleDivider} aria-hidden="true">
@@ -110,7 +120,7 @@ export default function Portfolio() {
         </svg>
       </div>
 
-      <div className="container">
+      <motion.div className="container" style={{ opacity, filter, scale, transformOrigin: 'top center' }}>
         <Reveal as="div" className="section-label">// Работы</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Примеры работ</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
@@ -192,7 +202,7 @@ export default function Portfolio() {
             {showAll ? 'Скрыть' : 'Показать больше работ'}
           </button>
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }

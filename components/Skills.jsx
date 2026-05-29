@@ -1,5 +1,6 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import Reveal from './Reveal'
 import styles from './Skills.module.css'
 
@@ -55,9 +56,20 @@ const skillCategories = [
 ]
 
 export default function Skills() {
+  const sectionRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
+  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
+
   return (
-    <section id="skills" className={`section ${styles.skills}`}>
-      <div className="container">
+    <section id="skills" className={`section ${styles.skills}`} ref={sectionRef}>
+      <motion.div className="container" style={{ opacity, filter, scale, transformOrigin: 'top center' }}>
         <Reveal as="div" className="section-label">// Что мы умеем</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Чем мы можем помочь?</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
@@ -96,7 +108,7 @@ export default function Skills() {
             </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 }
