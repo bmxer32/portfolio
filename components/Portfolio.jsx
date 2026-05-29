@@ -95,31 +95,19 @@ export default function Portfolio() {
             </filter>
           </defs>
 
-          {/* ── Desktop ridge: 13-point crystal ── */}
-          <g className={styles.ridgeDesktop}>
-            <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
-            <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
+          {/* ── 13-point crystal ridge (mobile just renders it shorter) ── */}
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
 
-            <circle cx="192"  cy="18" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0s'}}/>
-            <circle cx="384"  cy="8"  r="2.5" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
-            <circle cx="576"  cy="2"  r="3.5" fill="white" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
-            <circle cx="768"  cy="20" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
-            <circle cx="984"  cy="16" r="2.3" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.7s'}}/>
-            <circle cx="1152" cy="28" r="1.6" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'2.1s'}}/>
-            <circle cx="288"  cy="84" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'2.5s'}}/>
-            <circle cx="648"  cy="95" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'1.3s'}}/>
-            <circle cx="864"  cy="68" r="1"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'0.9s'}}/>
-          </g>
-
-          {/* ── Mobile ridge: simpler 3-peak so it isn't cramped on narrow screens ── */}
-          <g className={styles.ridgeMobile}>
-            <path d="M0,120 L240,36 L420,0 L600,80 L780,4 L960,44 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="14" strokeLinejoin="miter"/>
-            <path d="M0,120 L240,36 L420,0 L600,80 L780,4 L960,44 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="2" strokeLinejoin="miter" className={styles.trianglePath}/>
-
-            <circle cx="420" cy="0"  r="4" fill="white" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
-            <circle cx="780" cy="4"  r="3" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot}     style={{animationDelay:'1.2s'}}/>
-            <circle cx="960" cy="44" r="2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot}     style={{animationDelay:'0.8s'}}/>
-          </g>
+          <circle cx="192"  cy="18" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0s'}}/>
+          <circle cx="384"  cy="8"  r="2.5" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.1s'}}/>
+          <circle cx="576"  cy="2"  r="3.5" fill="white" filter="url(#sparkGlowBright)" className={styles.sparkDotMain} style={{animationDelay:'0.4s'}}/>
+          <circle cx="768"  cy="20" r="2"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
+          <circle cx="984"  cy="16" r="2.3" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.7s'}}/>
+          <circle cx="1152" cy="28" r="1.6" fill="white" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'2.1s'}}/>
+          <circle cx="288"  cy="84" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'2.5s'}}/>
+          <circle cx="648"  cy="95" r="1.2" fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'1.3s'}}/>
+          <circle cx="864"  cy="68" r="1"   fill="white" filter="url(#sparkGlow)"       className={styles.sparkValley} style={{animationDelay:'0.9s'}}/>
         </svg>
       </div>
 
