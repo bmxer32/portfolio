@@ -4,15 +4,22 @@
   background: var(--bg-secondary);
   /* Clip-path mirrors the SVG triangle path (peaks at 22%, 50%, 76%) */
   clip-path: polygon(
-    0% 120px,
-    22% 48px,
-    40% 0px,
-    50% 120px,
-    60% 0px,
-    76% 56px,
+    0%   120px,
+    8%    60px,
+    16%   18px,
+    24%   84px,
+    32%    8px,
+    42%   52px,
+    48%    0px,
+    54%   95px,
+    64%   20px,
+    72%   68px,
+    82%   16px,
+    90%   72px,
+    96%   28px,
     100% 120px,
     100% 100%,
-    0% 100%
+    0%   100%
   );
   overflow: hidden;
   padding-top: 120px;

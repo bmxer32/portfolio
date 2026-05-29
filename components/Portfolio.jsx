@@ -85,9 +85,9 @@ export default function Portfolio() {
               <stop offset="100%" stopColor="rgba(255,255,255,0)" />
             </linearGradient>
           </defs>
-          {/* Peak 1 at ~22% h=48, Peak 2 at 40% h=0, Valley 50% h=120, Peak 3 at 60% h=0, Peak 4 at 76% h=56 */}
-          <path d="M0,120 L264,48 L480,0 L600,120 L720,0 L912,56 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
-          <path d="M0,120 L264,48 L480,0 L600,120 L720,0 L912,56 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
+          {/* Multi-facet asymmetric crystal ridge */}
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
         </svg>
       </div>
 
