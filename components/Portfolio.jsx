@@ -86,8 +86,8 @@ export default function Portfolio() {
             </linearGradient>
           </defs>
           {/* Crystal ridge — path split at valley positions to create slit gaps */}
-          <path d="M0,120 L96,60 L192,18 L284,82 M292,83 L384,8 L504,52 L576,0 L644,91 M652,93 L768,20 L860,65 M868,67 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
-          <path d="M0,120 L96,60 L192,18 L284,82 M292,83 L384,8 L504,52 L576,0 L644,91 M652,93 L768,20 L860,65 M868,67 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
+          <path d="M0,120 L96,60 L192,18 L288,84 L384,8 L504,52 L576,0 L648,95 L768,20 L864,68 L984,16 L1080,72 L1152,28 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
         </svg>
       </div>
 
