@@ -15,7 +15,7 @@ const skillCategories = [
         <line x1="9" y1="21" x2="9" y2="9" />
       </svg>
     ),
-    skills: ['React', 'Next.js', 'Redux', 'TypeScript', 'Tailwind CSS'],
+    skills: ['React', 'Next.js', 'Redux', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Figma'],
   },
   {
     title: 'Серверы и Боты',
