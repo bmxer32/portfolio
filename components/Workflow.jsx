@@ -34,12 +34,12 @@ export default function Workflow() {
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ['end end', 'end start'],
+    offset: ['start start', 'end start'],
   });
 
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const filter = useTransform(scrollYProgress, [0, 1], ['blur(0px)', 'blur(10px)']);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
+  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
+  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
