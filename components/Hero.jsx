@@ -70,14 +70,14 @@ export default function Hero() {
         </div>
 
         <h1 className={`${styles.hugeTitle} ${styles.titleFloat1}`}>
-          <ScrambleText delay={200} duration={900}>FULL</ScrambleText>
+          <ScrambleText delay={200} duration={900} repeatEvery={7000}>FULL</ScrambleText>
           <span className={styles.outlineText}>
-            <ScrambleText delay={280} duration={900}> STACK</ScrambleText>
+            <ScrambleText delay={280} duration={900} repeatEvery={7000}> STACK</ScrambleText>
           </span>
         </h1>
 
         <h1 className={`${styles.hugeTitle} ${styles.rightAlign} ${styles.titleFloat2}`}>
-          <ScrambleText delay={500} duration={1100}>РАЗРАБОТЧИК</ScrambleText>
+          <ScrambleText delay={500} duration={1100} repeatEvery={7000}>РАЗРАБОТЧИК</ScrambleText>
         </h1>
 
         <div className={styles.bottomInfo}>
