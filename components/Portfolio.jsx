@@ -63,6 +63,34 @@ export default function Portfolio() {
 
   return (
     <section id="portfolio" className={`section ${styles.portfolio}`}>
+
+      {/* Asymmetric triangle divider — 3 peaks of different heights */}
+      <div className={styles.triangleDivider} aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none" className={styles.triangleSvg}>
+          <defs>
+            <linearGradient id="triHalo" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stopColor="rgba(255,255,255,0)" />
+              <stop offset="18%"  stopColor="rgba(255,255,255,0.1)" />
+              <stop offset="42%"  stopColor="rgba(255,255,255,0.28)" />
+              <stop offset="66%"  stopColor="rgba(255,255,255,0.22)" />
+              <stop offset="88%"  stopColor="rgba(255,255,255,0.08)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </linearGradient>
+            <linearGradient id="triLine" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%"   stopColor="rgba(255,255,255,0)" />
+              <stop offset="15%"  stopColor="rgba(255,255,255,0.4)" />
+              <stop offset="42%"  stopColor="rgba(255,255,255,0.9)" />
+              <stop offset="65%"  stopColor="rgba(255,255,255,0.7)" />
+              <stop offset="88%"  stopColor="rgba(255,255,255,0.3)" />
+              <stop offset="100%" stopColor="rgba(255,255,255,0)" />
+            </linearGradient>
+          </defs>
+          {/* Peak 1 at ~22% h=48, Peak 2 at 40% h=0, Valley 50% h=120, Peak 3 at 60% h=0, Peak 4 at 76% h=56 */}
+          <path d="M0,120 L264,48 L480,0 L600,120 L720,0 L912,56 L1200,120" fill="none" stroke="url(#triHalo)" strokeWidth="12" strokeLinejoin="miter"/>
+          <path d="M0,120 L264,48 L480,0 L600,120 L720,0 L912,56 L1200,120" fill="none" stroke="url(#triLine)" strokeWidth="1.5" strokeLinejoin="miter" className={styles.trianglePath}/>
+        </svg>
+      </div>
+
       <div className="container">
         <Reveal as="div" className="section-label">// Работы</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Примеры моих работ</Reveal>
