@@ -84,6 +84,18 @@
   display: block;
 }
 
+/* Clickable Telegram icons — re-enable pointer events + hover feedback */
+.floatLink {
+  pointer-events: auto;
+  cursor: pointer;
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+
+.floatLink:hover {
+  opacity: 0.9 !important;
+  filter: drop-shadow(0 0 10px rgba(var(--fg-rgb), 0.5));
+}
+
 .float0 { animation: iconFloat0 linear infinite; }
 .float1 { animation: iconFloat1 linear infinite; }
 .float2 { animation: iconFloat2 linear infinite; }
