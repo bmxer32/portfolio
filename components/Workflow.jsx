@@ -32,15 +32,6 @@ export default function Workflow() {
   const stepRefs = useRef([]);
   const sectionRef = useRef(null);
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start start', 'end start'],
-  });
-
-  const opacity = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
-  const filter = useTransform(scrollYProgress, [0.8, 1], ['blur(0px)', 'blur(10px)']);
-  const scale = useTransform(scrollYProgress, [0.8, 1], [1, 0.95]);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -70,8 +61,7 @@ export default function Workflow() {
   }, []);
 
   return (
-    <motion.div style={{ opacity, filter, scale, transformOrigin: 'top center' }} ref={sectionRef}>
-      <section id="workflow" className={`section ${styles.workflow}`}>
+    <section id="workflow" className={`section ${styles.workflow}`} ref={sectionRef}>
         <div className="container">
         <Reveal as="div" className="section-label">// Процесс</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Как мы будем работать</Reveal>
@@ -97,6 +87,5 @@ export default function Workflow() {
         </div>
       </div>
     </section>
-  </motion.div>
   )
 }
