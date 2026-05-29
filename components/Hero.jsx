@@ -4,6 +4,32 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import ScrambleText from './ScrambleText'
 import styles from './Hero.module.css'
 
+// Decorative floating glyphs for the hero background.
+const TG = (
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.96 6.504-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+)
+const CODE = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+)
+const TERMINAL = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+)
+const BRACES = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H7a2 2 0 0 0-2 2v5a2 2 0 0 1-2 2 2 2 0 0 1 2 2v5a2 2 0 0 0 2 2h1"/><path d="M16 3h1a2 2 0 0 1 2 2v5a2 2 0 0 0 2 2 2 2 0 0 0-2 2v5a2 2 0 0 1-2 2h-1"/></svg>
+)
+const CURSOR = (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m3 3 7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/></svg>
+)
+
+const FLOAT_ICONS = [
+  { svg: TG,       top: '18%', left: '12%', size: '40px', dur: '13s', delay: '0s',   opacity: 0.20 },
+  { svg: CODE,     top: '64%', left: '8%',  size: '32px', dur: '17s', delay: '-3s',  opacity: 0.16 },
+  { svg: TERMINAL, top: '30%', left: '84%', size: '36px', dur: '15s', delay: '-6s',  opacity: 0.17 },
+  { svg: BRACES,   top: '72%', left: '80%', size: '34px', dur: '19s', delay: '-2s',  opacity: 0.15 },
+  { svg: TG,       top: '82%', left: '46%', size: '26px', dur: '21s', delay: '-9s',  opacity: 0.13 },
+  { svg: CURSOR,   top: '14%', left: '62%', size: '28px', dur: '16s', delay: '-5s',  opacity: 0.16 },
+]
+
 export default function Hero() {
   const blob1Ref = useRef(null)
   const blob2Ref = useRef(null)
@@ -57,6 +83,27 @@ export default function Hero() {
         <div ref={blob2Ref} className={`${styles.blob} ${styles.blob2}`} />
         <div ref={blob3Ref} className={`${styles.blob} ${styles.blob3}`} />
         <div className={styles.grain} />
+      </div>
+
+      {/* Floating decorative icons */}
+      <div className={styles.floatLayer} aria-hidden="true">
+        {FLOAT_ICONS.map((ic, i) => (
+          <span
+            key={i}
+            className={`${styles.floatIcon} ${styles['float' + (i % 3)]}`}
+            style={{
+              top: ic.top,
+              left: ic.left,
+              width: ic.size,
+              height: ic.size,
+              animationDuration: ic.dur,
+              animationDelay: ic.delay,
+              opacity: ic.opacity,
+            }}
+          >
+            {ic.svg}
+          </span>
+        ))}
       </div>
 
       <motion.div className={styles.content} style={{ scale, opacity, filter, y }}>
