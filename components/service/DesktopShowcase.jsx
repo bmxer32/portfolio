@@ -173,7 +173,13 @@ const STEPS = [
   },
 ]
 
-export function DesktopShowcaseInner({ scrollYProgress }) {
+export default function DesktopShowcase() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+
   const [activeStep, setActiveStep] = useState(0)
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -191,7 +197,8 @@ export function DesktopShowcaseInner({ scrollYProgress }) {
   const mobileTopY = useTransform(scrollYProgress, [0, 0.18, 1], [0, -24, -24])
 
   return (
-    <div className={styles.tourSticky}>
+    <div ref={containerRef} className={styles.tour}>
+      <div className={styles.tourSticky}>
         <motion.div
           className={styles.mobileTopText}
           aria-hidden="true"
@@ -272,19 +279,6 @@ export function DesktopShowcaseInner({ scrollYProgress }) {
 
         </div>
       </div>
-  )
-}
-
-export default function DesktopShowcase() {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
-
-  return (
-    <div ref={containerRef} className={styles.tour}>
-      <DesktopShowcaseInner scrollYProgress={scrollYProgress} />
     </div>
   )
 }
