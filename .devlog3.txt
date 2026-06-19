@@ -1,0 +1,168 @@
+
+> my-portfolio@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.3
+  - Local:        http://localhost:3000
+
+ ✓ Starting...
+ ✓ Ready in 1261ms
+ ○ Compiling /uslugi/razrabotka-mobilnyh-prilozheniy ...
+ ✓ Compiled /uslugi/razrabotka-mobilnyh-prilozheniy in 2.3s (1469 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 2423ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 41ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 41ms
+ ✓ Compiled /icon.png in 154ms (750 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 196ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 76ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 271ms (1411 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 230ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 230ms
+ ✓ Compiled /icon.png in 49ms (750 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 95ms
+ ✓ Compiled in 183ms (1441 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 77ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 72ms
+ GET /icon.png?0479c17ca841c42e 200 in 13ms
+ ✓ Compiled in 138ms (1441 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 62ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 62ms
+ GET /icon.png?0479c17ca841c42e 200 in 13ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 63ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 42ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 63ms
+ GET /icon.png?0479c17ca841c42e 200 in 14ms
+ ✓ Compiled in 228ms (1411 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 68ms
+ ✓ Compiled /icon.png in 51ms (750 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 95ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 170ms (1441 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 138ms
+ GET /icon.png?0479c17ca841c42e 200 in 13ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 442ms (1431 modules)
+ ⨯ components\service\MobileShowcase.jsx (143:3) @ useMotionValueEvent
+ ⨯ ReferenceError: useMotionValueEvent is not defined
+    at MobileShowcase (./components/service/MobileShowcase.jsx:564:5)
+digest: "4019418366"
+[0m [90m 141 |[39m   [36mconst[39m rotateX [33m=[39m useSpring(rotateXRaw[33m,[39m { stiffness[33m:[39m [35m70[39m[33m,[39m damping[33m:[39m [35m20[39m })[0m
+[0m [90m 142 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 143 |[39m   useMotionValueEvent(scrollYProgress[33m,[39m [32m'change'[39m[33m,[39m (v) [33m=>[39m {[0m
+[0m [90m     |[39m   [31m[1m^[22m[39m[0m
+[0m [90m 144 |[39m     [36mconst[39m next [33m=[39m [33mMath[39m[33m.[39mmin([33mSCREENS[39m[33m.[39mlength [33m-[39m [35m1[39m[33m,[39m [33mMath[39m[33m.[39mmax([35m0[39m[33m,[39m [33mMath[39m[33m.[39mfloor(v [33m*[39m [33mSCREENS[39m[33m.[39mlength)))[0m
+[0m [90m 145 |[39m     setIdx(next)[0m
+[0m [90m 146 |[39m   })[0m
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 500 in 242ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ✓ Compiled in 145ms (1431 modules)
+ ⨯ components\service\MobileShowcase.jsx (146:3) @ useMotionValueEvent
+ ⨯ ReferenceError: useMotionValueEvent is not defined
+    at MobileShowcase (./components/service/MobileShowcase.jsx:567:5)
+digest: "1642860477"
+[0m [90m 144 |[39m   [36mconst[39m rotateX [33m=[39m useSpring(rotateXRaw[33m,[39m { stiffness[33m:[39m [35m70[39m[33m,[39m damping[33m:[39m [35m20[39m })[0m
+[0m [90m 145 |[39m[0m
+[0m[31m[1m>[22m[39m[90m 146 |[39m   useMotionValueEvent(scrollYProgress[33m,[39m [32m'change'[39m[33m,[39m (v) [33m=>[39m {[0m
+[0m [90m     |[39m   [31m[1m^[22m[39m[0m
+[0m [90m 147 |[39m     [36mconst[39m next [33m=[39m [33mMath[39m[33m.[39mmin([33mSCREENS[39m[33m.[39mlength [33m-[39m [35m1[39m[33m,[39m [33mMath[39m[33m.[39mmax([35m0[39m[33m,[39m [33mMath[39m[33m.[39mfloor(v [33m*[39m [33mSCREENS[39m[33m.[39mlength)))[0m
+[0m [90m 148 |[39m     setIdx(next)[0m
+[0m [90m 149 |[39m   })[0m
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 500 in 150ms
+ ✓ Compiled in 132ms (1401 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 99ms
+ ✓ Compiled /icon.png in 44ms (750 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 85ms
+ ✓ Compiled in 120ms (1431 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 85ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 55ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 65ms
+ GET /icon.png?0479c17ca841c42e 200 in 18ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 287ms (1411 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 165ms
+ ✓ Compiled /icon.png in 45ms (750 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 83ms
+ ✓ Compiled in 151ms (1441 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 38ms
+ GET /icon.png?0479c17ca841c42e 200 in 12ms
+ ✓ Compiled in 128ms (1431 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 59ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 37ms
+ GET /icon.png?0479c17ca841c42e 200 in 13ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 67ms
+ GET /icon.png?0479c17ca841c42e 200 in 10ms
+ ✓ Compiled in 223ms (1411 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 85ms
+ ✓ Compiled /icon.png in 48ms (750 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 92ms
+ ✓ Compiled in 147ms (1431 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 90ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 47ms
+ GET /icon.png?0479c17ca841c42e 200 in 14ms
+ ✓ Compiled /_not-found in 259ms (1434 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 337ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 81ms
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 243ms (1412 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 193ms
+ ✓ Compiled /_not-found in 34ms (722 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 120ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 21ms
+ ✓ Compiled /icon.png in 75ms (752 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 124ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 89ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 73ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 31ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 53ms
+ GET /icon.png?0479c17ca841c42e 200 in 13ms
+ ✓ Compiled in 235ms (1412 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 57ms
+ ✓ Compiled /_not-found in 42ms (722 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 102ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 77ms
+ ✓ Compiled /icon.png in 58ms (752 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 112ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 106ms
+ ✓ Compiled / in 394ms (1499 modules)
+ GET /_next/static/chunks/app/LayoutGroupContext.mjs.map 404 in 66ms
+ ✓ Compiled in 342ms (1430 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ ✓ Compiled in 190ms (1440 modules)
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 175ms
+ ✓ Compiled /_not-found in 33ms (737 modules)
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 101ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 23ms
+ ✓ Compiled /icon.png in 132ms (767 modules)
+ GET /icon.png?0479c17ca841c42e 200 in 173ms
+ ✓ Compiled in 146ms (1472 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 86ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 67ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 75ms
+ GET /icon.png?0479c17ca841c42e 200 in 18ms
+ ✓ Compiled in 135ms (1472 modules)
+ ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 85ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 54ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 72ms
+ GET /icon.png?0479c17ca841c42e 200 in 14ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 58ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 44ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 72ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 53ms
+ GET /icon.png?0479c17ca841c42e 200 in 11ms
+ GET /uslugi/razrabotka-mobilnyh-prilozheniy 200 in 45ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 76ms
+ GET /_next/static/chunks/app/uslugi/razrabotka-mobilnyh-prilozheniy/LayoutGroupContext.mjs.map 404 in 63ms
+ GET /icon.png?0479c17ca841c42e 200 in 13ms

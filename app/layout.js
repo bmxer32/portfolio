@@ -2,11 +2,12 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import SmoothScroll from '../components/SmoothScroll'
 import SectionNav from '../components/SectionNav'
+import NoZoom from '../components/NoZoom'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
 export const metadata = {
-  metadataBase: new URL('https://portfolio-site-two-beta-33.vercel.app'),
+  metadataBase: new URL('https://narodniy-team.ru'),
   title: 'Narodniy Team | Разработка сайтов и веб-приложений',
   description: 'Профессиональное создание премиальных веб-сайтов и приложений. Full Stack разработка под ключ.',
   keywords: ['разработка сайтов', 'веб-приложения', 'фронтенд', 'бэкенд', 'React', 'Next.js', 'создание сайтов под ключ', 'full stack', 'веб студия'],
@@ -51,6 +52,7 @@ export default function RootLayout({ children }) {
     <html lang="ru">
       <head />
       <body className={inter.className}>
+        <NoZoom />
         <SectionNav />
         <SmoothScroll>{children}</SmoothScroll>
       </body>

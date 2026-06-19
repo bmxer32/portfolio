@@ -1,0 +1,575 @@
+/* ===== SERVICE PAGE — shared styles ===== */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: rgb(var(--bg-rgb));
+  /* NOTE: no overflow here — an overflow value turns this into the sticky
+     containing block and breaks the sticky phone. Horizontal overflow is
+     already clipped on <body> in globals.css. */
+}
+
+/* Ambient glow behind the hero, monochrome to match brand */
+.pageGlow {
+  position: absolute;
+  top: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1100px;
+  height: 1100px;
+  max-width: 130vw;
+  background: radial-gradient(circle, rgba(var(--fg-rgb), 0.08) 0%, rgba(var(--fg-rgb), 0) 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ===== TOP NAV (subpage) — floating pill, matches main Navbar ===== */
+.nav {
+  position: sticky;
+  top: 16px;
+  z-index: 100;
+  padding: 0 16px;
+  margin-top: 16px;
+}
+.navInner {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 20px;
+  background: rgba(var(--fg-rgb), 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(var(--fg-rgb), 0.1);
+  border-radius: 100px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(var(--fg-rgb), 0.06);
+}
+.navLogo {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+.logoFull { }
+.logoShort { display: none; }
+.navLogoIcon {
+  border-radius: 6px;
+  object-fit: contain;
+}
+.navLinks {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  background: rgba(var(--fg-rgb), 0.03);
+  border: 1px solid rgba(var(--fg-rgb), 0.06);
+  border-radius: 100px;
+  padding: 4px 8px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.navLink {
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  transition: var(--transition);
+}
+.navLink:hover { color: var(--text-primary); background: rgba(var(--fg-rgb), 0.07); }
+.navCta {
+  padding: 10px 20px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+@media (max-width: 768px) {
+  .nav { top: 12px; padding: 0 12px; margin-top: 12px; }
+  .navLinks { display: none; }
+  .navLogo { font-size: 19px; }
+  .logoFull { display: none; }
+  .logoShort { display: inline; }
+  .navCta { padding: 9px 18px; font-size: 13px; }
+}
+
+/* ===== BREADCRUMBS ===== */
+.crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+.crumbs a { color: var(--text-secondary); transition: var(--transition); }
+.crumbs a:hover { color: var(--text-primary); }
+.crumbSep { opacity: 0.5; }
+.crumbCurrent { color: var(--text-primary); }
+
+/* ===== DEVICE TOUR (pinned phone, scroll-scrubbed app screens) ===== */
+.tour {
+  position: relative;
+  z-index: 1;
+  height: 340vh;            /* scroll runway for the steps */
+}
+.tourSticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.tourInner {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 80px 4vw;
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 5vw;
+  align-items: center;
+}
+
+/* TEXT column — the active step is in flow (defines height); the others are
+   absolutely positioned on top and faded out, so no max-height gap is reserved.
+   min-height keeps the desktop layout from wobbling as steps change height. */
+.tourText { position: relative; min-height: 340px; display: flex; flex-direction: column; justify-content: center; }
+.step {
+  position: absolute;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.stepOn {
+  position: relative;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 100px;
+  padding: 8px 16px;
+  margin-bottom: 28px;
+}
+.eyebrowDot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgb(var(--fg-rgb));
+  box-shadow: 0 0 12px rgba(var(--fg-rgb), 0.8);
+}
+.h1 {
+  font-size: clamp(38px, 5.4vw, 72px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  margin-bottom: 24px;
+}
+.h1 em {
+  font-style: normal;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.62;
+}
+.lead {
+  font-size: clamp(16px, 1.4vw, 19px);
+  color: var(--text-secondary);
+  max-width: 540px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+/* Capability steps (mono label + title + one line) */
+.stepLabel {
+  display: inline-block;
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 18px;
+}
+.stepLabel::before { content: '// '; opacity: 0.55; }
+.stepTitle {
+  font-size: clamp(28px, 3.4vw, 46px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  max-width: 14ch;
+}
+.stepLine {
+  font-size: clamp(15px, 1.3vw, 18px);
+  color: var(--text-secondary);
+  max-width: 460px;
+  line-height: 1.65;
+}
+
+/* DEVICE column — the pinned signature */
+.tourDevice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  perspective: 1500px;
+}
+.tourProgress { display: flex; gap: 8px; }
+.progDot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.22);
+  transition: var(--transition);
+}
+.progDotOn { width: 28px; border-radius: 5px; background: rgb(var(--fg-rgb)); }
+.tourHint {
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.phone {
+  position: relative;
+  width: 300px;
+  height: 620px;
+  border-radius: 46px;
+  background: #050505;
+  /* Stacked box-shadows to simulate 3D thickness and eliminate jagged borders */
+  box-shadow:
+    0 0 0 2px #262626,         /* Inner metal rim */
+    0 0 0 7px #111111,         /* Device thickness (volume) */
+    0 0 0 8px #2a2a2a,         /* Back edge highlight */
+    0 50px 120px -20px rgba(0, 0, 0, 0.9), /* Deep drop shadow */
+    inset 0 2px 10px rgba(255, 255, 255, 0.08); /* Glass screen reflection */
+  padding: 12px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.phoneNotch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 28px;
+  background: #050505;
+  border-radius: 0 0 18px 18px;
+  z-index: 5;
+  box-shadow: 0 1px 2px rgba(255, 255, 255, 0.03);
+}
+.phoneScreens {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 34px;
+  overflow: hidden;
+  background: #0a0a0c;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+.screen {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.04);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 44px 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.screenActive {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* generic screen building blocks (monochrome fake UI) */
+.scrTop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+.scrTitle { font-size: 17px; font-weight: 700; color: #fafafa; letter-spacing: -0.01em; }
+.scrDot { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,0.1); }
+.scrCard {
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.scrCardTall { flex: 1; }
+.scrBar { height: 9px; border-radius: 6px; background: rgba(255,255,255,0.16); }
+.scrBarSm { height: 7px; border-radius: 6px; background: rgba(255,255,255,0.1); width: 60%; }
+.scrRow { display: flex; gap: 10px; align-items: center; }
+.scrAvatar { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.14); flex-shrink: 0; }
+.scrPill {
+  align-self: flex-start;
+  font-size: 11px;
+  color: #0a0a0c;
+  background: #fafafa;
+  border-radius: 100px;
+  padding: 8px 16px;
+  font-weight: 600;
+  margin-top: auto;
+}
+.scrGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.scrStat { border-radius: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.07); padding: 9px; }
+.scrStatNum { font-size: 17px; font-weight: 700; color: #fafafa; }
+.scrStatLabel { font-size: 9px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+.scrChart { flex: 1; display: flex; align-items: flex-end; gap: 8px; padding-top: 8px; }
+.scrChartBar { flex: 1; border-radius: 6px 6px 0 0; background: rgba(255,255,255,0.22); }
+.scrNav {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-around;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.scrNavDot { width: 22px; height: 22px; border-radius: 7px; background: rgba(255,255,255,0.12); }
+.scrNavDotActive { background: rgba(255,255,255,0.45); }
+
+/* progress rail next to phone */
+.rail {
+  position: absolute;
+  right: -26px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.railDot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.2);
+  transition: var(--transition);
+}
+.railDotActive { background: rgb(var(--fg-rgb)); height: 22px; border-radius: 4px; }
+
+/* ===== SECTION HEADERS (shared) ===== */
+.block {
+  position: relative;
+  z-index: 1;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 120px 4vw;
+}
+.blockLabel {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--text-secondary);
+  padding-bottom: 4px;
+}
+.blockTitle {
+  font-size: clamp(32px, 4.5vw, 60px);
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 18px;
+  max-width: 880px;
+}
+.blockSub {
+  font-size: clamp(15px, 1.4vw, 19px);
+  color: var(--text-secondary);
+  max-width: 620px;
+  line-height: 1.6;
+  margin-bottom: 56px;
+}
+
+/* ===== BENEFITS GRID ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.benefit { padding: 30px; }
+.benefitIcon {
+  width: 48px; height: 48px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+.benefitTitle { font-size: 19px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em; }
+.benefitDesc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
+
+/* ===== PRICING ===== */
+.pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.priceCard { padding: 34px 30px; display: flex; flex-direction: column; }
+.priceCardFeatured { border-color: var(--border-hover); background: var(--bg-card-hover); }
+.priceTag {
+  align-self: flex-start;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 100px; padding: 6px 12px; margin-bottom: 22px;
+}
+.priceName { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
+.priceValue { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
+.priceValue span { font-size: 16px; font-weight: 500; color: var(--text-muted); }
+.priceNote { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
+.priceList { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
+.priceList li { display: flex; gap: 10px; font-size: 14.5px; color: var(--text-secondary); line-height: 1.5; }
+.priceList li svg { flex-shrink: 0; margin-top: 3px; color: var(--text-primary); }
+.priceCard .priceBtn { margin-top: auto; width: 100%; }
+
+/* ===== FAQ ===== */
+.faqList { display: flex; flex-direction: column; gap: 12px; max-width: 880px; }
+.faqItem {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  overflow: hidden;
+  transition: var(--transition);
+}
+.faqItem:hover { border-color: var(--border-hover); }
+.faqQ {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  font-weight: 600;
+  text-align: left;
+  letter-spacing: -0.01em;
+}
+.faqIcon { flex-shrink: 0; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.faqIconOpen { transform: rotate(45deg); }
+.faqA {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.faqAInner {
+  padding: 0 26px 26px;
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 760px;
+}
+
+/* Mobile-only heading at the top of the sticky hero section */
+.mobileTopText { display: none; }
+.mobileTopTag { display: none; }
+.mobileH1 {
+  font-size: clamp(30px, 8vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  text-align: center;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+  /* Mobile: the whole stack is centered in the viewport, so the big phone sits
+     dead-center. The text zone has a FIXED height and svh is used everywhere,
+     so a step change never repositions the phone (no jump). */
+  .tour { height: 165vh; }
+  .tourSticky { min-height: 100vh; }
+  .tourInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    max-width: none;
+    padding: 58px 4vw 14px;
+    gap: 14px;
+    text-align: center;
+    /* Nudge the whole stack downward (tunable knob). */
+    transform: translateY(13vh);
+  }
+  .mobileTopText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 47px;
+    left: 0;
+    right: 0;
+    padding: 0 8vw;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .mobileTopTag {
+    display: block;
+    font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .tourText {
+    position: relative;
+    width: 100%;
+    height: 88px;          /* fixed px → never resizes with the URL bar */
+    min-height: 0;
+  }
+  /* H1 stays in the DOM for SEO but is hidden on mobile per the design */
+  .h1 {
+    position: absolute;
+    width: 1px; height: 1px;
+    margin: -1px; padding: 0; border: 0;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .lead, .heroCtas, .stepLine { display: none; }
+  .stepLabel { margin-bottom: 8px; }
+  .stepTitle { font-size: clamp(22px, 6.1vw, 31px); max-width: 22ch; margin-inline: auto; }
+  .tourDevice { position: relative; gap: 12px; }
+  .phone {
+    /* Sized by viewport WIDTH (stable while scrolling) so it never grows when
+       the URL bar hides; height follows via aspect-ratio. */
+    width: 58vw;
+    max-width: 268px;
+    height: auto;
+    aspect-ratio: 300 / 620;
+    transform: none !important;
+  }
+  .screen { padding-top: 32px; }
+
+  .grid { grid-template-columns: 1fr; }
+  .pricing { grid-template-columns: 1fr; }
+  .block { padding: 30px 4vw; }
+
+  .priceCard { padding: 24px 20px; }
+  .priceName { font-size: 19px; }
+  .priceValue { font-size: 30px; }
+  .priceNote { font-size: 13px; }
+  .priceList li { font-size: 13.5px; }
+  .priceTag { font-size: 10px; padding: 5px 10px; }
+}
+@media (max-width: 600px) {
+  .tour { height: 160vh; }
+  .tourText { height: 80px; }
+  .stepTitle { font-size: clamp(20px, 6.3vw, 28px); }
+  .phone { width: 60vw; max-width: 248px; }
+}

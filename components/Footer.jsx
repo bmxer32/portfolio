@@ -69,12 +69,35 @@ export default function Footer() {
   const [showDiscount, setShowDiscount] = useState(false)
   const [mounted, setMounted] = useState(false)
   const [time, setTime] = useState(new Date())
+  const [theme, setTheme] = useState("system")
 
   useEffect(() => {
     setMounted(true)
+    
+    // Check current theme
+    if (document.documentElement.classList.contains('light')) {
+      setTheme('light')
+    } else if (document.documentElement.classList.contains('dark')) {
+      setTheme('dark')
+    } else {
+      setTheme(window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    }
     const timer = setInterval(() => setTime(new Date()), 1000)
     return () => clearInterval(timer)
   }, [])
+
+  const toggleTheme = () => {
+    const isDark = theme === 'dark'
+    if (isDark) {
+      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.add('light')
+      setTheme('light')
+    } else {
+      document.documentElement.classList.remove('light')
+      document.documentElement.classList.add('dark')
+      setTheme('dark')
+    }
+  }
 
   const timeString = time.toLocaleTimeString('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit' })
 
@@ -256,6 +279,9 @@ export default function Footer() {
           <div className={styles.legalInfo}>
             <p className={styles.copy}>ИП Скворцов М.А. ИНН 581304172576</p>
             <Link href="/privacy" className={styles.copy} style={{ textDecoration: 'underline' }}>Политика конфиденциальности</Link>
+            <button onClick={toggleTheme} className={styles.themeToggleBtn}>
+              {mounted && theme === 'dark' ? '☀ Светлая тема' : '🌙 Темная тема'}
+            </button>
           </div>
         </div>
 

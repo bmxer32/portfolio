@@ -1,6 +1,5 @@
 export default function robots() {
-  // Замените на ваш будущий домен
-  const baseUrl = 'https://portfolio-site-two-beta-33.vercel.app'
+  const baseUrl = 'https://narodniy-team.ru'
 
   return {
     rules: {
