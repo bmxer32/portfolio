@@ -161,13 +161,7 @@ const STEPS = [
   },
 ]
 
-export default function WebShowcase() {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  })
-
+export function WebShowcaseInner({ scrollYProgress }) {
   const [activeStep, setActiveStep] = useState(0)
 
   useMotionValueEvent(scrollYProgress, "change", (v) => {
@@ -181,12 +175,12 @@ export default function WebShowcase() {
   const rotateX = useTransform(scrollYProgress, [0, 1], [4, -4])
   const rotateY = useTransform(scrollYProgress, [0, 1], [-6, 6])
 
+  // Mobile top text fade out
   const mobileTopOpacity = useTransform(scrollYProgress, [0, 0.18, 1], [1, 0, 0])
   const mobileTopY = useTransform(scrollYProgress, [0, 0.18, 1], [0, -24, -24])
 
   return (
-    <div ref={containerRef} className={styles.tour}>
-      <div className={styles.tourSticky}>
+    <div className={styles.tourSticky}>
         <motion.div
           className={styles.mobileTopText}
           aria-hidden="true"
@@ -250,6 +244,19 @@ export default function WebShowcase() {
           </div>
         </div>
       </div>
+  )
+}
+
+export default function WebShowcase() {
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+
+  return (
+    <div ref={containerRef} className={styles.tour}>
+      <WebShowcaseInner scrollYProgress={scrollYProgress} />
     </div>
   )
 }
