@@ -156,6 +156,143 @@
   transform: none;
   pointer-events: auto;
 }
+.screenOff {
+  opacity: 0;
+  transform: scale(0.96);
+  pointer-events: none;
+}
+
+/* ===== LAPTOP MODEL (CSS 3D) ===== */
+.laptopWrapper {
+  perspective: 1500px;
+  position: relative;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.laptopWrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 130%;
+  height: 130%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 60%);
+  filter: blur(50px);
+  z-index: -10;
+  pointer-events: none;
+}
+
+.laptopScreenContainer {
+  position: relative;
+  width: 480px;
+  height: 300px;
+  border-radius: 12px 12px 0 0;
+  background: #050505;
+  box-shadow: 
+    0 0 0 2px #262626, 
+    0 0 0 6px #111111,
+    inset 0 1px 4px rgba(255, 255, 255, 0.05);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+}
+
+.laptopCamera {
+  position: absolute;
+  top: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 5px;
+  height: 5px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px #000;
+  z-index: 5;
+}
+
+.laptopDisplay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #0a0a0c;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.laptopBase {
+  position: relative;
+  width: 480px;
+  height: 160px;
+  background: linear-gradient(180deg, #181818 0%, #0d0d0d 100%);
+  border-radius: 4px 4px 16px 16px;
+  box-shadow: 
+    0 8px 0 #070707,
+    0 20px 40px -10px rgba(0, 0, 0, 0.9),
+    inset 0 1px 2px rgba(255, 255, 255, 0.05);
+  transform-origin: top;
+  transform: rotateX(60deg) translateY(-2px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 0;
+  z-index: 1;
+}
+
+.laptopKeyboard {
+  width: 420px;
+  height: 80px;
+  background: #080808;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 4px rgba(0,0,0,0.8);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 4px;
+  gap: 3px;
+}
+
+.laptopTrackpad {
+  width: 120px;
+  height: 44px;
+  background: #0a0a0a;
+  border-radius: 4px;
+  margin-top: 8px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.6);
+}
+
+.dtScreen {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.02);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.dtScreenOn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* UI Elements for Desktop Screens */
+.dtRow { display: flex; gap: 8px; width: 100%; align-items: center; }
+.dtBar { height: 6px; border-radius: 3px; background: rgba(var(--fg-rgb), 0.15); }
+.dtSidebar { width: 60px; height: 100%; border-right: 1px solid rgba(var(--fg-rgb), 0.05); padding-right: 12px; display: flex; flex-direction: column; gap: 8px; }
+.dtContent { flex: 1; height: 100%; display: flex; flex-direction: column; gap: 12px; }
+.dtCard { background: rgba(var(--fg-rgb), 0.03); border: 1px solid rgba(var(--fg-rgb), 0.05); border-radius: 6px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.dtChart { height: 80px; display: flex; align-items: flex-end; gap: 6px; padding-top: 10px; }
+.dtChartBar { flex: 1; background: rgba(var(--fg-rgb), 0.2); border-radius: 2px 2px 0 0; }
+.dtChartBarHighlight { background: #22c55e; box-shadow: 0 0 10px rgba(34, 197, 94, 0.4); }
+
+/* ===== SCREEN APP MOCKUPS (MOBILE) ===== */
 .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -266,6 +403,19 @@
   padding: 12px;
   transform-style: preserve-3d;
   will-change: transform;
+}
+.phone::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  filter: blur(50px);
+  z-index: -10;
+  pointer-events: none;
 }
 .phoneNotch {
   position: absolute;
@@ -400,6 +550,18 @@
   margin-bottom: 56px;
 }
 
+/* ===== SECTION SPACING ===== */
+.compactSection {
+  padding: 80px 0 !important;
+}
+.faqSection {
+  padding-top: 40px !important;
+}
+@media (max-width: 768px) {
+  .compactSection { padding: 50px 0 !important; }
+  .faqSection { padding-top: 25px !important; }
+}
+
 /* ===== BENEFITS GRID ===== */
 .grid {
   display: grid;
@@ -419,9 +581,43 @@
 .benefitDesc { font-size: 15px; color: var(--text-secondary); line-height: 1.6; }
 
 /* ===== PRICING ===== */
+.pricingSection {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
 .pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.priceCard { padding: 34px 30px; display: flex; flex-direction: column; }
-.priceCardFeatured { border-color: var(--border-hover); background: var(--bg-card-hover); }
+.priceCard { 
+  padding: 34px 30px; 
+  display: flex; 
+  flex-direction: column; 
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.priceCard:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+}
+.priceCardFeatured { 
+  border-color: rgba(34, 197, 94, 0.3); 
+  background: linear-gradient(180deg, rgba(34, 197, 94, 0.05) 0%, var(--bg-card) 100%); 
+}
+.priceCardFeatured::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, #22c55e, transparent);
+  opacity: 0.5;
+}
+.priceCardFeatured:hover {
+  border-color: rgba(34, 197, 94, 0.5);
+  box-shadow: 0 10px 40px -10px rgba(34, 197, 94, 0.15);
+}
 .priceTag {
   align-self: flex-start;
   font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
@@ -429,14 +625,21 @@
   border: 1px solid var(--border-color);
   border-radius: 100px; padding: 6px 12px; margin-bottom: 22px;
 }
+.priceCardFeatured .priceTag {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.2);
+}
 .priceName { font-size: 22px; font-weight: 700; margin-bottom: 6px; }
 .priceValue { font-size: 38px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 4px; }
+.priceCardFeatured .priceValue { color: #22c55e; }
 .priceValue span { font-size: 16px; font-weight: 500; color: var(--text-muted); }
 .priceNote { font-size: 14px; color: var(--text-muted); margin-bottom: 24px; }
 .priceList { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px; }
 .priceList li { display: flex; gap: 10px; font-size: 14.5px; color: var(--text-secondary); line-height: 1.5; }
 .priceList li svg { flex-shrink: 0; margin-top: 3px; color: var(--text-primary); }
-.priceCard .priceBtn { margin-top: auto; width: 100%; }
+.priceCard .priceBtn { margin-top: auto; width: 100%; transition: all 0.3s; }
+.priceCard:hover .priceBtn { transform: translateY(-2px); }
 
 /* ===== FAQ ===== */
 .faqList { display: flex; flex-direction: column; gap: 12px; max-width: 880px; }
@@ -506,6 +709,9 @@
     /* Nudge the whole stack downward (tunable knob). */
     transform: translateY(13vh);
   }
+  .desktopTourInner {
+    transform: translateY(7vh);
+  }
   .mobileTopText {
     display: flex;
     flex-direction: column;
@@ -554,9 +760,49 @@
     aspect-ratio: 300 / 620;
     transform: none !important;
   }
+  .laptopWrapper {
+    scale: 0.65;
+    margin-top: -30px;
+    margin-bottom: -30px;
+  }
   .screen { padding-top: 32px; }
 
-  .grid { grid-template-columns: 1fr; }
+  .grid { 
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .benefit {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+    row-gap: 4px;
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+  }
+  .benefitIcon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    width: 40px; height: 40px;
+    margin-bottom: 0;
+  }
+  .benefitTitle { 
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 16px; 
+    margin-bottom: 0; 
+    line-height: 1.3; 
+    align-self: flex-end;
+  }
+  .benefitDesc { 
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 13.5px; 
+    line-height: 1.45; 
+  }
   .pricing { grid-template-columns: 1fr; }
   .block { padding: 30px 4vw; }
 
@@ -572,4 +818,12 @@
   .tourText { height: 80px; }
   .stepTitle { font-size: clamp(20px, 6.3vw, 28px); }
   .phone { width: 60vw; max-width: 248px; }
+  .laptopWrapper {
+    scale: 0.5;
+    margin-top: -50px;
+    margin-bottom: -50px;
+  }
+  .desktopTourInner {
+    transform: translateY(5vh);
+  }
 }
