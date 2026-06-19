@@ -106,9 +106,7 @@ export default function Portfolio() {
           <circle cx="768"  cy="20" r="2"   fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'1.7s'}}/>
           <circle cx="984"  cy="16" r="2.5" fill="rgb(var(--fg-rgb))" filter="url(#sparkGlow)"       className={styles.sparkDot} style={{animationDelay:'0.8s'}}/>
         </svg>
-      </div>
-
-      <div className="container">
+      </div>      <div className="container">
         <Reveal as="div" className="section-label">// Работы</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Примеры работ</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>

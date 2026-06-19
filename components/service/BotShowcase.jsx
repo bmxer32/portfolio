@@ -48,29 +48,27 @@ function ScreenChat({ active }) {
   )
 }
 
-export function BotShowcaseInner({ scrollYProgress }) {
-  const [activeStep, setActiveStep] = useState(0)
+export default function BotShowcase() {
+  const ref = useRef(null)
+  const [idx, setIdx] = useState(0)
 
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const step = Math.min(Math.floor(v * STEPS.length), STEPS.length - 1)
-    if (step !== activeStep && step >= 0) {
-      setActiveStep(step)
-    }
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end end'],
   })
 
-  // Desktop tilt animation
-  const rotateX = useTransform(scrollYProgress, [0, 1], [4, -4])
-  const rotateY = useTransform(scrollYProgress, [0, 1], [-6, 6])
+  // Mobile top heading fades out as user scrolls into the tour
+  const mobileTopOpacity = useTransform(scrollYProgress, [0, 0.18, 1], [1, 0, 0])
+  const mobileTopY = useTransform(scrollYProgress, [0, 0.18, 1], [0, -24, -24])
 
-  // Mobile layout tuning
-  const botScale = useTransform(scrollYProgress, [0, 1], [0.8, 1])
-
-  // Mobile top text fade out
-  const mobileTopOpacity = useTransform(scrollYProgress, [0, 0.2, 1], [1, 0, 0])
-  const mobileTopY = useTransform(scrollYProgress, [0, 0.2, 1], [0, -24, -24])
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const next = Math.min(STEPS.length - 1, Math.max(0, Math.floor(v * STEPS.length + 0.00001)))
+    setIdx(next)
+  })
 
   return (
-    <div className={styles.tourSticky}>
+    <section ref={ref} className={styles.tour} aria-label="Разработка ботов с ИИ — обзор">
+      <div className={styles.tourSticky}>
         
         <motion.div
           className={styles.mobileTopText}
@@ -87,8 +85,8 @@ export function BotShowcaseInner({ scrollYProgress }) {
             {STEPS.map((s, i) => (
               <div
                 key={i}
-                className={`${styles.step} ${i === activeStep ? styles.stepOn : ''}`}
-                aria-hidden={i !== activeStep}
+                className={`${styles.step} ${i === idx ? styles.stepOn : ''}`}
+                aria-hidden={i !== idx}
               >
                 {s.hero ? (
                   <>
@@ -127,34 +125,21 @@ export function BotShowcaseInner({ scrollYProgress }) {
                   <div className={styles.botStatus}>online</div>
                 </div>
               </div>
-              <ScreenChat active={activeStep} />
+              <ScreenChat active={idx} />
             </div>
 
             <div className={styles.rail}>
               {STEPS.map((_, i) => (
                 <span
                   key={i}
-                  className={`${styles.railDot} ${i === activeStep ? styles.railDotActive : ''}`}
+                  className={`${styles.railDot} ${i === idx ? styles.railDotActive : ''}`}
                 />
               ))}
             </div>
           </div>
 
         </div>
-    </div>
-  )
-}
-
-export default function BotShowcase() {
-  const containerRef = useRef(null)
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end']
-  })
-
-  return (
-    <section ref={containerRef} className={styles.tour} style={{ height: '160vh' }}>
-      <BotShowcaseInner scrollYProgress={scrollYProgress} />
+      </div>
     </section>
   )
 }

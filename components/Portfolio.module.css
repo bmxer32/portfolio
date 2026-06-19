@@ -3,6 +3,24 @@
   z-index: 2;
   background: var(--bg-secondary);
   /* Clip-path mirrors the SVG triangle path (peaks at 22%, 50%, 76%) */
+  -webkit-clip-path: polygon(
+    0%   120px,
+    8%    60px,
+    16%   18px,
+    24%   84px,
+    32%    8px,
+    42%   52px,
+    48%    0px,
+    54%   95px,
+    64%   20px,
+    72%   68px,
+    82%   16px,
+    90%   72px,
+    96%   28px,
+    100% 120px,
+    100% 100%,
+    0%   100%
+  );
   clip-path: polygon(
     0%   120px,
     8%    60px,
@@ -79,6 +97,24 @@
 @media (max-width: 768px) {
   .portfolio {
     /* Same 13-point ridge, scaled to 42px height (desktop y × 0.35) */
+    -webkit-clip-path: polygon(
+      0%   42px,
+      8%   21px,
+      16%  6px,
+      24%  29px,
+      32%   3px,
+      42%  18px,
+      48%   0px,
+      54%  33px,
+      64%  7px,
+      72%  24px,
+      82%  6px,
+      90%  25px,
+      96%  10px,
+      100% 42px,
+      100% 100%,
+      0%   100%
+    );
     clip-path: polygon(
       0%   42px,
       8%   21px,
