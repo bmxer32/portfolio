@@ -173,6 +173,18 @@
   transform-style: preserve-3d;
   will-change: transform;
 }
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -45%) scale(1.15);
+    opacity: 1;
+  }
+}
+
 .laptopWrapper::before {
   content: '';
   position: absolute;
@@ -181,10 +193,11 @@
   transform: translate(-50%, -50%);
   width: 130%;
   height: 130%;
-  background: radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, transparent 60%);
   filter: blur(50px);
   z-index: -10;
   pointer-events: none;
+  animation: floatGlow 6s ease-in-out infinite;
 }
 
 .laptopScreenContainer {
@@ -412,10 +425,11 @@
   transform: translate(-50%, -50%);
   width: 140%;
   height: 120%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.08) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.12) 0%, transparent 60%);
   filter: blur(50px);
   z-index: -10;
   pointer-events: none;
+  animation: floatGlow 6s ease-in-out infinite;
 }
 .phoneNotch {
   position: absolute;
@@ -474,12 +488,16 @@
 .scrAvatar { width: 38px; height: 38px; border-radius: 12px; background: rgba(255,255,255,0.14); flex-shrink: 0; }
 .scrPill {
   align-self: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 11px;
   color: #0a0a0c;
   background: #fafafa;
   border-radius: 100px;
-  padding: 8px 16px;
+  padding: 6px 16px;
   font-weight: 600;
+  line-height: 1;
   margin-top: auto;
 }
 .scrGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
@@ -497,6 +515,99 @@
 }
 .scrNavDot { width: 22px; height: 22px; border-radius: 7px; background: rgba(255,255,255,0.12); }
 .scrNavDotActive { background: rgba(255,255,255,0.45); }
+
+/* ===== BOT SHOWCASE ===== */
+.botWrapper {
+  position: relative;
+  width: 340px;
+  height: 700px;
+  border-radius: 32px;
+  background: #0a0a0c;
+  border: 6px solid #1a1a1a;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 20px 60px -10px rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 5;
+}
+.botWrapper::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, transparent 60%);
+  filter: blur(50px);
+  z-index: -10;
+  pointer-events: none;
+  animation: floatGlow 6s ease-in-out infinite;
+}
+.botHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+.botAvatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.botHeaderInfo {
+  display: flex;
+  flex-direction: column;
+}
+.botName {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+.botStatus {
+  font-size: 12px;
+  color: #22c55e;
+}
+.botChat {
+  flex: 1;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+.chatMsg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.chatMsgUser {
+  align-self: flex-end;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.chatMsgBot {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-bottom-left-radius: 4px;
+}
 
 /* progress rail next to phone */
 .rail {
@@ -712,6 +823,9 @@
   .desktopTourInner {
     transform: translateY(7vh);
   }
+  .botTourInner {
+    transform: translateY(16vh);
+  }
   .mobileTopText {
     display: flex;
     flex-direction: column;
@@ -764,6 +878,11 @@
     scale: 0.65;
     margin-top: -30px;
     margin-bottom: -30px;
+  }
+  .botWrapper {
+    scale: 0.6;
+    margin-top: -120px;
+    margin-bottom: -60px;
   }
   .screen { padding-top: 32px; }
 
@@ -825,5 +944,56 @@
   }
   .desktopTourInner {
     transform: translateY(5vh);
+  }
+}
+/* ---- BROWSER WRAPPER (WEB SHOWCASE) ---- */
+.desktopWrapper {
+  position: relative;
+  width: 580px;
+  height: 380px;
+  background: #0a0a0c;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transform-style: preserve-3d;
+}
+.desktopHeader {
+  height: 28px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.desktopDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+.desktopScreen {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: #0a0a0c;
+}
+
+@media (max-width: 1024px) {
+  .desktopWrapper {
+    scale: 0.6;
+    margin-top: -40px;
+    margin-bottom: -40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktopWrapper {
+    scale: 0.5;
+    margin-top: -60px;
+    margin-bottom: -60px;
   }
 }
