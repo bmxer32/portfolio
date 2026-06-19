@@ -149,14 +149,8 @@ const STEPS = [
   },
 ]
 
-export default function MobileShowcase() {
-  const ref = useRef(null)
+export function MobileShowcaseInner({ scrollYProgress }) {
   const [idx, setIdx] = useState(0)
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ['start start', 'end end'],
-  })
 
   // Subtle device tilt — only meaningful on desktop (mobile pins flat via CSS).
   const rotateY = useSpring(useTransform(scrollYProgress, [0, 1], [-12, 12]), { stiffness: 55, damping: 18 })
@@ -175,8 +169,7 @@ export default function MobileShowcase() {
   const screenIdx = STEPS[idx].screen
 
   return (
-    <section ref={ref} className={styles.tour} aria-label="Разработка мобильных приложений — обзор">
-      <div className={styles.tourSticky}>
+    <div className={styles.tourSticky}>
         {/* Mobile-only: heading fills the empty top space, fades as user scrolls to phone */}
         <motion.div
           className={styles.mobileTopText}
@@ -252,6 +245,19 @@ export default function MobileShowcase() {
 
         </div>
       </div>
+  )
+}
+
+export default function MobileShowcase() {
+  const ref = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end end'],
+  })
+
+  return (
+    <section ref={ref} className={styles.tour} aria-label="Разработка мобильных приложений — обзор" style={{ height: '165vh' }}>
+      <MobileShowcaseInner scrollYProgress={scrollYProgress} />
     </section>
   )
 }
