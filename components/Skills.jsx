@@ -8,6 +8,7 @@ import styles from './Skills.module.css'
 const skillCategories = [
   {
     title: 'Современные сайты',
+    href: '/uslugi/razrabotka-saytov',
     description: 'Создание красивых, быстрых и удобных сайтов: от одностраничных лендингов до сложных веб-сервисов и интернет-магазинов. Создаем сайты уже более 7 лет.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -19,17 +20,20 @@ const skillCategories = [
     skills: ['React', 'Next.js', 'Redux', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Figma'],
   },
   {
-    title: 'Серверы и Боты',
-    description: 'Разработка надежной "невидимой" логики: проектирование баз данных, настройка API и создание умных Telegram-ботов для автоматизации бизнеса.',
+    title: 'Telegram-боты и ИИ',
+    href: '/uslugi/razrabotka-botov-s-ii',
+    description: 'Разработка умных ботов поддержки и автоматизации бизнеса: интеграция нейросетей (ChatGPT, Claude), создание баз знаний и настройка сложных API.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="8" rx="2" ry="2" />
-        <rect x="2" y="14" width="20" height="8" rx="2" ry="2" />
-        <line x1="6" y1="6" x2="6.01" y2="6" />
-        <line x1="6" y1="18" x2="6.01" y2="18" />
+        <path d="M12 2a2 2 0 0 1 2 2c0 1.1-.9 2-2 2a2 2 0 0 1-2-2c0-1.1.9-2 2-2z" />
+        <path d="M12 6c3.3 0 6 2.7 6 6v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4c0-3.3 2.7-6 6-6z" />
+        <path d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+        <path d="M20 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+        <path d="M9 13v2" />
+        <path d="M15 13v2" />
       </svg>
     ),
-    skills: ['Node.js', 'Python', 'PostgreSQL', 'Express', 'Telegram API'],
+    skills: ['Node.js', 'Python', 'OpenAI API', 'LLM / RAG', 'Telegram API'],
   },
   {
     title: 'Мобильные приложения',
