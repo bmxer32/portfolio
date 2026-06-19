@@ -14,7 +14,8 @@ export default function Navbar() {
       <div className={styles.container}>
         <a href="#" className={styles.logo}>
           <Image src="/logop.png" alt="Narodniy Team" width={32} height={32} className={styles.logoIcon} />
-          <span className="gradient-text">Narodniy Team</span>
+          <span className={`gradient-text ${styles.logoFull}`}>Narodniy Team</span>
+          <span className={`gradient-text ${styles.logoShort}`}>Narodniy</span>
         </a>
         <nav className={styles.nav}>
           {links.map((link) => (

@@ -1,21 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/*
- * Registered custom properties — required so the browser can interpolate
- * color values and CSS transitions actually fire on them.
- * Without @property, custom property changes are never animated.
- */
-@property --fg-color {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgb(250, 250, 250);
-}
-@property --fg-color-muted {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgba(250, 250, 250, 0.58);
-}
-
 /* ===== RESET & BASE ===== */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -24,13 +8,10 @@
 }
 
 :root {
-  /* Scroll-driven morph: these two are animated by SmoothScroll on every frame.
-     The whole palette below is derived from them, so the entire site fades
-     from black to white as you scroll. */
-  --bg-rgb: 7, 7, 8;
-  --fg-rgb: 250, 250, 250;
-
-  /* Sutera / Luxury Minimalist Theme: Pure Monochrome (morph-aware) */
+  /* Light mode (default) */
+  --bg-rgb: 250, 250, 250;
+  --fg-rgb: 10, 10, 12;
+  
   --bg-primary: rgb(var(--bg-rgb));
   --bg-secondary: rgb(var(--bg-rgb));
   --bg-card: rgba(var(--fg-rgb), 0.03);
@@ -41,15 +22,14 @@
 
   --accent-primary: rgb(var(--fg-rgb));
   --accent-secondary: rgba(var(--fg-rgb), 0.8);
-  --accent-cyan: rgb(var(--fg-rgb)); /* Neutralized */
+  --accent-cyan: rgb(var(--fg-rgb));
 
   --gradient-main: linear-gradient(135deg, rgb(var(--fg-rgb)) 0%, rgba(var(--fg-rgb), 0.6) 100%);
   --gradient-text: linear-gradient(135deg, rgb(var(--fg-rgb)), rgba(var(--fg-rgb), 0.55));
   --gradient-glow: linear-gradient(135deg, rgba(var(--fg-rgb), 0.05), rgba(var(--fg-rgb), 0.0));
 
-  /* Text colors use the @property vars so they animate via CSS transition. */
-  --text-primary: var(--fg-color);
-  --text-secondary: var(--fg-color-muted);
+  --text-primary: rgb(var(--fg-rgb));
+  --text-secondary: rgba(var(--fg-rgb), 0.58);
   --text-muted: rgba(var(--fg-rgb), 0.4);
 
   --radius-sm: 4px;
@@ -57,19 +37,35 @@
   --radius-lg: 16px;
   --radius-xl: 24px;
 
-  --shadow-card: 0 4px 40px rgba(0, 0, 0, 0.8);
-  --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.05);
-  --shadow-glow-hover: 0 0 50px rgba(255, 255, 255, 0.1);
+  --shadow-card: 0 4px 40px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 30px rgba(0, 0, 0, 0.05);
+  --shadow-glow-hover: 0 0 50px rgba(0, 0, 0, 0.1);
 
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) {
+    --bg-rgb: 7, 7, 8;
+    --fg-rgb: 250, 250, 250;
+    --shadow-card: 0 4px 40px rgba(0, 0, 0, 0.8);
+    --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.05);
+    --shadow-glow-hover: 0 0 50px rgba(255, 255, 255, 0.1);
+  }
+}
+
+:root.dark {
+  --bg-rgb: 7, 7, 8;
+  --fg-rgb: 250, 250, 250;
+  --shadow-card: 0 4px 40px rgba(0, 0, 0, 0.8);
+  --shadow-glow: 0 0 30px rgba(255, 255, 255, 0.05);
+  --shadow-glow-hover: 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
 html {
-  /* Lenis drives smooth scrolling; native smooth-scroll would fight it. */
   background-color: rgb(var(--bg-rgb));
-  /* @property vars are animatable — this is what makes text color smooth. */
-  transition: --fg-color 0.5s ease, --fg-color-muted 0.5s ease;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -77,8 +73,9 @@ body {
   color: var(--text-primary);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
-  overflow-x: hidden;
+  overscroll-behavior-x: none;
   -webkit-font-smoothing: antialiased;
+  touch-action: pan-y;
 }
 
 

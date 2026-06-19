@@ -33,6 +33,8 @@
   align-items: center;
   gap: 10px;
 }
+.logoFull { }
+.logoShort { display: none; }
 
 .logoIcon {
   border-radius: 6px;
@@ -78,5 +80,13 @@
   }
   .nav {
     display: none;
+  }
+  .logo { font-size: 19px; }
+  .logoFull { display: none; }
+  .logoShort { display: inline; }
+  .ctaBtn {
+    padding: 9px 18px;
+    font-size: 13px;
+    white-space: nowrap;
   }
 }

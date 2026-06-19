@@ -1,6 +1,7 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Link from 'next/link'
 import Reveal from './Reveal'
 import styles from './Skills.module.css'
 
@@ -32,6 +33,7 @@ const skillCategories = [
   },
   {
     title: 'Мобильные приложения',
+    href: '/uslugi/razrabotka-mobilnyh-prilozheniy',
     description: 'Создание мобильных сервисов и игр, которые выглядят потрясающе и работают абсолютно плавно на обеих платформах: iOS и Android.',
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -77,25 +79,37 @@ export default function Skills() {
               viewport={{ once: true, margin: '0px 0px -10% 0px' }}
               transition={{ duration: 0.7, delay: (index % 2) * 0.12, ease: [0.16, 1, 0.3, 1] }}
             >
-            <div className={`glass-card ${styles.card}`}>
-              <div className={styles.cardHeader}>
-                <div className={styles.cardIcon}>
-                  {category.icon}
-                </div>
-                <h3 className={styles.cardTitle}>{category.title}</h3>
-              </div>
-              
-              <p className={styles.cardDesc}>{category.description}</p>
-              <div className={styles.divider}></div>
-              
-              <div className={styles.skillList}>
-                {category.skills.map((skill, idx) => (
-                  <span key={idx} className={styles.skillTag}>
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            {(() => {
+              const CardTag = category.href ? Link : 'div'
+              const cardProps = category.href ? { href: category.href } : {}
+              return (
+                <CardTag {...cardProps} className={`glass-card ${styles.card}`} style={{ display: 'flex', flexDirection: 'column' }}>
+                  <div className={styles.cardHeader}>
+                    <div className={styles.cardIcon}>
+                      {category.icon}
+                    </div>
+                    <h3 className={styles.cardTitle}>{category.title}</h3>
+                  </div>
+
+                  <p className={styles.cardDesc}>{category.description}</p>
+                  <div className={styles.divider}></div>
+
+                  <div className={styles.skillList}>
+                    {category.skills.map((skill, idx) => (
+                      <span key={idx} className={styles.skillTag}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  {category.href && (
+                    <span className={styles.skillTag} style={{ marginTop: 16, alignSelf: 'flex-start', borderColor: 'var(--border-hover)' }}>
+                      Подробнее об услуге →
+                    </span>
+                  )}
+                </CardTag>
+              )
+            })()}
             </motion.div>
           ))}
         </div>
