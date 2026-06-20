@@ -47,10 +47,60 @@ export const metadata = {
   },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Narodniy Team',
+  description: 'Профессиональная разработка сайтов, веб-приложений и лендингов под ключ. Full Stack разработка на React, Next.js, Node.js.',
+  url: 'https://narodniy-team.ru',
+  logo: 'https://narodniy-team.ru/logop.png',
+  image: 'https://narodniy-team.ru/og-preview.png',
+  telephone: '+79309502454',
+  email: 'v71072587@gmail.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'RU',
+  },
+  areaServed: {
+    '@type': 'Country',
+    name: 'Russia',
+  },
+  serviceType: [
+    'Разработка сайтов',
+    'Создание веб-приложений',
+    'Full Stack разработка',
+    'Разработка лендингов',
+    'Frontend разработка',
+    'Backend разработка',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+79309502454',
+    contactType: 'sales',
+    availableLanguage: 'Russian',
+    contactOption: 'TollFree',
+  },
+  sameAs: [
+    'https://t.me/Webe9',
+  ],
+  priceRange: '$$',
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <head />
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className={inter.className}>
         <NoZoom />
         <SectionNav />
