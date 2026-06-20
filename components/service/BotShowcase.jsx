@@ -108,6 +108,15 @@ export default function BotShowcase() {
             ))}
           </div>
 
+          {/* Mobile-only scroll cue — fills the gap below the pinned badge */}
+          <motion.div className={styles.scrollHint} aria-hidden="true" style={{ opacity: mobileTopOpacity }}>
+            <span>Листайте</span>
+            <svg className={styles.scrollHintArrow} width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 5v14" />
+              <path d="m19 12-7 7-7-7" />
+            </svg>
+          </motion.div>
+
           <div className={styles.tourDevice}>
             <div className={styles.botWrapper}>
               <div className={styles.botHeader}>
