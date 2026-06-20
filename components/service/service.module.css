@@ -400,6 +400,13 @@
   color: var(--text-muted);
 }
 
+/* Mobile-only scroll cue (arrow + label) — hidden on desktop */
+.scrollHint { display: none; }
+@keyframes scrollHintBob {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50% { transform: translateY(5px); opacity: 1; }
+}
+
 .phone {
   position: relative;
   width: 300px;
@@ -817,14 +824,9 @@
     padding: 58px 4vw 14px;
     gap: 14px;
     text-align: center;
-    /* Nudge the whole stack downward (tunable knob). */
-    transform: translateY(13vh);
-  }
-  .desktopTourInner {
-    transform: translateY(7vh);
-  }
-  .botTourInner {
-    transform: translateY(16vh);
+    /* No group nudge: the badge/text is pinned independently (see .tourText)
+       and only the device carries a per-page nudge (see .tourDevice). */
+    transform: none;
   }
   .mobileTopText {
     display: flex;
@@ -847,11 +849,38 @@
     text-transform: uppercase;
     color: var(--text-muted);
   }
+  /* Badge/step text pinned to ONE consistent height across all four service
+     pages (positioned against .tourSticky, which carries no per-page nudge). */
   .tourText {
-    position: relative;
+    position: absolute;
+    top: 26vh;
+    left: 0;
+    right: 0;
     width: 100%;
     height: 88px;          /* fixed px → never resizes with the URL bar */
     min-height: 0;
+    z-index: 3;
+  }
+  /* Down-arrow scroll cue that fills the gap opened up below the badge */
+  .scrollHint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    position: absolute;
+    top: calc(26vh + 96px);
+    left: 0;
+    right: 0;
+    color: var(--text-muted);
+    font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    pointer-events: none;
+    z-index: 3;
+  }
+  .scrollHintArrow {
+    animation: scrollHintBob 1.8s ease-in-out infinite;
   }
   /* H1 stays in the DOM for SEO but is hidden on mobile per the design */
   .h1 {
@@ -864,7 +893,13 @@
   .lead, .heroCtas, .stepLine { display: none; }
   .stepLabel { margin-bottom: 8px; }
   .stepTitle { font-size: clamp(22px, 6.1vw, 31px); max-width: 22ch; margin-inline: auto; }
-  .tourDevice { position: relative; gap: 12px; }
+  /* Device keeps its own per-page nudge so each model stays nicely centered,
+     independent of the now-pinned badge above it. */
+  .tourDevice { position: relative; gap: 12px; transform: translateY(19vh); }
+  .desktopTourInner .tourDevice { transform: translateY(13vh); }
+  .botTourInner .tourDevice { transform: translateY(22vh); }
+  /* The lower hint is redundant on mobile now that the badge has its own cue */
+  .tourHint { display: none; }
   .phone {
     /* Sized by viewport WIDTH (stable while scrolling) so it never grows when
        the URL bar hides; height follows via aspect-ratio. */
@@ -942,8 +977,8 @@
     margin-top: -50px;
     margin-bottom: -50px;
   }
-  .desktopTourInner {
-    transform: translateY(5vh);
+  .desktopTourInner .tourDevice {
+    transform: translateY(11vh);
   }
 }
 /* ---- BROWSER WRAPPER (WEB SHOWCASE) ---- */
