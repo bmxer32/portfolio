@@ -227,15 +227,6 @@ export default function MobileShowcase() {
             ))}
           </div>
 
-          {/* Mobile-only scroll cue — fills the gap below the pinned badge */}
-          <motion.div className={styles.scrollHint} aria-hidden="true" style={{ opacity: mobileTopOpacity }}>
-            <span>Листайте</span>
-            <svg className={styles.scrollHintArrow} width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M12 5v14" />
-              <path d="m19 12-7 7-7-7" />
-            </svg>
-          </motion.div>
-
           {/* DEVICE — the signature: pinned phone whose screen follows the scroll */}
           <div className={styles.tourDevice}>
             <motion.div className={styles.phone} style={{ rotateY, rotateX }}>
