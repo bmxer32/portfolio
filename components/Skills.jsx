@@ -58,7 +58,7 @@ const skillCategories = [
         <line x1="12" y1="17" x2="12" y2="21" />
       </svg>
     ),
-    skills: ['Electron', 'React', 'Tauri', 'Rust', 'C#'],
+    skills: ['Electron', 'React', 'Tauri', 'Rust', 'C#', '.NET', 'C++'],
   },
 ]
 
@@ -108,8 +108,9 @@ export default function Skills() {
                   </div>
 
                   {category.href && (
-                    <span className={styles.skillTag} style={{ marginTop: 16, alignSelf: 'flex-start', borderColor: 'var(--border-hover)' }}>
-                      Подробнее об услуге →
+                    <span className={styles.detailsBtn}>
+                      Подробнее об услуге
+                      <span className={styles.arrow} aria-hidden="true">→</span>
                     </span>
                   )}
                 </CardTag>

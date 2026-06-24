@@ -27,6 +27,7 @@
   padding: 40px;
   display: flex;
   flex-direction: column;
+  height: 100%;   /* fill the grid cell so cards in a row match height & CTAs align */
 }
 
 .cardHeader {
@@ -61,6 +62,9 @@
   line-height: 1.6;
   color: var(--text-secondary);
   margin-bottom: 24px;
+  /* Reserve room for the longest description so the divider below lines up
+     across cards in the same row (resets to natural height on mobile). */
+  min-height: 110px;
 }
 
 .divider {
@@ -95,9 +99,42 @@
   transform: translateY(-2px);
 }
 
+/* Prominent filled CTA — stands out from the outlined skill tags */
+.detailsBtn {
+  margin-top: 20px;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  background: rgb(var(--fg-rgb));
+  color: rgb(var(--bg-rgb));
+  border: 1px solid rgb(var(--fg-rgb));
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 18px rgba(var(--fg-rgb), 0.18);
+  transition: var(--transition);
+}
+.detailsBtn .arrow {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card:hover .detailsBtn {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgba(var(--fg-rgb), 0.28);
+}
+.card:hover .detailsBtn .arrow {
+  transform: translateX(4px);
+}
+
 @media (max-width: 992px) {
   .grid {
     grid-template-columns: 1fr;
+  }
+  /* Single column — no neighbour to align with, let text size naturally */
+  .cardDesc {
+    min-height: 0;
   }
 }
 
