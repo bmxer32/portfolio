@@ -11,6 +11,28 @@ const TG_LINK = 'https://t.me/Webe9'
 export const metadata = {
   title: 'Разработка современных сайтов под ключ | Narodniy Team',
   description: 'Создание продающих лендингов, корпоративных сайтов и интернет-магазинов. Стильный дизайн, высокая скорость работы и адаптация под мобильные устройства.',
+  keywords: [
+    'разработка сайтов',
+    'создание сайтов под ключ',
+    'заказать лендинг',
+    'разработка интернет-магазина',
+    'корпоративный сайт на заказ',
+    'веб-разработка react next.js',
+  ],
+  alternates: { canonical: PATH },
+  openGraph: {
+    title: 'Разработка современных сайтов под ключ | Narodniy Team',
+    description: 'Продающие лендинги, корпоративные сайты и интернет-магазины на React/Next.js: стильный дизайн, высокая скорость, адаптив.',
+    url: PATH,
+    type: 'website',
+    images: [{ url: '/og-preview.png', width: 1200, height: 630, alt: 'Разработка сайтов — Narodniy Team' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Разработка современных сайтов под ключ',
+    description: 'Продающие лендинги, корпоративные сайты и интернет-магазины на React/Next.js.',
+    images: ['/og-preview.png'],
+  },
 }
 
 const BENEFITS = [
