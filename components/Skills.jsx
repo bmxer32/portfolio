@@ -45,7 +45,7 @@ const skillCategories = [
         <line x1="12" y1="18" x2="12.01" y2="18" />
       </svg>
     ),
-    skills: ['Flutter', 'Dart', 'Firebase', 'Game Dev', 'UI/UX'],
+    skills: ['Flutter', 'Dart', 'Firebase', 'Game Dev', 'UI/UX', 'Платежи', 'Аналитика'],
   },
   {
     title: 'Десктопные программы',
