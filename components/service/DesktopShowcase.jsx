@@ -198,6 +198,7 @@ export default function DesktopShowcase() {
 
   return (
     <div ref={containerRef} className={styles.tour}>
+      <h1 className="visually-hidden">Разработка программ на ПК для Windows, macOS и Linux — десктопные приложения, CRM, ERP и парсеры</h1>
       <div className={styles.tourSticky}>
         <motion.div
           className={styles.mobileTopText}

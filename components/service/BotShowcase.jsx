@@ -68,6 +68,7 @@ export default function BotShowcase() {
 
   return (
     <section ref={ref} className={styles.tour} aria-label="Разработка ботов с ИИ — обзор">
+      <h1 className="visually-hidden">Разработка Telegram-ботов с ИИ — умные боты поддержки и автоматизации бизнеса на ChatGPT и Claude</h1>
       <div className={styles.tourSticky}>
         
         <motion.div
