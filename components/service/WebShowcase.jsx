@@ -186,6 +186,7 @@ export default function WebShowcase() {
 
   return (
     <div ref={containerRef} className={styles.tour}>
+      <h1 className="visually-hidden">Разработка современных сайтов под ключ — лендинги, корпоративные сайты и интернет-магазины на React и Next.js</h1>
       <div className={styles.tourSticky}>
         <motion.div
           className={styles.mobileTopText}
