@@ -11,6 +11,30 @@ const TG_LINK = 'https://t.me/Webe9'
 export const metadata = {
   title: 'Разработка Telegram-ботов с ИИ | Narodniy Team',
   description: 'Создание умных ботов поддержки и автоматизации бизнеса на основе нейросетей (ChatGPT, Claude) и интеграции с вашими базами знаний.',
+  keywords: [
+    'разработка телеграм бота',
+    'создание чат-бота',
+    'бот с искусственным интеллектом',
+    'заказать telegram бота',
+    'автоматизация бизнеса ии',
+    'бот поддержки на нейросети',
+    'интеграция chatgpt в бизнес',
+    'стоимость разработки бота',
+  ],
+  alternates: { canonical: PATH },
+  openGraph: {
+    title: 'Разработка Telegram-ботов с ИИ | Narodniy Team',
+    description: 'Создаём умных ботов поддержки и автоматизации на основе ChatGPT и Claude с интеграцией в ваши базы знаний.',
+    url: PATH,
+    type: 'website',
+    images: [{ url: '/og-preview.png', width: 1200, height: 630, alt: 'Разработка ботов с ИИ — Narodniy Team' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Разработка Telegram-ботов с ИИ',
+    description: 'Создаём умных ботов поддержки и автоматизации бизнеса на нейросетях.',
+    images: ['/og-preview.png'],
+  },
 }
 
 const BENEFITS = [
