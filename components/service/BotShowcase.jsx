@@ -32,7 +32,7 @@ function ScreenChat({ active }) {
 
       {/* Bot msg 1 */}
       <motion.div initial={{opacity:0, y:10}} animate={active >= 1 ? {opacity:1, y:0} : {opacity:0, y:10}} transition={{delay:0.1}} className={`${styles.chatMsg} ${styles.chatMsgBot}`}>
-        Здравствуйте! 👋 Базовый бот начинается от 10 000 руб, ИИ-бот поддержки — от 30 000 руб, а сложная бот-система — от 80 000 руб.
+        Здравствуйте! 👋 Базовый бот начинается от 5 000 руб, ИИ-ассистент — от 15 000 руб, а сложная бот-система — от 30 000 руб.
       </motion.div>
 
       {/* User msg 2 */}
