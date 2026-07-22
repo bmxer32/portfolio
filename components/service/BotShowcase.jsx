@@ -22,7 +22,7 @@ const STEPS = [
   },
 ]
 
-/* Реагирует на prefers-reduced-motion: печать и «плавание» отключаются. */
+/* Реагирует на prefers-reduced-motion: печать отключается. */
 function usePrefersReducedMotion() {
   const [reduced, setReduced] = useState(false)
   useEffect(() => {
@@ -36,18 +36,26 @@ function usePrefersReducedMotion() {
 }
 
 /* Сообщение бота: индикатор «печатает…» → посимвольный набор → готово.
-   Запускается один раз, когда его шаг становится активным. */
+   Полностью обратимо: когда шаг перестаёт быть активным (скролл вверх),
+   сообщение гаснет и сбрасывается, а на пути вниз печатается заново. */
 function TypingMessage({ text, active, delay = 400 }) {
   const reduced = usePrefersReducedMotion()
   const [phase, setPhase] = useState('idle') // idle | dots | typing | done
   const [shown, setShown] = useState('')
-  const started = useRef(false)
   const timers = useRef([])
 
   useEffect(() => {
-    if (!active || started.current) return
-    started.current = true
+    const clearAll = () => {
+      timers.current.forEach((id) => { clearTimeout(id); clearInterval(id) })
+      timers.current = []
+    }
+    clearAll()
 
+    if (!active) {
+      setPhase('idle')
+      setShown('')
+      return
+    }
     if (reduced) {
       setShown(text)
       setPhase('done')
@@ -70,13 +78,17 @@ function TypingMessage({ text, active, delay = 400 }) {
     }, delay)
     timers.current.push(t)
 
-    return () => timers.current.forEach(clearTimeout)
+    return clearAll
   }, [active, reduced, text, delay])
 
   return (
     <div
       className={`${styles.chatMsg} ${styles.chatMsgBot}`}
-      style={{ opacity: phase === 'idle' ? 0 : 1 }}
+      style={{
+        opacity: phase === 'idle' ? 0 : 1,
+        transform: phase === 'idle' ? 'translateY(10px)' : 'translateY(0)',
+        transition: 'opacity 0.4s ease, transform 0.4s ease',
+      }}
       aria-hidden={phase === 'idle'}
     >
       {phase === 'dots' ? (
@@ -93,30 +105,38 @@ function TypingMessage({ text, active, delay = 400 }) {
   )
 }
 
+/* Пользовательское сообщение: fade-in/out по достижении шага (обратимо). */
+function UserMessage({ children, active }) {
+  return (
+    <div
+      className={`${styles.chatMsg} ${styles.chatMsgUser}`}
+      style={{
+        opacity: active ? 1 : 0,
+        transform: active ? 'translateY(0)' : 'translateY(10px)',
+        transition: 'opacity 0.4s ease, transform 0.4s ease',
+      }}
+      aria-hidden={!active}
+    >
+      {children}
+    </div>
+  )
+}
+
 function ScreenChat({ active }) {
   return (
     <div className={styles.botChat}>
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className={`${styles.chatMsg} ${styles.chatMsgUser}`}
-      >
+      <UserMessage active={active >= 0}>
         Привет! Хочу заказать разработку бота. Сколько это будет стоить и какие сроки?
-      </motion.div>
+      </UserMessage>
 
       <TypingMessage
         active={active >= 1}
         text="Здравствуйте! 👋 Базовый бот начинается от 5 000 руб, ИИ-ассистент — от 15 000 руб, а сложная бот-система — от 30 000 руб."
       />
 
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={active >= 2 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-        transition={{ delay: 0.1 }}
-        className={`${styles.chatMsg} ${styles.chatMsgUser}`}
-      >
+      <UserMessage active={active >= 2}>
         Нам нужен умный бот для ответов на вопросы клиентов по нашей базе знаний.
-      </motion.div>
+      </UserMessage>
 
       <TypingMessage
         active={active >= 3}
@@ -201,40 +221,31 @@ export default function BotShowcase() {
           </div>
 
           <div className={styles.tourDevice}>
-            <div className={styles.botScene}>
-              <motion.div
-                className={styles.botTilt}
-                style={tiltOn ? { rotateY, rotateX } : undefined}
-              >
-                <div className={styles.botWrapper}>
-                  <div className={styles.botHeader}>
-                    <div className={styles.botAvatar}>
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <path d="M12 2a2 2 0 0 1 2 2c0 1.1-.9 2-2 2a2 2 0 0 1-2-2c0-1.1.9-2 2-2z" />
-                        <path d="M12 6c3.3 0 6 2.7 6 6v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4c0-3.3 2.7-6 6-6z" />
-                        <path d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                        <path d="M20 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                        <path d="M9 13v2" /><path d="M15 13v2" />
-                      </svg>
-                    </div>
-                    <div className={styles.botHeaderInfo}>
-                      <div className={styles.botName}>AI Support Bot</div>
-                      <div className={styles.botStatus}>
-                        {idx >= 1 && idx < 3 ? 'печатает…' : 'online'}
-                      </div>
+            <motion.div
+              className={styles.botTilt}
+              style={tiltOn ? { rotateY, rotateX } : undefined}
+            >
+              <div className={styles.botWrapper}>
+                <div className={styles.botHeader}>
+                  <div className={styles.botAvatar}>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M12 2a2 2 0 0 1 2 2c0 1.1-.9 2-2 2a2 2 0 0 1-2-2c0-1.1.9-2 2-2z" />
+                      <path d="M12 6c3.3 0 6 2.7 6 6v4a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4c0-3.3 2.7-6 6-6z" />
+                      <path d="M4 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                      <path d="M20 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
+                      <path d="M9 13v2" /><path d="M15 13v2" />
+                    </svg>
+                  </div>
+                  <div className={styles.botHeaderInfo}>
+                    <div className={styles.botName}>AI Support Bot</div>
+                    <div className={styles.botStatus}>
+                      {idx >= 1 && idx < 3 ? 'печатает…' : 'online'}
                     </div>
                   </div>
-                  <ScreenChat active={idx} />
                 </div>
-              </motion.div>
-
-              <div className={`${styles.botNote} ${styles.botNoteA} ${idx >= 2 ? styles.botNoteOn : ''}`} aria-hidden="true">
-                ✅ Заявка принята — передана менеджеру
+                <ScreenChat active={idx} />
               </div>
-              <div className={`${styles.botNote} ${styles.botNoteB} ${idx >= 3 ? styles.botNoteOn : ''}`} aria-hidden="true">
-                📅 Запись: завтра, 12:30
-              </div>
-            </div>
+            </motion.div>
 
             <div className={styles.rail}>
               {STEPS.map((_, i) => (
