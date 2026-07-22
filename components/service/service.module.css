@@ -997,3 +997,142 @@
     margin-bottom: -60px;
   }
 }
+
+/* ===== PRICE LEDGER (боты: смета-диалог) ===== */
+.ledger {
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+}
+.ledgerRow {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 5fr) minmax(190px, auto);
+  gap: 36px;
+  align-items: center;
+  padding: 36px 12px;
+  border-bottom: 1px solid var(--border-color);
+  transition: var(--transition);
+}
+.ledgerRow:hover { background: var(--bg-card); }
+.ledgerAsk {
+  position: relative;
+  color: var(--text-secondary);
+  font-size: 17px;
+  line-height: 1.5;
+  padding-left: 18px;
+}
+.ledgerAsk::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 5px; bottom: 5px;
+  width: 3px; border-radius: 2px;
+  background: rgba(var(--fg-rgb), 0.22);
+}
+.ledgerName {
+  font-weight: 800;
+  font-size: 21px;
+  letter-spacing: -0.01em;
+  margin-bottom: 7px;
+}
+.ledgerIncludes {
+  color: var(--text-muted);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+.ledgerPriceWrap { text-align: right; }
+.ledgerFrom {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.ledgerPrice {
+  font-weight: 300;
+  font-size: 46px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.ledgerCur { font-size: 28px; font-weight: 400; color: var(--text-secondary); }
+.ledgerTerm { font-size: 13.5px; color: var(--text-muted); margin-top: 5px; }
+.ledgerGo {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 10px;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: var(--transition);
+}
+.ledgerRow:hover .ledgerGo { opacity: 1; transform: translateX(0); }
+.ledgerFoot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  padding: 28px 12px 0;
+}
+.ledgerFoot p {
+  color: var(--text-secondary);
+  font-size: 15.5px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+
+@media (max-width: 820px) {
+  .ledgerRow {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 26px 4px;
+  }
+  .ledgerPriceWrap { text-align: left; }
+  .ledgerPrice { font-size: 38px; }
+  .ledgerGo { opacity: 1; transform: none; }
+  .ledgerFoot { padding: 24px 4px 0; }
+}
+
+/* ===== OPEN FAQ (боты: возражения) ===== */
+.vfaq {
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+}
+.vfaqItem {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 44px;
+  padding: 42px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+.vfaqQ {
+  font-size: 26px;
+  font-weight: 750;
+  letter-spacing: -0.015em;
+  line-height: 1.28;
+}
+.vfaqA {
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.7;
+}
+.vfaqVerdict {
+  display: inline-flex;
+  margin-top: 16px;
+  padding: 7px 15px;
+  border-radius: 999px;
+  background: var(--accent-primary);
+  color: rgb(var(--bg-rgb));
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+@media (max-width: 820px) {
+  .vfaqItem {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 30px 4px;
+  }
+  .vfaqQ { font-size: 21px; }
+}

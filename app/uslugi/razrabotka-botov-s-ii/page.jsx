@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import ServiceNav from '../../../components/service/ServiceNav'
 import BotShowcase from '../../../components/service/BotShowcase'
-import Faq from '../../../components/service/Faq'
+import PriceLedger from '../../../components/service/PriceLedger'
+import FaqOpen from '../../../components/service/FaqOpen'
 import Footer from '../../../components/Footer'
 import styles from '../../../components/service/service.module.css'
 
@@ -68,60 +69,53 @@ const BENEFITS = [
   },
 ]
 
-const PRICING = [
+const PRICING_ROWS = [
   {
-    tag: 'Start',
+    ask: 'Нужен простой бот: меню, кнопки, приём заявок',
     name: 'Базовый бот',
-    value: 'от 10 000 ₽',
-    note: 'от 5 дней',
-    features: [
-      'Стандартное меню кнопок',
-      'Отправка заявок в Telegram',
-      'Рассылка сообщений',
-      'Базовая админка',
-    ],
-    featured: false,
+    includes: 'Кнопочное меню · Заявки вам в Telegram · Рассылки · Админка',
+    from: 'от',
+    price: '10 000',
+    term: 'запуск за 5–7 дней',
   },
   {
-    tag: 'Pro',
-    name: 'ИИ-Бот Поддержки',
-    value: 'от 30 000 ₽',
-    note: 'от 3 недель',
-    features: [
-      'Внедрение ChatGPT / Claude',
-      'Обучение на вашей базе знаний',
-      'Естественное общение с клиентом',
-      'Сбор контактов',
-    ],
-    featured: true,
+    ask: 'Хочу, чтобы отвечал клиентам как живой менеджер',
+    name: 'ИИ-ассистент',
+    includes: 'Обучение на вашем сайте и прайсе · Естественные ответы · Передача менеджеру · Сбор контактов',
+    from: 'от',
+    price: '30 000',
+    term: 'запуск за 2–3 недели',
   },
   {
-    tag: 'Enterprise',
-    name: 'Бот-Система',
-    value: 'от 80 000 ₽',
-    note: 'от 1 месяца',
-    features: [
-      'Интеграция с вашей CRM',
-      'Прием оплат прямо в чате',
-      'Несколько языков',
-      'Поддержка высоких нагрузок',
-    ],
-    featured: false,
+    ask: 'Нужна система: оплата в чате, CRM, нагрузки',
+    name: 'Бот-система',
+    includes: 'Интеграция с CRM · Приём оплат в чате · Мультиязычность · Высокие нагрузки',
+    from: 'от',
+    price: '80 000',
+    term: 'запуск от месяца',
   },
 ]
 
 const FAQ = [
   {
-    q: 'Может ли бот нагрубить клиенту или выдумать несуществующие цены?',
-    a: 'Нет. Мы используем технологии RAG (генерация с дополненной выборкой) и строго ограничиваем промпт. Бот будет отвечать только по тем документам и ценам, которые мы ему загрузим. Если он не знает ответа, он так и скажет или переведет на оператора.',
+    q: 'А бот не нагрубит клиенту и не выдумает цены?',
+    a: 'Нет. Ассистент отвечает только по тем документам и ценам, которые мы в него загрузим (технология RAG), и каждый ответ опирается на конкретный источник. Если ответа в базе нет — он честно говорит об этом и зовёт живого менеджера, а не сочиняет.',
+    verdict: 'Отвечает только по вашим документам',
   },
   {
-    q: 'Вы используете ChatGPT?',
-    a: 'Да, в большинстве случаев мы интегрируемся с OpenAI API (ChatGPT) или Anthropic (Claude), так как они дают лучшее качество общения на русском языке.',
+    q: 'На каких нейросетях это работает?',
+    a: 'Google Gemini, GPT или Claude — подбираем модель под вашу задачу и бюджет. Для старта и демо обычно берём Gemini: быстро, качественно по-русски и ощутимо дешевле в поддержке.',
+    verdict: 'Модель — под задачу и бюджет',
   },
   {
-    q: 'А как бот понимает, когда нужно перевести диалог на человека?',
-    a: 'Мы настраиваем триггеры. Например, если клиент пишет "свяжите меня с менеджером", или если бот не может ответить на вопрос дважды, или если клиент готов к покупке, бот отправляет уведомление в ваш рабочий чат.',
+    q: 'Когда подключается живой человек?',
+    a: 'По триггерам, которые мы настраиваем: клиент прямо просит менеджера, бот дважды не нашёл ответа, или клиент готов к покупке. В этот момент в ваш рабочий чат приходит уведомление со всей историей диалога.',
+    verdict: 'Человек всегда на подхвате',
+  },
+  {
+    q: 'Куда попадают данные моих клиентов?',
+    a: 'База знаний и переписка хранятся в изолированном контуре под ваш проект и не передаются третьим лицам. По запросу разворачиваем систему на вашем собственном сервере — тогда данные физически не покидают вашу инфраструктуру.',
+    verdict: 'Данные остаются вашими',
   },
 ]
 
@@ -154,46 +148,29 @@ export default function AiBotsPage() {
         </div>
       </section>
 
-      {/* ===== PRICING ===== */}
+      {/* ===== PRICING: смета-диалог ===== */}
       <section className={`section ${styles.compactSection} ${styles.pricingSection}`}>
         <div className="container">
           <div className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} /> Цены
+            <span className={styles.eyebrowDot} /> Смета
           </div>
-          <h2 className={styles.blockTitle}>Стоимость разработки</h2>
-          
-          <div className={styles.pricing}>
-            {PRICING.map((p, i) => (
-              <div key={i} className={`${styles.priceCard} ${p.featured ? styles.priceCardFeatured : ''}`}>
-                <div className={styles.priceTag}>{p.tag}</div>
-                <div className={styles.priceName}>{p.name}</div>
-                <div className={styles.priceValue}>{p.value}</div>
-                <div className={styles.priceNote}>{p.note}</div>
-                <ul className={styles.priceList}>
-                  {p.features.map((f, j) => (
-                    <li key={j}>
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <a href={TG_LINK} target="_blank" rel="noreferrer" className={`btn-${p.featured ? 'primary' : 'secondary'} ${styles.priceBtn}`}>
-                  Оставить заявку
-                </a>
-              </div>
-            ))}
-          </div>
+          <h2 className={styles.blockTitle}>Сколько это стоит</h2>
+          <p className={styles.blockSub}>
+            Три уровня — от кнопочного бота до системы с оплатой в чате.
+            Точная цена фиксируется после короткого брифа и не меняется по ходу работы.
+          </p>
+          <PriceLedger rows={PRICING_ROWS} tgLink={TG_LINK} />
         </div>
       </section>
 
-      {/* ===== FAQ ===== */}
+      {/* ===== FAQ: возражения открытым текстом ===== */}
       <section className={`section ${styles.compactSection} ${styles.faqSection}`} id="faq">
         <div className="container">
           <div className={styles.eyebrow}>
-            <span className={styles.eyebrowDot} /> FAQ
+            <span className={styles.eyebrowDot} /> Возражения
           </div>
-          <h2 className={styles.blockTitle}>Частые вопросы</h2>
-          <Faq items={FAQ} />
+          <h2 className={styles.blockTitle}>Что спрашивают перед заказом</h2>
+          <FaqOpen items={FAQ} />
         </div>
       </section>
 
