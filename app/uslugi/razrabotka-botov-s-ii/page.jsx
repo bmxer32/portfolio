@@ -128,7 +128,7 @@ export default function AiBotsPage() {
       <BotShowcase />
 
       {/* ===== BENEFITS ===== */}
-      <section className={`section ${styles.compactSection}`} style={{ position: 'relative', zIndex: 10 }}>
+      <section id="benefits" className={`section ${styles.compactSection}`} style={{ position: 'relative', zIndex: 10 }}>
         <div className="container">
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} /> Преимущества
@@ -149,7 +149,7 @@ export default function AiBotsPage() {
       </section>
 
       {/* ===== PRICING: смета-диалог ===== */}
-      <section className={`section ${styles.compactSection} ${styles.pricingSection}`}>
+      <section id="pricing" className={`section ${styles.compactSection} ${styles.pricingSection}`}>
         <div className="container">
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} /> Смета

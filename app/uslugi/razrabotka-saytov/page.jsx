@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import ServiceNav from '../../../components/service/ServiceNav'
 import WebShowcase from '../../../components/service/WebShowcase'
-import Faq from '../../../components/service/Faq'
+import FaqTabs from '../../../components/service/FaqTabs'
 import Footer from '../../../components/Footer'
 import styles from '../../../components/service/service.module.css'
 
@@ -112,33 +112,55 @@ const PRICING = [
 
 const FAQ = [
   {
+    tab: 'Дизайн',
+    slug: 'dizajn',
     q: 'Вы делаете дизайн сами или нужно приходить со своим?',
     a: 'Мы делаем проекты под ключ. Наш UI/UX дизайнер отрисует несколько вариантов концепции, согласует с вами, и только потом мы приступим к разработке.',
   },
   {
+    tab: 'Технологии',
+    slug: 'tehnologii',
     q: 'На чем вы делаете сайты? Это конструктор?',
     a: 'Нет, мы не используем конструкторы (Tilda/Wix). Мы пишем сайты с нуля с использованием современных технологий React и Next.js. Это позволяет сделать интерфейс невероятно быстрым, плавным и полностью кастомным, без каких-либо ограничений конструкторов.',
   },
   {
+    tab: 'Правки',
+    slug: 'pravki',
     q: 'Смогу ли я сам менять текст и фото на сайте?',
     a: 'Да. Для корпоративных сайтов и интернет-магазинов мы подключаем удобную систему управления контентом (headless CMS), где вы сможете добавлять товары и менять тексты так же легко, как посты в соцсетях.',
   },
   {
+    tab: 'Поддержка',
+    slug: 'podderzhka',
     q: 'Вы занимаетесь поддержкой после сдачи проекта?',
     a: 'Конечно. После запуска мы можем взять сайт на техническую поддержку, следить за его доступностью и оперативно внедрять новый функционал по мере роста вашего бизнеса.',
   },
 ]
 
+const faqJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQ.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+}
+
 export default function WebDevPage() {
   return (
     <div className={styles.page}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className={styles.pageGlow} />
 
       <ServiceNav activePath={PATH} />
       <WebShowcase />
 
       {/* ===== BENEFITS ===== */}
-      <section className={`section ${styles.compactSection}`} style={{ position: 'relative', zIndex: 10 }}>
+      <section id="benefits" className={`section ${styles.compactSection}`} style={{ position: 'relative', zIndex: 10 }}>
         <div className="container">
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} /> Преимущества
@@ -159,7 +181,7 @@ export default function WebDevPage() {
       </section>
 
       {/* ===== PRICING ===== */}
-      <section className={`section ${styles.compactSection} ${styles.pricingSection}`}>
+      <section id="pricing" className={`section ${styles.compactSection} ${styles.pricingSection}`}>
         <div className="container">
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} /> Цены
@@ -197,7 +219,7 @@ export default function WebDevPage() {
             <span className={styles.eyebrowDot} /> FAQ
           </div>
           <h2 className={styles.blockTitle}>Частые вопросы</h2>
-          <Faq items={FAQ} />
+          <FaqTabs items={FAQ} tgLink={TG_LINK} />
         </div>
       </section>
 

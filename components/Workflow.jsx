@@ -1,27 +1,35 @@
 "use client"
 import { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
 import Reveal from './Reveal'
 import styles from './Workflow.module.css'
+
+/*
+ * Процесс как «журнал проекта»: типографские записи с моно-метками
+ * этапа и ориентировочным сроком вместо кружков и карточек.
+ */
 
 const steps = [
   {
     num: '01',
+    dur: '1–2 дня',
     title: 'Знакомство и оценка',
     desc: 'Мы обсуждаем вашу идею и бизнес-цели. Мы вникаем в задачу, предлагаем лучшие варианты решения и бесплатно рассчитываем точные сроки и бюджет.',
   },
   {
     num: '02',
+    dur: '3–5 дней',
     title: 'Продумывание логики',
     desc: 'Прежде чем писать код, мы детально планируем, как всё будет работать. Делаем так, чтобы продукт был максимально удобен для ваших клиентов и решал свои задачи.',
   },
   {
     num: '03',
+    dur: '2–8 недель',
     title: 'Создание продукта',
     desc: 'Мы воплощаем проект в реальность. Никаких «черных ящиков» — мы регулярно выходим на связь и показываем промежуточные результаты, чтобы вы видели прогресс.',
   },
   {
     num: '04',
+    dur: 'поддержка — без срока',
     title: 'Запуск и гарантия',
     desc: 'Размещаем готовый проект в интернете, настраиваем всё необходимое и передаем вам доступы. После сдачи проекта мы всегда остаемся на связи для поддержки.',
   },
@@ -30,7 +38,6 @@ const steps = [
 export default function Workflow() {
   const [activeIndices, setActiveIndices] = useState([]);
   const stepRefs = useRef([]);
-  const sectionRef = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -61,29 +68,35 @@ export default function Workflow() {
   }, []);
 
   return (
-    <section id="workflow" className={`section ${styles.workflow}`} ref={sectionRef}>
-        <div className="container">
+    <section id="workflow" className={`section ${styles.workflow}`}>
+      <div className="container">
         <Reveal as="div" className="section-label">// Процесс</Reveal>
         <Reveal as="h2" className="section-title" delay={0.05}>Как мы будем работать</Reveal>
         <Reveal as="p" className="section-subtitle" delay={0.1}>
           Прозрачное сотрудничество: вы всегда понимаете, за что платите и на каком этапе находится ваш проект. Минимум технических терминов, максимум результата.
         </Reveal>
 
-        <div className={styles.timeline}>
+        <div className={styles.journal}>
           {steps.map((step, index) => (
-            <div 
-              key={index} 
+            <article
+              key={index}
               ref={(el) => (stepRefs.current[index] = el)}
               data-index={index}
-              className={`${styles.step} ${activeIndices.length > 0 && Math.min(...activeIndices) === index ? styles.active : ''}`}
+              className={`${styles.entry} ${activeIndices.length > 0 && Math.min(...activeIndices) === index ? styles.active : ''}`}
             >
-              <div className={styles.stepNumber}>{step.num}</div>
-              <div className={styles.stepContent}>
-                <h3 className={styles.stepTitle}>{step.title}</h3>
-                <p className={styles.stepDesc}>{step.desc}</p>
+              <div className={styles.entryMeta}>
+                <span className={styles.entryNum}>Этап {step.num}</span>
+                <span className={styles.entryDur}>{step.dur}</span>
               </div>
-            </div>
+              <div className={styles.entryBody}>
+                <h3 className={styles.entryTitle}>{step.title}</h3>
+                <p className={styles.entryDesc}>{step.desc}</p>
+              </div>
+            </article>
           ))}
+          <p className={styles.journalNote}>
+            Сроки — ориентир для среднего проекта. Точные фиксируем после брифа и не меняем по ходу работы.
+          </p>
         </div>
       </div>
     </section>

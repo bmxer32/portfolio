@@ -3,13 +3,28 @@ import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import styles from './SectionNav.module.css'
 
-const SECTIONS = [
-  { id: 'hero',      label: 'Главная' },
-  { id: 'portfolio', label: 'Работы'  },
-  { id: 'skills',    label: 'Стек'    },
-  { id: 'workflow',  label: 'Процесс' },
-  { id: 'contact',   label: 'Контакт' },
+/* 'top' — особый id: скролл к началу страницы, без элемента в DOM */
+const SERVICE_SECTIONS = [
+  { id: 'top',      label: 'Обзор'        },
+  { id: 'benefits', label: 'Преимущества' },
+  { id: 'pricing',  label: 'Цены'         },
+  { id: 'faq',      label: 'Вопросы'      },
+  { id: 'contact',  label: 'Контакт'      },
 ]
+
+const ROUTE_SECTIONS = {
+  '/': [
+    { id: 'top',       label: 'Главная' },
+    { id: 'portfolio', label: 'Работы'  },
+    { id: 'skills',    label: 'Стек'    },
+    { id: 'workflow',  label: 'Процесс' },
+    { id: 'contact',   label: 'Контакт' },
+  ],
+  '/uslugi/razrabotka-saytov': SERVICE_SECTIONS,
+  '/uslugi/razrabotka-botov-s-ii': SERVICE_SECTIONS,
+  '/uslugi/razrabotka-mobilnyh-prilozheniy': SERVICE_SECTIONS,
+  '/uslugi/razrabotka-programm-na-pk': SERVICE_SECTIONS,
+}
 
 const Chevron = ({ dir }) => (
   <svg width="10" height="6" viewBox="0 0 10 6" fill="none">
@@ -23,13 +38,16 @@ const Chevron = ({ dir }) => (
 
 export default function SectionNav() {
   const pathname = usePathname()
-  const [active, setActive] = useState('hero')
+  const sections = ROUTE_SECTIONS[pathname]
+  const [active, setActive] = useState('top')
 
   useEffect(() => {
+    if (!sections) return
+    setActive(sections[0].id)
     const check = () => {
       const mid = window.innerHeight * 0.5
-      let current = 'hero'
-      SECTIONS.slice(1).forEach(({ id }) => {
+      let current = sections[0].id
+      sections.slice(1).forEach(({ id }) => {
         const el = document.getElementById(id)
         if (el && el.getBoundingClientRect().top < mid) current = id
       })
@@ -38,13 +56,13 @@ export default function SectionNav() {
     window.addEventListener('scroll', check, { passive: true })
     check()
     return () => window.removeEventListener('scroll', check)
-  }, [])
+  }, [pathname])
 
-  if (pathname !== '/') return null;
+  if (!sections) return null;
 
   const scrollTo = (id) => {
     const lenis = window.__lenis
-    if (id === 'hero') {
+    if (id === 'top') {
       lenis ? lenis.scrollTo(0) : window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
@@ -57,9 +75,9 @@ export default function SectionNav() {
       : el.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  const activeIdx = SECTIONS.findIndex(s => s.id === active)
-  const prev = activeIdx > 0 ? SECTIONS[activeIdx - 1] : null
-  const next = activeIdx < SECTIONS.length - 1 ? SECTIONS[activeIdx + 1] : null
+  const activeIdx = sections.findIndex(s => s.id === active)
+  const prev = activeIdx > 0 ? sections[activeIdx - 1] : null
+  const next = activeIdx < sections.length - 1 ? sections[activeIdx + 1] : null
 
   return (
     <nav className={styles.nav} aria-label="Навигация по разделам">
@@ -77,7 +95,7 @@ export default function SectionNav() {
       {/* Dots */}
       <div className={styles.dots}>
         <div className={styles.track} />
-        {SECTIONS.map(({ id, label }) => (
+        {sections.map(({ id, label }) => (
           <button
             key={id}
             className={`${styles.item} ${active === id ? styles.active : ''}`}

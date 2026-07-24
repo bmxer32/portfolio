@@ -1137,6 +1137,290 @@
   .vfaqQ { font-size: 21px; }
 }
 
+/* ===== SPEC SHEET (мобильные: спецификация комплектаций) ===== */
+.sheet {
+  display: grid;
+  grid-template-columns: minmax(130px, 1fr) repeat(3, minmax(0, 1.55fr));
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+}
+.sheetCorner { border-bottom: 1px solid var(--border-color); }
+.sheetHead {
+  display: flex;
+  flex-direction: column;
+  padding: 26px 22px 22px;
+  border-bottom: 1px solid var(--border-color);
+}
+.sheetTag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+.sheetName {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+.sheetPrice {
+  font-size: 30px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.sheetNote {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.sheetLabel {
+  padding: 18px 18px 18px 4px;
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+}
+.sheetCell {
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+}
+.sheetDash { color: rgba(var(--fg-rgb), 0.22); }
+.sheetCta {
+  padding: 24px 22px 6px;
+}
+.sheetCta a {
+  width: 100%;
+  padding: 13px 20px;
+  font-size: 13.5px;
+}
+/* Featured column: quiet tint instead of a green badge */
+.sheetFeat {
+  background: rgba(var(--fg-rgb), 0.035);
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+/* Mobile: packages one after another */
+.sheetStack { display: none; }
+
+@media (max-width: 900px) {
+  .sheet { display: none; }
+  .sheetStack {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .stackBlock {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 24px 22px;
+  }
+  .stackBlock.sheetFeat {
+    background: rgba(var(--fg-rgb), 0.035);
+  }
+  .stackHead {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .stackList {
+    display: flex;
+    flex-direction: column;
+    margin: 0 0 20px;
+  }
+  .stackRow {
+    display: grid;
+    grid-template-columns: minmax(96px, 2fr) 3fr;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(var(--fg-rgb), 0.06);
+  }
+  .stackRow dt {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 2px;
+  }
+  .stackRow dd {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+  }
+  .stackBtn { width: 100%; }
+}
+
+/* ===== FAQ BRIEF (мобильные: коротко / подробно) ===== */
+.bfaq {
+  border-top: 1px solid var(--border-color);
+  margin-top: 8px;
+}
+.bfaqItem {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+  gap: 44px;
+  padding: 34px 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+.bfaqQ {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.45;
+  color: var(--text-secondary);
+}
+.bfaqShort {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.bfaqLong {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 640px;
+}
+
+@media (max-width: 820px) {
+  .bfaqItem {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 26px 4px;
+  }
+  .bfaqShort { font-size: 19px; }
+}
+
+/* ===== FAQ TABS (сайты: браузер с вкладками) ===== */
+.tfaq {
+  margin-top: 8px;
+  max-width: 980px;
+}
+.tfaqWindow {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  overflow: hidden;
+}
+.tfaqChrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 13px 16px;
+  border-bottom: 1px solid var(--border-color);
+}
+.tfaqDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.16);
+  flex-shrink: 0;
+}
+.tfaqUrl {
+  margin-left: 10px;
+  padding: 4px 14px;
+  border-radius: 100px;
+  background: rgba(var(--fg-rgb), 0.05);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tfaqTabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 10px;
+  border-bottom: 1px solid var(--border-color);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tfaqTabs::-webkit-scrollbar { display: none; }
+.tfaqTab {
+  position: relative;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  transition: color 0.25s ease;
+}
+.tfaqTab:hover { color: var(--text-secondary); }
+.tfaqTab::after {
+  content: '';
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: -1px;
+  height: 2px;
+  background: rgb(var(--fg-rgb));
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.tfaqTabActive { color: var(--text-primary); }
+.tfaqTabActive::after { opacity: 1; }
+.tfaqPanel {
+  padding: 30px 32px 34px;
+  min-height: 180px;
+}
+.tfaqQ {
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.tfaqA {
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 720px;
+}
+.tfaqFoot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 15px 32px;
+  border-top: 1px solid var(--border-color);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+.tfaqFoot a {
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: var(--transition);
+}
+.tfaqFoot a:hover { opacity: 0.75; }
+
+@media (max-width: 640px) {
+  .tfaqPanel { padding: 22px 20px 26px; min-height: 0; }
+  .tfaqFoot { padding: 14px 20px; }
+  .tfaqQ { font-size: 18px; }
+}
+
 /* ===== BOT SHOWCASE: живой диалог ===== */
 .botScene {
   position: relative;

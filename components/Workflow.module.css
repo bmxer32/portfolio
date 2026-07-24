@@ -15,109 +15,115 @@
   z-index: 10;
 }
 
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  margin-top: 60px;
-  position: relative;
+.journal {
+  margin-top: 64px;
+  border-top: 1px solid var(--border-color);
+  max-width: 1060px;
 }
 
-.timeline::before {
+.entry {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 48px;
+  padding: 42px 8px 42px 20px;
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  transition: var(--transition);
+}
+
+/* Active marker: a quiet bar instead of a glowing circle */
+.entry::before {
   content: '';
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 40px;
+  left: 0;
+  top: 34px;
+  bottom: 34px;
   width: 2px;
-  background: linear-gradient(to bottom, var(--border-color) 75%, transparent 98%);
-  z-index: 0;
-}
-
-.step {
-  display: flex;
-  gap: 40px;
-  position: relative;
-  z-index: 1;
-}
-
-.stepNumber {
-  width: 80px;
-  height: 80px;
-  flex-shrink: 0;
-  background: var(--bg-primary);
-  border: 2px solid var(--border-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  font-weight: 800;
-  color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(10, 10, 15, 0.8);
+  border-radius: 2px;
+  background: rgb(var(--fg-rgb));
+  opacity: 0;
+  transform: scaleY(0.4);
   transition: var(--transition);
 }
-
-.step.active .stepNumber {
-  border-color: var(--accent-primary);
-  color: rgb(var(--bg-rgb));
-  /* background-color acts as an opaque blocker so the timeline line can't
-     bleed through the semi-transparent gradient end. The gradient blends
-     with --bg-rgb instead of with whatever is behind the element. */
-  background-color: rgb(var(--bg-rgb));
-  background-image: linear-gradient(135deg, rgb(var(--fg-rgb)) 0%, rgba(var(--fg-rgb), 0.6) 100%);
-  box-shadow: var(--shadow-glow);
-  position: relative;
-  z-index: 2;
+.entry.active::before {
+  opacity: 1;
+  transform: scaleY(1);
 }
 
-.stepContent {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 32px;
-  border-radius: var(--radius-lg);
-  backdrop-filter: blur(20px);
-  flex-grow: 1;
+.entryMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 6px;
+  font-family: var(--font-mono);
+}
+
+.entryNum {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
   transition: var(--transition);
 }
-
-.step.active .stepContent {
-  border-color: var(--border-hover);
-  transform: translateX(8px);
-}
-
-.stepTitle {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 12px;
+.entry.active .entryNum {
   color: var(--text-primary);
 }
 
-.stepDesc {
+.entryDur {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.entryTitle {
+  font-size: clamp(22px, 2.4vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
   color: var(--text-secondary);
+  transition: var(--transition);
+}
+.entry.active .entryTitle {
+  color: var(--text-primary);
+}
+
+.entryDesc {
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 640px;
+  opacity: 0.75;
+  transition: var(--transition);
+}
+.entry.active .entryDesc {
+  opacity: 1;
+}
+
+.journalNote {
+  padding: 26px 8px 0 20px;
+  font-size: 13.5px;
+  color: var(--text-muted);
+  max-width: 560px;
   line-height: 1.6;
 }
 
 @media (max-width: 768px) {
-  .timeline::before {
-    left: 30px;
+  .journal {
+    margin-top: 48px;
   }
-  
-  .step {
-    gap: 24px;
+  .entry {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 30px 4px 30px 16px;
   }
-  
-  .stepNumber {
-    width: 60px;
-    height: 60px;
-    font-size: 18px;
+  .entryMeta {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-top: 0;
   }
-  
-  .stepContent {
-    padding: 24px;
-  }
-  
-  .step.active .stepContent {
-    transform: none;
+  .entry::before {
+    top: 26px;
+    bottom: 26px;
   }
 }

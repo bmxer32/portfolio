@@ -43,6 +43,8 @@
 
   --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', Consolas, 'Liberation Mono', monospace;
 }
 
 @media (prefers-color-scheme: dark) {

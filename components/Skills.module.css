@@ -19,127 +19,272 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
+  gap: 28px;
   margin-top: 60px;
 }
 
 .card {
-  padding: 40px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  height: 100%;   /* fill the grid cell so cards in a row match height & CTAs align */
+  padding: 34px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: var(--transition);
 }
 
-.cardHeader {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 24px;
+.card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
 }
 
-.cardIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 16px;
-  background: rgba(var(--fg-rgb), 0.05);
-  color: var(--text-secondary);
-  border: 1px solid rgba(var(--fg-rgb), 0.1);
+/* ===== Device miniatures — each service drawn as its medium ===== */
+.device {
+  height: 172px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(var(--fg-rgb), 0.12);
+  border-radius: 12px;
+  background: rgba(var(--fg-rgb), 0.02);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card:hover .device {
+  border-color: rgba(var(--fg-rgb), 0.28);
+}
+
+/* Shared skeleton pieces */
+.skHeading, .skLine, .skLineShort, .skImage, .skBtn {
+  display: block;
+  border-radius: 4px;
+}
+.skHeading { height: 13px; width: 55%; background: rgba(var(--fg-rgb), 0.2); }
+.skLine { height: 7px; width: 85%; background: rgba(var(--fg-rgb), 0.09); }
+.skLineShort { height: 7px; width: 58%; background: rgba(var(--fg-rgb), 0.09); }
+.skImage { height: 44px; width: 100%; border-radius: 8px; background: rgba(var(--fg-rgb), 0.09); }
+.skBtn { height: 22px; width: 86px; border-radius: 100px; background: rgba(var(--fg-rgb), 0.75); margin-top: 4px; }
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.18);
   flex-shrink: 0;
 }
 
+/* Browser window */
+.browserBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.1);
+}
+.browserUrl {
+  margin-left: 10px;
+  padding: 3px 12px;
+  border-radius: 100px;
+  background: rgba(var(--fg-rgb), 0.06);
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+.browserBody {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 18px;
+}
+
+/* Chat thread */
+.deviceChat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px;
+}
+.chatMsgIn, .chatMsgOut {
+  max-width: 82%;
+  padding: 8px 13px;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.chatMsgIn {
+  align-self: flex-start;
+  background: rgba(var(--fg-rgb), 0.07);
+  color: var(--text-secondary);
+  border-radius: 14px 14px 14px 4px;
+}
+.chatMsgOut {
+  align-self: flex-end;
+  background: rgb(var(--fg-rgb));
+  color: rgb(var(--bg-rgb));
+  border-radius: 14px 14px 4px 14px;
+}
+.chatMeta {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Phone */
+.devicePhone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.phoneFrame {
+  width: 94px;
+  height: 146px;
+  border: 1px solid rgba(var(--fg-rgb), 0.25);
+  border-radius: 16px;
+  padding: 9px 9px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.phoneNotch {
+  width: 26px;
+  height: 4px;
+  border-radius: 100px;
+  background: rgba(var(--fg-rgb), 0.25);
+  margin-bottom: 2px;
+}
+.phoneFrame .skImage { height: 38px; }
+.phoneFrame .skLine, .phoneFrame .skLineShort { height: 5px; }
+.phoneFrame .skLine { width: 100%; }
+.phoneFrame .skLineShort { width: 65%; align-self: flex-start; }
+.phoneTabbar {
+  margin-top: auto;
+  display: flex;
+  gap: 9px;
+}
+.phoneTabbar i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(var(--fg-rgb), 0.22);
+}
+
+/* Desktop window */
+.winBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 30px;
+  padding: 0 11px;
+  border-bottom: 1px solid rgba(var(--fg-rgb), 0.1);
+}
+.winTitle {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+.winControls {
+  display: flex;
+  gap: 6px;
+}
+.winControls i {
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: rgba(var(--fg-rgb), 0.18);
+}
+.winBody {
+  display: flex;
+  height: calc(100% - 30px);
+}
+.winSidebar {
+  width: 58px;
+  padding: 12px 10px;
+  border-right: 1px solid rgba(var(--fg-rgb), 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.winSidebar span {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(var(--fg-rgb), 0.12);
+}
+.winMain {
+  flex: 1;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+/* ===== Card text ===== */
 .cardTitle {
   font-size: 24px;
   font-weight: 700;
+  letter-spacing: -0.01em;
   color: var(--text-primary);
-  margin: 0;
+  margin: 0 0 12px;
 }
 
 .cardDesc {
-  font-size: 16px;
+  font-size: 15.5px;
   line-height: 1.6;
   color: var(--text-secondary);
-  margin-bottom: 24px;
-  /* Reserve room for the longest description so the divider below lines up
-     across cards in the same row (resets to natural height on mobile). */
-  min-height: 110px;
+  margin-bottom: 26px;
 }
 
-.divider {
-  height: 1px;
-  background: var(--border-color);
-  margin-bottom: 24px;
-  width: 100%;
-}
-
-.skillList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+.cardFoot {
   margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
-.skillTag {
-  padding: 8px 16px;
-  background: rgba(var(--fg-rgb), 0.05);
-  border: 1px solid var(--border-color);
-  border-radius: 50px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  transition: var(--transition);
+.stack {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  line-height: 1.9;
+  color: var(--text-muted);
 }
 
-.skillTag:hover {
-  color: var(--text-primary);
-  border-color: var(--accent-cyan);
-  background: rgba(34, 211, 238, 0.1);
-  transform: translateY(-2px);
-}
-
-/* Prominent filled CTA — stands out from the outlined skill tags */
-.detailsBtn {
-  margin-top: 20px;
-  align-self: flex-start;
+.cardGo {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 11px 22px;
-  background: rgb(var(--fg-rgb));
-  color: rgb(var(--bg-rgb));
-  border: 1px solid rgb(var(--fg-rgb));
-  border-radius: 50px;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  box-shadow: 0 4px 18px rgba(var(--fg-rgb), 0.18);
-  transition: var(--transition);
+  color: var(--text-primary);
 }
-.detailsBtn .arrow {
+.arrow {
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.card:hover .detailsBtn {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgba(var(--fg-rgb), 0.28);
-}
-.card:hover .detailsBtn .arrow {
-  transform: translateX(4px);
+.card:hover .arrow {
+  transform: translateX(5px);
 }
 
 @media (max-width: 992px) {
   .grid {
     grid-template-columns: 1fr;
   }
-  /* Single column — no neighbour to align with, let text size naturally */
-  .cardDesc {
-    min-height: 0;
-  }
 }
 
 @media (max-width: 768px) {
   .card {
-    padding: 30px;
+    padding: 26px;
+  }
+  .device {
+    height: 156px;
   }
 }

@@ -136,7 +136,7 @@ export default function DesktopDevelopmentPage() {
       <DesktopShowcase />
 
       {/* ===== BENEFITS ===== */}
-      <section className={`section ${styles.compactSection}`} style={{ position: 'relative', zIndex: 10 }}>
+      <section id="benefits" className={`section ${styles.compactSection}`} style={{ position: 'relative', zIndex: 10 }}>
         <div className="container">
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} /> Преимущества
@@ -157,7 +157,7 @@ export default function DesktopDevelopmentPage() {
       </section>
 
       {/* ===== PRICING ===== */}
-      <section className={`section ${styles.compactSection} ${styles.pricingSection}`}>
+      <section id="pricing" className={`section ${styles.compactSection} ${styles.pricingSection}`}>
         <div className="container">
           <div className={styles.eyebrow}>
             <span className={styles.eyebrowDot} /> Цены

@@ -1,7 +1,8 @@
 import Link from 'next/link'
 import ServiceNav from '../../../components/service/ServiceNav'
 import MobileShowcase from '../../../components/service/MobileShowcase'
-import Faq from '../../../components/service/Faq'
+import SpecSheet from '../../../components/service/SpecSheet'
+import FaqBrief from '../../../components/service/FaqBrief'
 
 import Footer from '../../../components/Footer'
 import styles from '../../../components/service/service.module.css'
@@ -85,57 +86,36 @@ const BENEFITS = [
   },
 ]
 
-const PRICING = [
-  {
-    tag: 'Старт',
-    name: 'MVP-приложение',
-    value: 'от 150 000 ₽',
-    note: 'Срок 3–5 недель',
-    features: ['1 платформа или Flutter', 'Базовый набор экранов', 'Подключение к серверу/API', 'Публикация в одном сторе'],
-    featured: false,
-  },
-  {
-    tag: 'Популярное',
-    name: 'Бизнес-приложение',
-    value: 'от 400 000 ₽',
-    note: 'Срок 6–10 недель',
-    features: ['iOS + Android на Flutter', 'Авторизация, профиль, push', 'Платежи и подписки', 'Аналитика и A/B-тесты', 'Публикация в App Store и Google Play'],
-    featured: true,
-  },
-  {
-    tag: 'Сложный сервис',
-    name: 'Под индивидуальный проект',
-    value: 'Индивидуально',
-    note: 'Оценка после брифа',
-    features: ['Сложная логика и интеграции', 'Своя backend-архитектура', 'Карты, гео, real-time', 'Команда под проект', 'SLA и поддержка'],
-    featured: false,
-  },
+const SPEC_COLS = [
+  { tag: 'Старт', name: 'MVP-приложение', price: 'от 60 000 ₽', note: 'срок 3–5 недель', featured: false },
+  { tag: 'Чаще всего', name: 'Бизнес-приложение', price: 'от 150 000 ₽', note: 'срок 6–10 недель', featured: true },
+  { tag: 'Сложный сервис', name: 'Индивидуальный проект', price: 'по брифу', note: 'оценка бесплатно', featured: false },
+]
+
+const SPEC_ROWS = [
+  { label: 'Платформы', values: ['1 платформа или Flutter', 'iOS + Android на Flutter', 'iOS + Android + свой backend'] },
+  { label: 'Экраны и логика', values: ['Базовый набор экранов', 'Авторизация, профиль, push', 'Сложная логика: карты, гео, real-time'] },
+  { label: 'Платежи', values: ['—', 'Платежи и подписки', 'Платежи, CRM и интеграции'] },
+  { label: 'Аналитика', values: ['—', 'Аналитика и A/B-тесты', 'Своя аналитика и метрики'] },
+  { label: 'Публикация', values: ['Один стор', 'App Store и Google Play', 'App Store и Google Play'] },
+  { label: 'Поддержка', values: ['Гарантия после запуска', 'Гарантия и обновления', 'SLA, команда под проект'] },
 ]
 
 const FAQ_ITEMS = [
   {
     q: 'Сколько стоит разработка мобильного приложения?',
-    a: 'Стоимость зависит от сложности: MVP начинается от 150 000 ₽, полноценное бизнес-приложение для iOS и Android — от 400 000 ₽. Точную цену называем бесплатно после короткого брифа, когда понятен объём функций.',
+    short: 'MVP — от 60 000 ₽, бизнес-приложение — от 150 000 ₽.',
+    a: 'Стоимость зависит от сложности: MVP начинается от 60 000 ₽, полноценное бизнес-приложение для iOS и Android — от 150 000 ₽. Точную цену называем бесплатно после короткого брифа, когда понятен объём функций.',
   },
   {
     q: 'Сколько времени занимает разработка?',
+    short: 'MVP — 3–5 недель, бизнес-приложение — 6–10 недель.',
     a: 'Простое приложение (MVP) делаем за 3–5 недель, бизнес-приложение со средней логикой — за 6–10 недель. На старте фиксируем этапы и сроки, чтобы вы видели прогресс на каждой неделе.',
   },
   {
     q: 'Вы делаете отдельно под iOS и Android?',
+    short: 'Нет: один код на Flutter работает на обеих платформах.',
     a: 'Мы используем Flutter — одна кодовая база работает на обеих платформах с нативной скоростью. Это дешевле и быстрее, чем две раздельные команды, а приложение выглядит «как родное» и на iPhone, и на Android.',
-  },
-  {
-    q: 'Поможете опубликовать приложение в App Store и Google Play?',
-    a: 'Да. Берём на себя весь выпуск: аккаунты разработчика, подготовку иконок и описаний, прохождение ревью и саму публикацию. Вы получаете готовое приложение, доступное для скачивания.',
-  },
-  {
-    q: 'Что будет с приложением после запуска?',
-    a: 'Мы остаёмся на связи: обновляем приложение под новые версии iOS и Android, исправляем замечания и развиваем функционал. Поддержку и доработки обсуждаем отдельно под ваши задачи.',
-  },
-  {
-    q: 'С какими городами и регионами вы работаете?',
-    a: 'Работаем удалённо со всей Россией и странами СНГ. Все коммуникации, демонстрации и передача проекта проходят онлайн — личное присутствие не требуется.',
   },
 ]
 
@@ -159,7 +139,7 @@ export default function MobileAppPage() {
         offers: {
           '@type': 'Offer',
           priceCurrency: 'RUB',
-          price: '150000',
+          price: '60000',
           url: `https://narodniy-team.ru${PATH}`,
         },
       },
@@ -207,7 +187,7 @@ export default function MobileAppPage() {
       <MobileShowcase />
 
       {/* Benefits */}
-      <section className={styles.block} aria-labelledby="benefits-title">
+      <section id="benefits" className={styles.block} aria-labelledby="benefits-title">
         <span className={styles.blockLabel}>// Что входит</span>
         <h2 id="benefits-title" className={styles.blockTitle}>Приложение, которое решает задачи бизнеса</h2>
         <p className={styles.blockSub}>
@@ -230,41 +210,21 @@ export default function MobileAppPage() {
         <span className={styles.blockLabel}>// Стоимость</span>
         <h2 id="pricing-title" className={styles.blockTitle}>Сколько стоит разработка приложения</h2>
         <p className={styles.blockSub}>
-          Ориентировочные пакеты. Точную стоимость и сроки рассчитываем бесплатно
-          после короткого брифа — платите за реальный объём работ, без «воды».
+          Одна смета вместо трёх витрин: по строкам видно, чем комплектации отличаются.
+          Точную стоимость и сроки рассчитываем бесплатно после короткого брифа.
         </p>
-        <div className={styles.pricing}>
-          {PRICING.map((p) => (
-            <div key={p.name} className={`glass-card ${styles.priceCard} ${p.featured ? styles.priceCardFeatured : ''}`}>
-              <span className={styles.priceTag}>{p.tag}</span>
-              <h3 className={styles.priceName}>{p.name}</h3>
-              <div className={styles.priceValue}>{p.value}</div>
-              <div className={styles.priceNote}>{p.note}</div>
-              <ul className={styles.priceList}>
-                {p.features.map((f) => (
-                  <li key={f}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                    {f}
-                  </li>
-                ))}
-              </ul>
-              <a href={TG_LINK} target="_blank" rel="noreferrer" className={`${p.featured ? 'btn-primary' : 'btn-secondary'} ${styles.priceBtn}`}>
-                Обсудить проект
-              </a>
-            </div>
-          ))}
-        </div>
+        <SpecSheet cols={SPEC_COLS} rows={SPEC_ROWS} tgLink={TG_LINK} />
       </section>
 
       {/* FAQ */}
-      <section className={styles.block} aria-labelledby="faq-title">
+      <section id="faq" className={styles.block} aria-labelledby="faq-title">
         <span className={styles.blockLabel}>// Вопросы</span>
         <h2 id="faq-title" className={styles.blockTitle}>Частые вопросы о разработке приложений</h2>
         <p className={styles.blockSub}>
           Коротко о цене, сроках и процессе. Не нашли свой вопрос — напишите нам в Telegram,
           ответим в течение пары часов.
         </p>
-        <Faq items={FAQ_ITEMS} />
+        <FaqBrief items={FAQ_ITEMS} />
       </section>
 
       <Footer />
