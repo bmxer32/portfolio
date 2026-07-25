@@ -3,6 +3,8 @@ import { Inter } from 'next/font/google'
 import SmoothScroll from '../components/SmoothScroll'
 import SectionNav from '../components/SectionNav'
 import NoZoom from '../components/NoZoom'
+import Metrika from '../components/Metrika'
+import { METRIKA_ID } from '../components/metrika-id'
 
 const inter = Inter({ subsets: ['latin', 'cyrillic'] })
 
@@ -100,8 +102,26 @@ export default function RootLayout({ children }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Яндекс.Метрика. Тот же номер счётчика стоит на лендинге /ai/ —
+            иначе переход между главной и лендингом Метрика посчитала бы
+            двумя разными визитами и статистика поехала бы. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window, document,'script','https://mc.yandex.ru/metrika/tag.js','ym');
+ym(${METRIKA_ID},'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});`,
+          }}
+        />
       </head>
       <body className={inter.className}>
+        <noscript>
+          <div>
+            <img src={`https://mc.yandex.ru/watch/${METRIKA_ID}`} style={{ position: 'absolute', left: '-9999px' }} alt="" />
+          </div>
+        </noscript>
+        <Metrika />
         <NoZoom />
         <SectionNav />
         <SmoothScroll>{children}</SmoothScroll>
