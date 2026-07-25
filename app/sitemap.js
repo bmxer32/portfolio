@@ -4,7 +4,6 @@ export default function sitemap() {
 
   const services = [
     'razrabotka-saytov',
-    'razrabotka-botov-s-ii',
     'razrabotka-mobilnyh-prilozheniy',
     'razrabotka-programm-na-pk',
   ]
@@ -22,6 +21,21 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.9,
     })),
+    /* Лендинг AI-ассистента живёт отдельной статикой в /ai/ (репозиторий
+       ai-assistant-landing), но в карту сайта попадать должен отсюда —
+       иначе каждая сборка затирала бы дописанные вручную строки. */
+    {
+      url: `${baseUrl}/ai/`,
+      lastModified: now,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/ai/cases.html`,
+      lastModified: now,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
     {
       url: `${baseUrl}/privacy`,
       lastModified: now,

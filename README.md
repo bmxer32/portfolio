@@ -27,12 +27,23 @@ app/
 ├── uslugi/
 │   ├── razrabotka-saytov/               # Услуга: сайты и веб-приложения
 │   ├── razrabotka-mobilnyh-prilozheniy/ # Услуга: мобильные приложения
-│   ├── razrabotka-botov-s-ii/           # Услуга: Telegram-боты с ИИ
 │   └── razrabotka-programm-na-pk/       # Услуга: десктоп-софт
 ├── privacy/               # Политика конфиденциальности
 ├── robots.js / sitemap.js # SEO
 components/                # Hero, Portfolio, Skills, Workflow, кастомный курсор и др.
 ```
+
+### Услуга «Telegram-боты и ИИ» — отдельный проект
+
+Живёт не здесь, а по адресу `/ai/` — это статический лендинг из репозитория
+[ai-assistant-landing](https://github.com/bmxer32/ai-assistant-landing), который
+nginx отдаёт мимо Next. Поэтому карточка в `components/Skills.jsx` помечена
+`external: true` и рендерится обычной `<a>`: `<Link>` попытался бы сделать
+клиентский переход на несуществующий в приложении маршрут.
+
+Старый адрес `/uslugi/razrabotka-botov-s-ii` отдаёт 301 на `/ai/` — редирект
+настроен в nginx на сервере, в сборке его нет (`output: 'export'` не умеет
+`redirects`).
 
 ## Фичи
 

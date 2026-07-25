@@ -21,7 +21,6 @@ const ROUTE_SECTIONS = {
     { id: 'contact',   label: 'Контакт' },
   ],
   '/uslugi/razrabotka-saytov': SERVICE_SECTIONS,
-  '/uslugi/razrabotka-botov-s-ii': SERVICE_SECTIONS,
   '/uslugi/razrabotka-mobilnyh-prilozheniy': SERVICE_SECTIONS,
   '/uslugi/razrabotka-programm-na-pk': SERVICE_SECTIONS,
 }

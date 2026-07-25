@@ -86,7 +86,10 @@ const skillCategories = [
   },
   {
     title: 'Telegram-боты и ИИ',
-    href: '/uslugi/razrabotka-botov-s-ii',
+    /* Отдельный лендинг /ai/ — статика, которую отдаёт nginx мимо Next.
+       Поэтому external: обычная <a>, а не <Link> с клиентским переходом. */
+    href: '/ai/',
+    external: true,
     description: 'Разработка умных ботов поддержки и автоматизации бизнеса: интеграция нейросетей (ChatGPT, Claude), создание баз знаний и настройка сложных API.',
     device: <ChatDevice />,
     skills: ['Node.js', 'Python', 'OpenAI API', 'LLM / RAG', 'Telegram API'],
@@ -119,7 +122,9 @@ export default function Skills() {
         </Reveal>
 
         <div className={styles.grid}>
-          {skillCategories.map((category, index) => (
+          {skillCategories.map((category, index) => {
+            const Card = category.external ? 'a' : Link
+            return (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
@@ -128,7 +133,7 @@ export default function Skills() {
               transition={{ duration: 0.7, delay: (index % 2) * 0.12, ease: [0.16, 1, 0.3, 1] }}
               style={{ display: 'flex' }}
             >
-              <Link href={category.href} className={styles.card}>
+              <Card href={category.href} className={styles.card}>
                 {category.device}
                 <h3 className={styles.cardTitle}>{category.title}</h3>
                 <p className={styles.cardDesc}>{category.description}</p>
@@ -139,9 +144,10 @@ export default function Skills() {
                     <span className={styles.arrow} aria-hidden="true">→</span>
                   </span>
                 </div>
-              </Link>
+              </Card>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
